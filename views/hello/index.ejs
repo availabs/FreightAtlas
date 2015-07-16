@@ -1,0 +1,16 @@
+<% if (devEnv) { %>
+    <script src="http://localhost:11235/bundle.js"></script>
+<% } else { %> 
+    <script src="bundle.js"></script>
+<% } %>
+
+<style>
+    html, body, #map {
+        height: 100%;
+    }
+	body {
+        padding: 0;
+        margin: 0;
+    }
+
+</style>
