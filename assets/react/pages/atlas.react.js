@@ -7,6 +7,7 @@ var React = require('react'),
     
     //    -- sidebar components
     MapSidebar = require('../components/utils/MapSidebar.react'),
+    LayerList = require('../components/layerList.react'),
     
     // -- actions
     
@@ -20,9 +21,29 @@ var WalkerDashboard = React.createClass({
     getInitialState:function(){
 
         return {
-            mapLayers:{layer1:{id:0,options:{zoomOnLoad:true},geo:{type:"FeatureCollection",features:[]}}}
+            mapLayers:{layer1:{id:0,options:{zoomOnLoad:true},geo:{type:"FeatureCollection",features:[]}}},
+            layers:[{name:"NYSDOT_Regions",path:"NYSDOT_Regions.geojson"},{name:"Cities",path:"cities.geojson"},{name:"Railroad",path:"Railroad.geojson"}]
         }
 
+    },
+
+    loadLayer:function(name,url){
+        console.log(url);
+
+        var urlBase = "/data/geoJson/";
+
+        var scope = this;
+
+        var layers = {}
+
+        var urlFull = urlBase + url
+        d3.json(urlFull,function(err,data){
+            console.log("getData",data,err);
+
+            layers[name] = {layer1:{id:name,geo:data,options:{zoomOnLoad:true}}};
+
+                scope.setState({mapLayers:layers[name]})
+            })
     },
     
     getPanes:function(){
@@ -30,26 +51,20 @@ var WalkerDashboard = React.createClass({
             {
                 name:'home',
                 icon:'fa fa-home',
-                content: <h1>Stuff1</h1> 
+                content: <LayerList layers={this.state.layers} load = {this.loadLayer} />
 
+            },            
+            {
+                name:'home2',
+                icon:'fa fa-home',
+                content: <LayerList layers={this.state.layers} load = {this.loadLayer} />
             }        
         ]
     },
 
     componentDidMount:function(){
 
-        var url = "/data/geoJson/NYSDOT_Regions.geojson";
 
-        var scope = this;
-
-        d3.json(url,function(err,data){
-            console.log("getData",data,err);
-
-            var layers = {layer1:{id:1,geo:data,options:{zoomOnLoad:true}}};
-
-            scope.setState({mapLayers:layers})
-
-        })
 
 
     },
@@ -62,7 +77,7 @@ var WalkerDashboard = React.createClass({
        
 
         
-        console.log('render checkins',this.state.mapLayers);
+        //console.log('render checkins',this.state.mapLayers);
         return (
         	
             <div style={{width:'100%',height:'100%'}} >

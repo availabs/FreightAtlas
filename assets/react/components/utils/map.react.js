@@ -110,8 +110,10 @@ var Map = React.createClass({
                 
                 
                     var ezBounds = d3.geo.bounds(layer.geo);
-                    console.log("test1",ezBounds,layers[key].layer.getBounds() )
-                    map.fitBounds([ezBounds[0].reverse(),ezBounds[1].reverse()]);
+
+                    map.invalidateSize();
+                    console.log(layers[key].layer.getBounds())
+                    map.fitBounds(layers[key].layer.getBounds());
                 
             }
         }
@@ -150,7 +152,7 @@ var Map = React.createClass({
                 map.addLayer(layers[key].layer);
                 if(currLayer.geo && currLayer.options.zoomOnLoad && currLayer.geo.features.length > 0){
                     var ezBounds = d3.geo.bounds(currLayer.geo);
-                    console.log("test2",ezBounds,layers[key].layer.getBounds() )
+
                     map.fitBounds(layers[key].layer.getBounds());
                 }
             
