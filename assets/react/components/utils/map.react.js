@@ -33,10 +33,10 @@ var Map = React.createClass({
        
         L.Icon.Default.imagePath = '/img/icons';
         this.renderMap();
-        console.log('did mount',map)
+        //console.log('did mount',map)
         map.invalidateSize()
         setTimeout(function () {
-            console.log('invalideate')
+            //onsole.log('invalideate')
             map.invalidateSize()
         }, 50);
 
@@ -58,7 +58,7 @@ var Map = React.createClass({
                     //layer is new and has features
                     scope._updateLayer(key,currLayer)
                 }else{
-                    console.log('MAP/recieve props/ DEAD END')
+                    //console.log('MAP/recieve props/ DEAD END')
                 }
             });
         }
@@ -110,6 +110,7 @@ var Map = React.createClass({
                 
                 
                     var ezBounds = d3.geo.bounds(layer.geo);
+                    console.log("test1",ezBounds,layers[key].layer.getBounds() )
                     map.fitBounds([ezBounds[0].reverse(),ezBounds[1].reverse()]);
                 
             }
@@ -149,7 +150,8 @@ var Map = React.createClass({
                 map.addLayer(layers[key].layer);
                 if(currLayer.geo && currLayer.options.zoomOnLoad && currLayer.geo.features.length > 0){
                     var ezBounds = d3.geo.bounds(currLayer.geo);
-                    map.fitBounds([ezBounds[0].reverse(),ezBounds[1].reverse()]);
+                    console.log("test2",ezBounds,layers[key].layer.getBounds() )
+                    map.fitBounds(layers[key].layer.getBounds());
                 }
             
             });
@@ -178,7 +180,7 @@ var Map = React.createClass({
         if(map){    
             map.invalidateSize();
         }
-        console.log('renderMap',map)
+        //console.log('renderMap',map)
         return (
             <div className="sidebar-map" id="map" style={{height:'100%'}}>
                 <ToolTip/>
