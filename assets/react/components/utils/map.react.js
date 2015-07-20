@@ -17,7 +17,7 @@ var map = null,
     markers = {},
     sidebar;
 
-                  
+                           var colorScale = d3.scale.category20b();   
 
 
 
@@ -110,7 +110,7 @@ var Map = React.createClass({
         if(layer.options.visible){
             layers[key] = {
                 id:layer.id,
-                layer: new L.geoJson({type:'FeatureCollection',features:[]},{pointToLayer:layer.options.pointToLayer,onEachFeature:layer.options.onEachFeature},layer.options)
+                layer: new L.geoJson({type:'FeatureCollection',features:[]},{pointToLayer:layer.options.pointToLayer,onEachFeature:layer.options.onEachFeature,style:{color:colorScale(layer.id),opacity:.7}},layer.options)
             }
             if(layer.geo){
                 layers[key].layer.addData(layer.geo); // to get layerAdd event
@@ -160,7 +160,7 @@ var Map = React.createClass({
                 var currLayer = scope.props.layers[key]
                 layers[key] =  {
                     id:currLayer.id,
-                    layer: L.geoJson(currLayer.geo,{pointToLayer:currLayer.options.pointToLayer,onEachFeature:currLayer.options.onEachFeature},currLayer.options)
+                    layer: L.geoJson(currLayer.geo,{pointToLayer:currLayer.options.pointToLayer,onEachFeature:currLayer.options.onEachFeature,style:{color:colorScale(layer.id),opacity:.7}},currLayer.options)
                 };  
                 map.addLayer(layers[key].layer);
                 if(currLayer.geo && currLayer.options.zoomOnLoad && currLayer.geo.features.length > 0){

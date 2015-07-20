@@ -64,16 +64,15 @@ var WalkerDashboard = React.createClass({
 
                 newState.mapLayers[layName] = {id:layName,geo:data,options:{zoomOnLoad:true,visible:true,
                     pointToLayer: function (d, latlng) {
-                      var divmarker = L.divIcon({
-                         className:'divMarker',
-                         iconSize:[10,10],
-                     }),
-                       options = {
-                           icon:divmarker,
-                           draggable:true,
+
+                      var options = {
+
                        },
                        obj = L.circleMarker(latlng, options);
                        
+                       obj.bindPopup(d.properties.PortName);
+
+
                        return obj;
                     },
                     onEachFeature:function(d,latlng){
