@@ -6,13 +6,24 @@ var React = require('react');
     
 
 var layerList = React.createClass({
-
+    
+    getDefaultProps:function(){
+        return {
+            layers:{}
+        }
+    },
+    
 
     render: function() {
         var scope = this;
-        var list = this.props.layers.map(function(layer,index){
+        var list = Object.keys(this.props.layers).map(function(key,index){
             return (
-                <span><button onClick={scope.props.load.bind(null,layer.name,layer.path)}>{layer.name}</button><br/></span>
+                <span>
+                    <button onClick={scope.props.load.bind(null,key,scope.props.layers[key].path)}>
+                        {key}
+                    </button>
+                    <br/>
+                </span>
 
                 )
         })

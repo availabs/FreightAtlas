@@ -17,8 +17,14 @@ var map = null,
     markers = {},
     sidebar;
 
+                  
+
+
+
 
 var Map = React.createClass({
+
+    
     
     getDefaultProps:function(){
         return {
@@ -97,29 +103,31 @@ var Map = React.createClass({
     },
     
     _updateLayer : function(key,layer){
-        console.log('update layer',layers)
-        if(map.hasLayer(layers[key])){
+        console.log(layer)
+        if(layers[key] && map.hasLayer(layers[key].layer)){
             map.removeLayer(layers[key].layer)
         }
-        layers[key] = {
-            id:layer.id,
-            layer: new L.geoJson({type:'FeatureCollection',features:[]},layer.options)
-        }
-        if(layer.geo){
-            layers[key].layer.addData(layer.geo); // to get layerAdd event
-            map.addLayer(layers[key].layer);
-            if(layer.options.centerOnLoad){
-                    map.setView(L.latLng(layer.geo.features[0].geometry.coordinates.reverse()),15)
+        if(layer.options.visible){
+            layers[key] = {
+                id:layer.id,
+                layer: new L.geoJson({type:'FeatureCollection',features:[]},{pointToLayer:layer.options.pointToLayer,onEachFeature:layer.options.onEachFeature},layer.options)
             }
-            if(layer.options.zoomOnLoad){
-                
-                
-                    var ezBounds = d3.geo.bounds(layer.geo);
+            if(layer.geo){
+                layers[key].layer.addData(layer.geo); // to get layerAdd event
+                map.addLayer(layers[key].layer);
+                if(layer.options.centerOnLoad){
+                        map.setView(L.latLng(layer.geo.features[0].geometry.coordinates.reverse()),15)
+                }
+                if(layer.options.zoomOnLoad){
+                    
+                    
+                        var ezBounds = d3.geo.bounds(layer.geo);
 
-                    map.invalidateSize();
-                    console.log(layers[key].layer.getBounds())
-                    map.fitBounds(layers[key].layer.getBounds());
-                
+                        map.invalidateSize();
+                        console.log(layers[key].layer.getBounds())
+                        map.fitBounds(layers[key].layer.getBounds());
+                    
+                }
             }
         }
     },
@@ -152,7 +160,7 @@ var Map = React.createClass({
                 var currLayer = scope.props.layers[key]
                 layers[key] =  {
                     id:currLayer.id,
-                    layer: L.geoJson(currLayer.geo,currLayer.options)
+                    layer: L.geoJson(currLayer.geo,{pointToLayer:currLayer.options.pointToLayer,onEachFeature:currLayer.options.onEachFeature},currLayer.options)
                 };  
                 map.addLayer(layers[key].layer);
                 if(currLayer.geo && currLayer.options.zoomOnLoad && currLayer.geo.features.length > 0){
@@ -163,7 +171,6 @@ var Map = React.createClass({
             
             });
         }
-
         if(this.props.markers){
             
             Object.keys(this.props.markers).forEach(function(key){
