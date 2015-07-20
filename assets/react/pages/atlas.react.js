@@ -21,7 +21,7 @@ var WalkerDashboard = React.createClass({
     getInitialState:function(){
 
         return {
-            mapLayers:{layer1:{id:0,options:{zoomOnLoad:true},geo:{type:"FeatureCollection",features:[]}}},
+            mapLayers:{id:0,options:{zoomOnLoad:true},geo:{type:"FeatureCollection",features:[]}},
             layers:[{name:"NYSDOT_Regions",path:"NYSDOT_Regions.geojson"},{name:"Cities",path:"cities.geojson"},{name:"Railroad",path:"Railroad.geojson"}]
         }
 
@@ -34,15 +34,17 @@ var WalkerDashboard = React.createClass({
 
         var scope = this;
 
-        var layers = {}
+        var layers = scope.state.mapLayers;
 
-        var urlFull = urlBase + url
+        var urlFull = urlBase + url;
+
         d3.json(urlFull,function(err,data){
             console.log("getData",data,err);
 
-            layers[name] = {layer1:{id:name,geo:data,options:{zoomOnLoad:true}}};
-
-                scope.setState({mapLayers:layers[name]})
+            layers[name] = {id:name,geo:data,options:{zoomOnLoad:true}};
+            //scope.state.mapLayers[name]={layer1:{id:name,geo:data,options:{zoomOnLoad:true}}};
+            console.log(scope.state)
+                scope.setState({mapLayers:layers})
             })
     },
     
@@ -64,6 +66,7 @@ var WalkerDashboard = React.createClass({
 
     componentDidMount:function(){
 
+        console.log("hello");
 
 
 

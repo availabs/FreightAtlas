@@ -44,21 +44,26 @@ var Map = React.createClass({
     
     componentWillReceiveProps: function(nextProps) {
         var scope = this;
+
         if(nextProps.layers){
-            
+      
             Object.keys(nextProps.layers).forEach(function(key){
+
                 var currLayer = nextProps.layers[key];
+                console.log("compWill",currLayer)   
                 if(layers[key]){
                     //if layer existed previously check version ids
                     //console.log('layer on props exists',key,currLayer.id,layers[key].id);
                     if(currLayer.id !== layers[key].id && currLayer.geo.features.length > 0){
+                        console.log("new layer1");
                         scope._updateLayer(key,currLayer)        
                     }
                 }else if(currLayer.geo && currLayer.geo.features.length > 0){
                     //layer is new and has features
+                    console.log("new layer");
                     scope._updateLayer(key,currLayer)
                 }else{
-                    //console.log('MAP/recieve props/ DEAD END')
+                    console.log('MAP/recieve props/ DEAD END')
                 }
             });
         }
@@ -92,8 +97,8 @@ var Map = React.createClass({
     },
     
     _updateLayer : function(key,layer){
-        //console.log('update layer',key)
-        if(map.hasLayer(layers[key].layer)){
+        console.log('update layer',layers)
+        if(map.hasLayer(layers[key])){
             map.removeLayer(layers[key].layer)
         }
         layers[key] = {
