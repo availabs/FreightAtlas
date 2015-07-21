@@ -1,45 +1,58 @@
 'use strict';
 
 var React = require('react');
-    
+
+var LayerItem = React.createClass({
+
+    render: function(){
+        return <div >
+                        <button id="layList" ref={this.props.key} onClick={this.handleClick}>
+                                {this.props.layerName}
+                        </button>
+                    
+                </div> 
+    },
+    handleClick:function () {
+        //console.log(this)
+        this.props.onClick(this)
+    },
+
+
+
+})
   
     
 
 var layerList = React.createClass({
+
     
     getDefaultProps:function(){
+
         return {
             layers:{}
         }
     },
-    
+    handleClick:function (childComponent) {
+        //console.log(childComponent)
+        this.props.onClick(childComponent)
+    },
 
     render: function() {
         var scope = this;
+
         var list = Object.keys(this.props.layers).map(function(key,index){
             return (
-                <span>
-                    <button onClick={scope.props.load.bind(null,key,scope.props.layers[key].path)}>
-                        {key}
-                    </button>
-                    <br/>
-                </span>
-
+                <LayerItem layerName={key} onClick={scope.handleClick} >
+                </LayerItem>
                 )
         })
               
 
         return (
         	
-            <div style={{width:'100%',height:'100%'}} >
-
-                <h3>Layer List</h3>
+            <div className = "layerList" style={{width:'100%',height:'100%'}}   >
+                <h3 onClick={this.handleClick}>Layer List</h3>
                 {list}
-
-
-
-
-            
             </div> 
         	
         );

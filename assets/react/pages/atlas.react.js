@@ -106,14 +106,9 @@ var WalkerDashboard = React.createClass({
             {
                 name:'home',
                 icon:'fa fa-home',
-                content: <LayerList layers={this.state.layersInfo} load = {this.loadLayer} />
+                content: <LayerList layers={this.state.layersInfo} onClick = {this.handleClick} />
 
-            },            
-            {
-                name:'home2',
-                icon:'fa fa-home',
-                content: <LayerList layers={this.state.layersInfo} load = {this.loadLayer} />
-            }        
+            }       
         ]
     },
 
@@ -123,6 +118,21 @@ var WalkerDashboard = React.createClass({
 
 
 
+    },
+    handleClick: function (childComponent) {
+        //console.log(this)
+        console.log(childComponent)
+
+        var curLayerName = childComponent.props.layerName;
+        var curLayerPath = this.state.layersInfo[childComponent.props.layerName].path;
+        console.log(curLayerName)
+        console.log(curLayerPath)
+
+        this.loadLayer(curLayerName,curLayerPath)
+        //this.loadLayer(childComponent.props.layerName,this.state.layersInfo[{childComponent.props.layerName}])
+        //console.log(childComponent.refs.myButton)
+        // childComponent.refs
+        //childComponent.loadLayer(key,this.props.layers[key].path)
     },
 
     render: function() {
