@@ -17,7 +17,7 @@ var map = null,
     markers = {},
     sidebar;
 
-                           var colorScale = d3.scale.category20b();   
+                           var colorScale = d3.scale.category20();   
 
 
 
