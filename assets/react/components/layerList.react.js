@@ -3,16 +3,21 @@
 var React = require('react');
 
 var LayerItem = React.createClass({
+    getInitialState: function() {
+        return {selected: false};
+      },
 
     render: function(){
+        var curStyle = this.state.selected ? 'layListActive' : 'layListInactive';
         return <div >
-                        <button id="layList" ref={this.props.key} onClick={this.handleClick}>
+                        <button id={curStyle} ref={this.props.key} onClick={this.handleClick}>
                                 {this.props.layerName}
                         </button>
                     
                 </div> 
     },
     handleClick:function () {
+        this.setState({selected: !this.state.selected})
         //console.log(this)
         this.props.onClick(this)
     },

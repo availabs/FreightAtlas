@@ -1,5 +1,10 @@
-#layList{
-	background:#0078A8;
+#layListInactive{
+	background:white;
+	color:black;
+	font:12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+#layListActive{
+	background:#2C2929;
 	color:white;
 	font:12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
 }

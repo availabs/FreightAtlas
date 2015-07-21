@@ -39,7 +39,7 @@ var Map = React.createClass({
        
         L.Icon.Default.imagePath = '/img/icons';
         this.renderMap();
-        //console.log('did mount',map)
+
         map.invalidateSize()
         setTimeout(function () {
             //onsole.log('invalideate')
@@ -56,17 +56,17 @@ var Map = React.createClass({
             Object.keys(nextProps.layers).forEach(function(key){
 
                 var currLayer = nextProps.layers[key];
-                console.log("compWill",currLayer)   
+
                 if(layers[key]){
                     //if layer existed previously check version ids
-                    //console.log('layer on props exists',key,currLayer.id,layers[key].id);
+
                     if(currLayer.id !== layers[key].id && currLayer.geo.features.length > 0){
-                        console.log("new layer1");
+
                         scope._updateLayer(key,currLayer)        
                     }
                 }else if(currLayer.geo && currLayer.geo.features.length > 0){
                     //layer is new and has features
-                    console.log("new layer");
+
                     scope._updateLayer(key,currLayer)
                 }else{
                     console.log('MAP/recieve props/ DEAD END')
@@ -103,7 +103,7 @@ var Map = React.createClass({
     },
     
     _updateLayer : function(key,layer){
-        console.log(layer)
+
         if(layers[key] && map.hasLayer(layers[key].layer)){
             map.removeLayer(layers[key].layer)
         }
@@ -124,7 +124,7 @@ var Map = React.createClass({
                         var ezBounds = d3.geo.bounds(layer.geo);
 
                         map.invalidateSize();
-                        console.log(layers[key].layer.getBounds())
+
                         map.fitBounds(layers[key].layer.getBounds());
                     
                 }
@@ -176,7 +176,7 @@ var Map = React.createClass({
             Object.keys(this.props.markers).forEach(function(key){
 
                 var curMarker = scope.props.markers[key];
-                //console.log('marker on mount',key,curMarker);
+
                 if(curMarker.latlng){
                     var icon = L.divIcon(curMarker.options);
                     markers[key]  = {
@@ -194,7 +194,7 @@ var Map = React.createClass({
         if(map){    
             map.invalidateSize();
         }
-        //console.log('renderMap',map)
+
         return (
             <div className="sidebar-map" id="map" style={{height:'100%'}}>
                 <ToolTip/>

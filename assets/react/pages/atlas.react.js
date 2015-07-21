@@ -68,7 +68,7 @@ var WalkerDashboard = React.createClass({
             var urlFull = urlBase + url;
         
             d3.json(urlFull,function(err,data){
-                console.log("getData in loadLayer",data,err);
+
 
                 newState.mapLayers[layName] = {id:layName,geo:data,options:{zoomOnLoad:true,visible:true,
                     pointToLayer: function (d, latlng) {
@@ -84,7 +84,7 @@ var WalkerDashboard = React.createClass({
                        return obj;
                     },
                     onEachFeature:function(d,latlng){
-                        console.log(d);
+                        //console.log(d);
                     }}};
                 newState.layersInfo[layName].loaded = true;
                 newState.layersInfo[layName].visible = true;
@@ -120,19 +120,9 @@ var WalkerDashboard = React.createClass({
 
     },
     handleClick: function (childComponent) {
-        //console.log(this)
-        console.log(childComponent)
-
         var curLayerName = childComponent.props.layerName;
         var curLayerPath = this.state.layersInfo[childComponent.props.layerName].path;
-        console.log(curLayerName)
-        console.log(curLayerPath)
-
         this.loadLayer(curLayerName,curLayerPath)
-        //this.loadLayer(childComponent.props.layerName,this.state.layersInfo[{childComponent.props.layerName}])
-        //console.log(childComponent.refs.myButton)
-        // childComponent.refs
-        //childComponent.loadLayer(key,this.props.layers[key].path)
     },
 
     render: function() {
@@ -143,7 +133,7 @@ var WalkerDashboard = React.createClass({
        
 
         
-        //console.log('render checkins',this.state.mapLayers);
+
         return (
         	
             <div style={{width:'100%',height:'100%'}} >
