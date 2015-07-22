@@ -58,6 +58,7 @@ var layerList = React.createClass({
             <div class = "layerList" style={{width:'100%',height:'100%'}}   >
                 <h3 onClick={this.handleClick}>Layer List</h3>
                 {list}
+                
             </div> 
         	
         );

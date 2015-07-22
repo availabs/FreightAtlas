@@ -7,6 +7,7 @@ module.exports = {
     "Railroad":{
     	path:"Railroad.geojson",
     	options:{
+    		zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -19,6 +20,7 @@ module.exports = {
     "All Rail (State Clip)":{
         path:"AllRail_StateClip.geojson",
         options:{
+        	zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -31,6 +33,7 @@ module.exports = {
     "NYS Canal System":{
     	path:"nys_canal_system.geojson",
     	options:{
+    		zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -43,6 +46,7 @@ module.exports = {
     "NY Major Border Crossings":{
         path:"BorderCrossingsMajor.geojson",
         options:{
+        	zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -63,6 +67,7 @@ module.exports = {
     "Canadian Provinces":{
     	path:"CAN_adm1.geojson",
     	options:{
+    		zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -75,6 +80,7 @@ module.exports = {
     "Export/Output":{
     	path:"Export_Output.geojson",
     	options:{
+    		zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -95,6 +101,7 @@ module.exports = {
     "MPO Boundaries":{
     	path:"MPOBoundaries.geojson",
     	options:{
+    		zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -107,6 +114,7 @@ module.exports = {
     "MPO Cities":{
     	path:"MPO_Cities.geojson",
     	options:{
+    		zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -127,6 +135,7 @@ module.exports = {
     "NTAD 2014 NYarea":{
     	path:"NTAD_2014_NYarea.geojson",
     	options:{
+    		zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -139,6 +148,7 @@ module.exports = {
     "NY Capital_Region":{
     	path:"NYSDOT_Capital_Region_Dissolve.geojson",
     	options:{
+    		zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -151,6 +161,7 @@ module.exports = {
     "NY Central Region Dissolve":{
     	path:"NYSDOT_Central_Region_Dissolve.geojson",
     	options:{
+    		zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -163,6 +174,7 @@ module.exports = {
     "NY Freight Network":{
     	path:"NYSDOT_FreightNetwork_Draft.geojson",
     	options:{
+    		zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -175,6 +187,7 @@ module.exports = {
     "NY Metro Region":{
     	path:"NYSDOT_NYMTC_Region_Dissolve.geojson",
     	options:{
+    		zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -187,6 +200,7 @@ module.exports = {
     "NY All Regions":{
     	path:"NYSDOT_Regions.geojson",
     	options:{
+    		zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -199,6 +213,7 @@ module.exports = {
     "NY RegionsDissolve":{
     	path:"NYSDOT_Regions_Dissolve.geojson",
     	options:{
+    		zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -211,6 +226,7 @@ module.exports = {
     "NY Major Ports":{
     	path:"NY_MajorPorts.geojson",
     	options:{
+    		zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -231,6 +247,7 @@ module.exports = {
     "US Counties with population over 500k":{
     	path:"cb_2013_us_county_500k.geojson",
     	options:{
+    		zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -243,6 +260,7 @@ module.exports = {
     "US Cities":{
     	path:"cities.geojson",
     	options:{
+    		zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -263,6 +281,7 @@ module.exports = {
     "Cities with Population Over 20k":{
     	path:"SelectCities_PopOver20k.geojson",
     	options:{
+    		zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -283,6 +302,7 @@ module.exports = {
     "Facilities":{
     	path:"facility.geojson",
     	options:{
+    		zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){

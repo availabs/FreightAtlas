@@ -57,7 +57,6 @@ var WalkerDashboard = React.createClass({
         }else{
             newState.mapLayers[layName].options.visible = !newState.mapLayers[layName].options.visible;
             newState.mapLayers[layName].id += 1;
-            console.log(newState.mapLayers[layName]);
             scope.setState(newState)
         }
 

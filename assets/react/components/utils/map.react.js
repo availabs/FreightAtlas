@@ -120,7 +120,7 @@ var Map = React.createClass({
                     
                     
                         var ezBounds = d3.geo.bounds(layer.geo);
-                        console.log(layers[key].layer.getBounds());
+
                         map.invalidateSize();
 
                         map.fitBounds(layers[key].layer.getBounds());
