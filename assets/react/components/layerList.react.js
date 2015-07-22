@@ -8,13 +8,21 @@ var LayerItem = React.createClass({
       },
 
     render: function(){
-        var curStyle = this.state.selected ? 'layListActive' : 'layListInactive';
-        return <div >
-                        <button id={curStyle} ref={this.props.key} onClick={this.handleClick}>
-                                {this.props.layerName}
-                        </button>
-                    
-                </div> 
+        var curStyle = this.state.selected ? 'layListActive' : 'layListInactive',
+            btnStyle = {
+                width:'100%',
+                textAlign:'center',
+                padding:'10px',
+                border:'none'
+            }
+        return (
+            <div >
+                <button className={curStyle} ref={this.props.key} onClick={this.handleClick} style={btnStyle}>
+                        {this.props.layerName}
+                </button>
+            
+            </div>
+        )
     },
     handleClick:function () {
         this.setState({selected: !this.state.selected})
@@ -55,9 +63,10 @@ var layerList = React.createClass({
 
         return (
         	
-            <div className = "layerList" style={{width:'100%',height:'100%'}}   >
-                <h3 onClick={this.handleClick}>Layer List</h3>
+            <div className= "layerList" style={{width:'100%',height:'100%'}}   >
+                <h3 onClick={this.handleClick}>{this.props.title}</h3>
                 {list}
+                
             </div> 
         	
         );
