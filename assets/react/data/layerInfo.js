@@ -57,6 +57,14 @@ module.exports = {
                 return{
                     color:colorScale("Export_Output")
                 }
+            },
+            pointToLayer: function (d, latlng) {
+                var options = {
+
+                }
+                var obj = L.circleMarker(latlng, {});
+                //obj.bindPopup(d.properties.PortName);
+                return obj;
             }
         }
     },
@@ -81,6 +89,14 @@ module.exports = {
                 return{
                     color:colorScale("MPO_Cities")
                 }
+            },
+            pointToLayer: function (d, latlng) {
+                var options = {
+
+                }
+                var obj = L.circleMarker(latlng, {});
+                //obj.bindPopup(d.properties.PortName);
+                return obj;
             }
         }
     },
@@ -177,6 +193,14 @@ module.exports = {
                 return{
                     color:colorScale("NY_MajorPorts")
                 }
+            },
+            pointToLayer: function (d, latlng) {
+                var options = {
+
+                }
+                var obj = L.circleMarker(latlng, {});
+                //obj.bindPopup(d.properties.PortName);
+                return obj;
             }
         }
     },
@@ -201,6 +225,14 @@ module.exports = {
                 return{
                     color:colorScale("SelectCities_PopOver20k")
                 }
+            },
+            pointToLayer: function (d, latlng) {
+                var options = {
+
+                }
+                var obj = L.circleMarker(latlng, {});
+                //obj.bindPopup(d.properties.PortName);
+                return obj;
             }
         }
     },
@@ -225,6 +257,14 @@ module.exports = {
                 return{
                     color:colorScale("cities")
                 }
+            },
+            pointToLayer: function (d, latlng) {
+                var options = {
+
+                }
+                var obj = L.circleMarker(latlng, {});
+                //obj.bindPopup(d.properties.PortName);
+                return obj;
             }
         }
     },
@@ -237,6 +277,14 @@ module.exports = {
                 return{
                     color:colorScale("facility")
                 }
+            },
+            pointToLayer: function (d, latlng) {
+                var options = {
+
+                }
+                var obj = L.circleMarker(latlng, {});
+                //obj.bindPopup(d.properties.PortName);
+                return obj;
             }
         }
     },

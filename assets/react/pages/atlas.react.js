@@ -26,13 +26,6 @@ var WalkerDashboard = React.createClass({
 
         var allLayers = LayerInfo;
 
-        for (var i in allLayers){
-            if(!allLayers[i].options){
-                allLayers[i].options = {}
-            }
-            allLayers[i].options.visible = false;
-            allLayers[i].options.loaded = false;               
-        }
 
 
         return {
