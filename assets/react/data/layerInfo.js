@@ -4,7 +4,7 @@ var d3 = require('d3');
 var colorScale = d3.scale.category20();   
 
 module.exports = {
-    "Railroad":{
+    "NY Area Railroad":{
     	path:"Railroad.geojson",
     	options:{
     		zoomOnLoad:true,
@@ -17,7 +17,7 @@ module.exports = {
             }
         }
     },
-    "All Rail (State Clip)":{
+    "NY Area Railraoad (State Clip)":{
         path:"AllRail_StateClip.geojson",
         options:{
         	zoomOnLoad:true,
@@ -145,7 +145,7 @@ module.exports = {
             }
         }
     },
-    "NY Capital_Region":{
+    "NY Capital Region":{
     	path:"NYSDOT_Capital_Region_Dissolve.geojson",
     	options:{
     		zoomOnLoad:true,
@@ -158,7 +158,7 @@ module.exports = {
             }
         }
     },
-    "NY Central Region Dissolve":{
+    "NY Central Region":{
     	path:"NYSDOT_Central_Region_Dissolve.geojson",
     	options:{
     		zoomOnLoad:true,
@@ -167,19 +167,6 @@ module.exports = {
             style:function(feat){
                 return{
                     color:colorScale("NYSDOT_Central_Region_Dissolve")
-                }
-            }
-        }
-    },
-    "NY Freight Network":{
-    	path:"NYSDOT_FreightNetwork_Draft.geojson",
-    	options:{
-    		zoomOnLoad:true,
-            visible:false,
-            loaded:false,
-            style:function(feat){
-                return{
-                    color:colorScale("NYSDOT_FreightNetwork_Draft")
                 }
             }
         }
@@ -197,7 +184,20 @@ module.exports = {
             }
         }
     },
-    "NY All Regions":{
+    "NY Western Region":{
+    	path:"NYSDOT_Regions_Dissolve.geojson",
+    	options:{
+    		zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("NYSDOT_Regions_Dissolve")
+                }
+            }
+        }
+    },
+    "NY All Regions With County Lines":{
     	path:"NYSDOT_Regions.geojson",
     	options:{
     		zoomOnLoad:true,
@@ -210,15 +210,15 @@ module.exports = {
             }
         }
     },
-    "NY RegionsDissolve":{
-    	path:"NYSDOT_Regions_Dissolve.geojson",
+    "NY Freight Network":{
+    	path:"NYSDOT_FreightNetwork_Draft.geojson",
     	options:{
     		zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("NYSDOT_Regions_Dissolve")
+                    color:colorScale("NYSDOT_FreightNetwork_Draft")
                 }
             }
         }
@@ -278,7 +278,7 @@ module.exports = {
             }
         }
     },
-    "Cities with Population Over 20k":{
+    "NY Cities with Population Over 20k":{
     	path:"SelectCities_PopOver20k.geojson",
     	options:{
     		zoomOnLoad:true,
