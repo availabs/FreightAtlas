@@ -71,7 +71,12 @@ var WalkerDashboard = React.createClass({
                 icon:'fa fa-home',
                 content: <LayerList layers={this.state.layersInfo} onClick = {this.handleClick} />
 
-            }       
+            },
+            {
+                name:'home2',
+                icon:'fa fa-home',
+
+            }        
         ]
     },
 
