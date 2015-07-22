@@ -55,7 +55,7 @@ var layerList = React.createClass({
 
         return (
         	
-            <div className = "layerList" style={{width:'100%',height:'100%'}}   >
+            <div class = "layerList" style={{width:'100%',height:'100%'}}   >
                 <h3 onClick={this.handleClick}>Layer List</h3>
                 {list}
             </div> 

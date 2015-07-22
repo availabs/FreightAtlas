@@ -9,6 +9,8 @@ var React = require('react'),
     MapSidebar = require('../components/utils/MapSidebar.react'),
     LayerList = require('../components/layerList.react'),
 
+    // -- data
+    LayerInfo = require('../data/layerInfo')
 
     // -- actions
     
@@ -22,32 +24,14 @@ var WalkerDashboard = React.createClass({
     getInitialState:function(){
         //var geoLayerInfo = geoLayer;
 
-        var allLayers = {
-                "AllRail_StateClip":{path:"AllRail_StateClip.geojson"},
-                "BorderCrossingsMajor":{path:"BorderCrossingsMajor.geojson"},
-                "CAN_adm1":{path:"CAN_adm1.geojson"},
-                "Export_Output":{path:"Export_Output.geojson"},
-                "MPOBoundaries":{path:"MPOBoundaries.geojson"},
-                "MPO_Cities":{path:"MPO_Cities.geojson"},
-                "NTAD_2014_NYarea":{path:"NTAD_2014_NYarea.geojson"},
-                "NYSDOT_Capital_Region_Dissolve":{path:"NYSDOT_Capital_Region_Dissolve.geojson"},
-                "NYSDOT_Central_Region_Dissolve":{path:"NYSDOT_Central_Region_Dissolve.geojson"},
-                "NYSDOT_FreightNetwork_Draft":{path:"NYSDOT_FreightNetwork_Draft.geojson"},
-                "NYSDOT_NYMTC_Region_Dissolve":{path:"NYSDOT_NYMTC_Region_Dissolve.geojson"},
-                "NYSDOT_Regions":{path:"NYSDOT_Regions.geojson"},
-                "NYSDOT_Regions_Dissolve":{path:"NYSDOT_Regions_Dissolve.geojson"},
-                "NY_MajorPorts":{path:"NY_MajorPorts.geojson"},
-                "Railroad":{path:"Railroad.geojson"},
-                "SelectCities_PopOver20k":{path:"SelectCities_PopOver20k.geojson"},
-                "cb_2013_us_county_500k":{path:"cb_2013_us_county_500k.geojson"},
-                "cities":{path:"cities.geojson"},
-                "facility":{path:"facility.geojson"},
-                "nys_canal_system":{path:"nys_canal_system.geojson"}
-        }
+        var allLayers = LayerInfo;
 
         for (var i in allLayers){
-            allLayers[i].visible = false;
-            allLayers[i].loaded = false;               
+            if(!allLayers[i].options){
+                allLayers[i].options = {}
+            }
+            allLayers[i].options.visible = false;
+            allLayers[i].options.loaded = false;               
         }
 
 
@@ -62,7 +46,7 @@ var WalkerDashboard = React.createClass({
         console.log(url);
         var scope = this,
             newState = scope.state;
-        if(!this.state.layersInfo[layName].loaded){
+        if(!this.state.layersInfo[layName].options.loaded){
             var urlBase = "/data/geoJson/";
 
             var urlFull = urlBase + url;
@@ -70,31 +54,17 @@ var WalkerDashboard = React.createClass({
             d3.json(urlFull,function(err,data){
 
 
-                newState.mapLayers[layName] = {id:layName,geo:data,options:{zoomOnLoad:true,visible:true,
-                    pointToLayer: function (d, latlng) {
-
-                      var options = {
-
-                       },
-                       obj = L.circleMarker(latlng, options);
-                       
-                       obj.bindPopup(d.properties.PortName);
-
-
-                       return obj;
-                    },
-                    onEachFeature:function(d,latlng){
-                        //console.log(d);
-                    }}};
-                newState.layersInfo[layName].loaded = true;
-                newState.layersInfo[layName].visible = true;
+                newState.mapLayers[layName] = {id:layName,geo:data,options:scope.state.layersInfo[layName].options};
+                newState.layersInfo[layName].options.loaded = true;
+                newState.layersInfo[layName].options.visible = true;
 
                 scope.setState(newState)
                 
             }) 
         }else{
             newState.mapLayers[layName].options.visible = !newState.mapLayers[layName].options.visible;
-            newState.mapLayers[layName].id++;
+            newState.mapLayers[layName].id += 1;
+            console.log(newState.mapLayers[layName]);
             scope.setState(newState)
         }
 
