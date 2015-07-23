@@ -185,15 +185,24 @@ var Map = React.createClass({
         }else{
         }
         //pencil am3081.kml65fk1
-        var mapquestOSM = L.tileLayer("http://{s}.tiles.mapbox.com/v3/am3081.h0pml9h7/{z}/{x}/{y}.png");
+        var mapquestOSM = L.tileLayer("http://{s}.tiles.mapbox.com/v3/am3081.h0pml9h7/{z}/{x}/{y}.png"),
+            layertwo = L.tileLayer("http://{s}.tiles.mapbox.com/v3/am3081.kml65fk1/{z}/{x}/{y}.png");
         
         map = L.map(this.getDOMNode(), {
             center: [39.8282, -98.5795],
             zoom: 4,
-            layers: [mapquestOSM],
+            layers: [mapquestOSM,layertwo],
             zoomControl: this.props.zoomControl,
             attributionControl: false
         });
+
+        var baseMaps = {
+            "Grayscale": mapquestOSM,
+            "Streets": layertwo
+        },
+        overlayMaps = {};
+
+        L.control.layers(baseMaps, overlayMaps).addTo(map);
         //map.invalidateSize();
         if(this.props.sidebar){
             sidebar = L.control.sidebar('sidebar').addTo(map);
