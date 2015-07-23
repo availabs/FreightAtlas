@@ -5,7 +5,7 @@ var colorScale = d3.scale.category20();
 
 module.exports = {
     "NY Area Railroad":{
-    	path:"Railroad.geojson",
+    	path:"Railroad.json",
     	options:{
     		zoomOnLoad:true,
             visible:false,
@@ -22,13 +22,13 @@ module.exports = {
 				layer.bindPopup(popupContent);          	
             	layer.on({
             		mouseover:function(e){layer.openPopup()},
-            		mouseout:function(e){e.layer.closePopup()}
+            		mouseout:function(e){layer.closePopup()}
             	})	
             }
         }
     },
-    "NY Area Railraoad (State Clip)":{
-        path:"AllRail_StateClip.geojson",
+    "NY Area Railroad (State Clip)":{
+        path:"AllRail_StateClip.json",
         options:{
         	zoomOnLoad:true,
             visible:false,
@@ -45,7 +45,7 @@ module.exports = {
             	layer.bindPopup(popupContent);
             	layer.on({
             		mouseover:function(e){layer.openPopup()},
-            		mouseout:function(e){e.layer.closePopup()}
+            		mouseout:function(e){layer.closePopup()}
             	})	           	
             }
         }
@@ -105,7 +105,7 @@ module.exports = {
         }
     },
     "Canadian Provinces":{
-    	path:"CAN_adm1.geojson",
+    	path:"CAN_adm1.json",
     	options:{
     		zoomOnLoad:true,
             visible:false,
@@ -159,7 +159,7 @@ module.exports = {
         }
     },
     "MPO Boundaries":{
-    	path:"MPOBoundaries.geojson",
+    	path:"MPOBoundaries.json",
     	options:{
     		zoomOnLoad:true,
             visible:false,
@@ -176,7 +176,7 @@ module.exports = {
             	layer.bindPopup(popupContent);
             	layer.on({
             		mouseover:function(e){layer.openPopup()},
-            		mouseout:function(e){e.layer.closePopup()}
+            		mouseout:function(e){layer.closePopup()}
             	})
             }
         }
@@ -213,7 +213,7 @@ module.exports = {
         }
     },
     "NTAD 2014 NYarea":{
-    	path:"NTAD_2014_NYarea.geojson",
+    	path:"NTAD_2014_NYarea.json",
     	options:{
     		zoomOnLoad:true,
             visible:false,
@@ -226,11 +226,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
             	var popupContent;
             	//console.log(feature)
-            	popupContent = "NTAD 2014 NYarea";
+            	popupContent = "NTAD 2014 NY area";
             	layer.bindPopup(popupContent);
             	layer.on({
             		mouseover:function(e){layer.openPopup()},
-            		mouseout:function(e){e.layer.closePopup()}
+            		mouseout:function(e){layer.closePopup()}
             	})
             }
         }
@@ -351,7 +351,7 @@ module.exports = {
         }
     },
     "NY Freight Network":{
-    	path:"NYSDOT_FreightNetwork_Draft.geojson",
+    	path:"NYSDOT_FreightNetwork_Draft.json",
     	options:{
     		zoomOnLoad:true,
             visible:false,
@@ -428,7 +428,7 @@ module.exports = {
         }
     },
     "US Cities":{
-    	path:"cities.geojson",
+    	path:"cities.json",
     	options:{
     		zoomOnLoad:true,
             visible:false,
@@ -490,7 +490,7 @@ module.exports = {
         }
     },
     "Facilities":{
-    	path:"facility.geojson",
+    	path:"facility.json",
     	options:{
     		zoomOnLoad:true,
             visible:false,

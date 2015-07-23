@@ -9,7 +9,8 @@ var React = require('react'),
     //--Utils
     L = require('leaflet'),
     MapSidebar = require ('./MapSidebar'),
-    d3 = require('d3');
+    d3 = require('d3'),
+    topojson = require('topojson');
     
 
 var map = null,
@@ -54,21 +55,47 @@ var Map = React.createClass({
             Object.keys(nextProps.layers).forEach(function(key){
 
                 var currLayer = nextProps.layers[key];
+                console.log(currLayer);
+                
+                if(currLayer.geo.type == "Topology"){
+                    for(var key in currLayer.geo.objects){
+                        currLayer.geojson = topojson.feature(currLayer.geo,currLayer.geo.objects[key])
+                    } 
+                       
+                console.log(currLayer);                  
+                   if(layers[key]){
+                        //if layer existed previously check version ids
 
-                if(layers[key]){
-                    //if layer existed previously check version ids
+                        if(currLayer.id !== layers[key].id && currLayer.geojson.features.length > 0){
 
-                    if(currLayer.id !== layers[key].id && currLayer.geo.features.length > 0){
+                            scope._updateLayer(key,currLayer)        
+                        }
+                    }else if(currLayer.geojson && currLayer.geojson.features.length > 0){
+                        //layer is new and has features
 
-                        scope._updateLayer(key,currLayer)        
+                        scope._updateLayer(key,currLayer)
+                    }else{
+                        console.log('MAP/recieve props/ DEAD END')
                     }
-                }else if(currLayer.geo && currLayer.geo.features.length > 0){
-                    //layer is new and has features
-
-                    scope._updateLayer(key,currLayer)
-                }else{
-                    console.log('MAP/recieve props/ DEAD END')
                 }
+                else{
+                    if(layers[key]){
+                        //if layer existed previously check version ids
+
+                        if(currLayer.id !== layers[key].id && currLayer.geo.features.length > 0){
+
+                            scope._updateLayer(key,currLayer)        
+                        }
+                    }else if(currLayer.geo && currLayer.geo.features.length > 0){
+                        //layer is new and has features
+
+                        scope._updateLayer(key,currLayer)
+                    }else{
+                        console.log('MAP/recieve props/ DEAD END')
+                    }
+                }                
+
+
             });
         }
         if(nextProps.markers){
@@ -111,20 +138,40 @@ var Map = React.createClass({
                 layer: new L.geoJson({type:'FeatureCollection',features:[]},layer.options)
             }
             if(layer.geo){
-                layers[key].layer.addData(layer.geo); // to get layerAdd event
-                map.addLayer(layers[key].layer);
-                if(layer.options.centerOnLoad){
-                        map.setView(L.latLng(layer.geo.features[0].geometry.coordinates.reverse()),15)
+                console.log(layer);
+                if(layer.geo.type == "Topology"){
+                    layers[key].layer.addData(layer.geojson); // to get layerAdd event
+                    map.addLayer(layers[key].layer);
+                    if(layer.options.centerOnLoad){
+                            map.setView(L.latLng(layer.geo.features[0].geometry.coordinates.reverse()),15)
+                    }
+                    if(layer.options.zoomOnLoad){
+                        
+                        
+                            var ezBounds = d3.geo.bounds(layer.geo);
+
+                            map.invalidateSize();
+
+                            map.fitBounds(layers[key].layer.getBounds());
+                        
+                    }
                 }
-                if(layer.options.zoomOnLoad){
-                    
-                    
-                        var ezBounds = d3.geo.bounds(layer.geo);
+                else{
+                    layers[key].layer.addData(layer.geo); // to get layerAdd event
+                    map.addLayer(layers[key].layer);
+                    if(layer.options.centerOnLoad){
+                            map.setView(L.latLng(layer.geo.features[0].geometry.coordinates.reverse()),15)
+                    }
+                    if(layer.options.zoomOnLoad){
+                        
+                        
+                            var ezBounds = d3.geo.bounds(layer.geo);
 
-                        map.invalidateSize();
+                            map.invalidateSize();
 
-                        map.fitBounds(layers[key].layer.getBounds());
-                    
+                            map.fitBounds(layers[key].layer.getBounds());
+                        
+                    }
                 }
             }
         }
