@@ -26,12 +26,10 @@ var WalkerDashboard = React.createClass({
         //var geoLayerInfo = geoLayer;
 
 
-        var allLayers = LayerInfo;
-
 
         return {
             mapLayers:{},
-            layersInfo: allLayers,
+            layersInfo: LayerInfo,
             streets: Streets,
         }
 
@@ -39,6 +37,7 @@ var WalkerDashboard = React.createClass({
 
     loadLayer:function(layName,url){
         console.log(url);
+        console.log(this);
         var scope = this,
             newState = scope.state;
         if(!this.state.layersInfo[layName].options.loaded){
@@ -89,6 +88,7 @@ var WalkerDashboard = React.createClass({
 
     },
     handleClick: function (childComponent) {
+
         var curLayerName = childComponent.props.layerName;
         var curLayerPath = this.state.layersInfo[childComponent.props.layerName].path;
         this.loadLayer(curLayerName,curLayerPath)

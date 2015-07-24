@@ -328,7 +328,7 @@ module.exports = {
         }
     },
     "NY All Regions With County Lines":{
-    	path:"../finalGeoJson/NYSDOT_Regions.geojson",
+    	path:"NYSDOT_Regions.geojson",
     	options:{
     		zoomOnLoad:true,
             visible:false,
