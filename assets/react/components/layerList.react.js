@@ -26,7 +26,7 @@ var LayerItem = React.createClass({
     },
     handleClick:function () {
         this.setState({selected: !this.state.selected})
-        //console.log(this)
+        console.log('click',this)
         this.props.onClick(this)
     },
 
@@ -55,7 +55,7 @@ var layerList = React.createClass({
 
         var list = Object.keys(this.props.layers).map(function(key,index){
             return (
-                <LayerItem layerName={key} onClick={scope.handleClick} >
+                <LayerItem dataset={scope.props.dataset} layerName={key} onClick={scope.handleClick} >
                 </LayerItem>
                 )
         })

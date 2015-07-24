@@ -37,11 +37,11 @@ var WalkerDashboard = React.createClass({
 
     },
 
-    loadLayer:function(layName,url){
+    loadLayer:function(layName,url,datasetName){
         console.log(url);
         var scope = this,
             newState = scope.state;
-        if(!this.state.layersInfo[layName].options.loaded){
+        if(!this.state[datasetName][layName].options.loaded){
             var urlBase = "/data/geoJson/";
 
             var urlFull = urlBase + url;
@@ -49,9 +49,9 @@ var WalkerDashboard = React.createClass({
             d3.json(urlFull,function(err,data){
 
 
-                newState.mapLayers[layName] = {id:layName,geo:data,options:scope.state.layersInfo[layName].options};
-                newState.layersInfo[layName].options.loaded = true;
-                newState.layersInfo[layName].options.visible = true;
+                newState.mapLayers[layName] = {id:layName,geo:data,options:scope.state[datasetName][layName].options};
+                newState[datasetName][layName].options.loaded = true;
+                newState[datasetName][layName].options.visible = true;
 
                 scope.setState(newState)
                 
@@ -70,13 +70,13 @@ var WalkerDashboard = React.createClass({
             {
                 name:'home',
                 icon:'fa fa-home',
-                content: <LayerList title="Freight Layers" layers={this.state.layersInfo} onClick = {this.handleClick} />
+                content: <LayerList title="Freight Layers" dataset='layersInfo' layers={this.state.layersInfo} onClick = {this.handleClick} />
 
             },
             {
                 name:'home2',
                 icon:'fa fa-home',
-                content:<LayerList layers={this.state.streets} onClick = {this.handleClick} />
+                content:<LayerList dataset='streets' layers={this.state.streets} onClick = {this.handleClick} />
             }        
         ]
     },
@@ -90,8 +90,9 @@ var WalkerDashboard = React.createClass({
     },
     handleClick: function (childComponent) {
         var curLayerName = childComponent.props.layerName;
-        var curLayerPath = this.state.layersInfo[childComponent.props.layerName].path;
-        this.loadLayer(curLayerName,curLayerPath)
+        var datasetName = childComponent.props.dataset;
+        var curLayerPath = this.state[datasetName][childComponent.props.layerName].path;
+        this.loadLayer(curLayerName,curLayerPath,datasetName)
     },
 
     render: function() {
