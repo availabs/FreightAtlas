@@ -12,7 +12,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("Border_Crossing_Port")
                 }
             },pointToLayer: function (d, latlng) {
                 var options = {
@@ -42,7 +42,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("Border_States")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -65,14 +65,14 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("RaiCanada")
                 }
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
                 // console.log(feature)
                 //popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
-                layer.bindPopup(popupContent);              
+                layer.bindPocolor(popupContent);              
                 layer.on({
                     mouseover:function(e){layer.openPopup()},
                     mouseout:function(e){layer.closePopup()}
@@ -88,7 +88,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("CAN_adm1")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -111,7 +111,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("Capital_Region")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -134,7 +134,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("Central_Region")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -157,7 +157,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("Cities_PopOver20kAnno")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -180,7 +180,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("City_Town")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -203,14 +203,14 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("Class1Rail")
                 }
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
                 // console.log(feature)
                 popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
-                layer.bindPopup(popupContent);              
+                layer.bindPocolor(popupContent);              
                 layer.on({
                     mouseover:function(e){layer.openPopup()},
                     mouseout:function(e){layer.closePopup()}
@@ -226,14 +226,14 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("Class1TrackRights")
                 }
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
                 // console.log(feature)
                 popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
-                layer.bindPopup(popupContent);              
+                layer.bindPocolor(popupContent);              
                 layer.on({
                     mouseover:function(e){layer.openPopup()},
                     mouseout:function(e){layer.closePopup()}
@@ -249,7 +249,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("County")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -272,7 +272,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("HighwaysAnno")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -288,7 +288,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("Highways")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -304,7 +304,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("Intermodal_Facility")
                 }
             },pointToLayer: function (d, latlng) {
                 var options = {
@@ -334,7 +334,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("InterstateAnno2")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -350,7 +350,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("InterstateAnno3")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -366,7 +366,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("InterstateAnno4")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -382,7 +382,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("InterstateAnno")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -398,7 +398,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("Interstate")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -421,7 +421,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("Major_Airport")
                 }
             },pointToLayer: function (d, latlng) {
                 var options = {
@@ -451,7 +451,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("Major_Ports")
                 }
             },pointToLayer: function (d, latlng) {
                 var options = {
@@ -481,7 +481,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("MPO_Boundary")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -504,7 +504,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("MPO_Cities_Anno")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -527,7 +527,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("MPO_Cities")
                 }
             },pointToLayer: function (d, latlng) {
                 var options = {
@@ -557,7 +557,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("MPO_Cities_Resize")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -580,14 +580,14 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("Ranhd24kwb_a_ny")
                 }
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
                 // console.log(feature)
                 //popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
-                layer.bindPopup(popupContent);              
+                layer.bindPocolor(popupContent);              
                 layer.on({
                     mouseover:function(e){layer.openPopup()},
                     mouseout:function(e){layer.closePopup()}
@@ -603,7 +603,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("NTAD_2014_NYArea")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -626,7 +626,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("NYMTC_HudsonValleyRegion")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -649,7 +649,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("NYS_Canal_System")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -672,7 +672,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("NYSDOT_Regions")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -695,7 +695,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("Pop20k_Cities_Resize")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -718,7 +718,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("Primary_Freight_Network")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -741,7 +741,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("SelectCities_PopOver20k")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -764,7 +764,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("ShortLine")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -787,7 +787,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("ShortLineTrackRights")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -810,7 +810,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("State")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -833,7 +833,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Railroad")
+                    color:colorScale("Western_Region")
                 }
             },
             onEachFeature: function(feature,layer){
