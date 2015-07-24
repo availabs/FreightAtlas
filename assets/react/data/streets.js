@@ -2,10 +2,10 @@
 var d3 = require('d3');
 
 var colorScale = d3.scale.category20();   
-
+//
 module.exports = {
-    "NY Area Railroad":{
-        path:"../finalGeoJson/Railroad.json",
+    "Border Crossing Port":{
+        path:"../finalGeoJson/Border_Crossing_Port.geojson",
         options:{
             zoomOnLoad:true,
             visible:false,
@@ -14,77 +14,7 @@ module.exports = {
                 return{
                     color:colorScale("Railroad")
                 }
-            },
-            onEachFeature: function(feature,layer){
-                var popupContent;
-                //console.log(feature)
-                popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
-                layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
-            }
-        }
-    },
-    "NY Area Railroad (State Clip)":{
-        path:"../finalGeoJson/AllRail_StateClip.json",
-        options:{
-            zoomOnLoad:true,
-            visible:false,
-            loaded:false,
-            style:function(feat){
-                return{
-                    color:colorScale("AllRail_StateClip")
-                }
-            },
-            onEachFeature: function(feature,layer){
-                var popupContent;
-                //console.log(feature)
-                popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
-                layer.bindPopup(popupContent);
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })              
-            }
-        }
-    },
-    "NYS Canal System":{
-        path:"../finalGeoJson/nys_canal_system.geojson",
-        options:{
-            zoomOnLoad:true,
-            visible:false,
-            loaded:false,
-            style:function(feat){
-                return{
-                    color:colorScale("nys_canal_system")
-                }
-            },
-            onEachFeature: function(feature,layer){
-                var popupContent;
-                //console.log(feature)
-                popupContent = "NYS Canal System <br/>" + feature.properties.Canal_Name +" Canal";
-                layer.bindPopup(popupContent);
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){e.layer.closePopup()}
-                })  
-            }
-        }
-    },
-    "NY Major Border Crossings":{
-        path:"../finalGeoJson/BorderCrossingsMajor.geojson",
-        options:{
-            zoomOnLoad:true,
-            visible:false,
-            loaded:false,
-            style:function(feat){
-                return{
-                    color:colorScale("BorderCrossingsMajor")
-                }
-            },
-            pointToLayer: function (d, latlng) {
+            },pointToLayer: function (d, latlng) {
                 var options = {
 
                 }
@@ -96,15 +26,61 @@ module.exports = {
                 var popupContent;
                 console.log(feature)
                 popupContent = "NYS Major Border Crosssings <br/>" + feature.properties.CP_Name;
-                layer.bindPopup(popupContent);
+                layer.bindPopup(popupContent);              
                 layer.on({
                     mouseover:function(e){layer.openPopup()},
                     mouseout:function(e){layer.closePopup()}
-                })            
+                })  
             }
         }
     },
-    "Canadian Provinces":{
+    "Border States":{
+        path:"../finalGeoJson/Border_States.geojson",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+                console.log(feature)
+                popupContent = "US States<br/>" + feature.properties.STATE_NAME
+                layer.bindPopup(popupContent);              
+                layer.on({
+                    mouseover:function(e){layer.openPopup()},
+                    mouseout:function(e){layer.closePopup()}
+                })  
+            }
+        }
+    },
+    "Canada":{
+        // path:"../finalGeoJson/Canada.json",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+                // console.log(feature)
+                //popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
+                layer.bindPopup(popupContent);              
+                layer.on({
+                    mouseover:function(e){layer.openPopup()},
+                    mouseout:function(e){layer.closePopup()}
+                })  
+            }
+        }
+    },
+    "CAN_adm1":{
         path:"../finalGeoJson/CAN_adm1.json",
         options:{
             zoomOnLoad:true,
@@ -112,33 +88,225 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("CAN_adm1")
+                    color:colorScale("Railroad")
                 }
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                //console.log(feature)
+                console.log(feature)
                 popupContent = "Canadian Provinces <br/>" + feature.properties.NAME_1;
-                layer.bindPopup(popupContent);
+                layer.bindPopup(popupContent);              
                 layer.on({
                     mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){e.layer.closePopup()}
-                })
+                    mouseout:function(e){layer.closePopup()}
+                })  
             }
         }
     },
-    "Export Output":{
-        path:"../finalGeoJson/Export_Output.geojson",
+    "Capital Region":{
+        path:"../finalGeoJson/Capital_Region.geojson",
         options:{
             zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Export_Output")
+                    color:colorScale("Railroad")
                 }
             },
-            pointToLayer: function (d, latlng) {
+            onEachFeature: function(feature,layer){
+                var popupContent;
+                console.log(feature)
+                popupContent = "NY Capital Region <br/>" + feature.properties.Region;
+                layer.bindPopup(popupContent);              
+                layer.on({
+                    mouseover:function(e){layer.openPopup()},
+                    mouseout:function(e){layer.closePopup()}
+                })  
+            }
+        }
+    },
+    "Central Region":{
+        path:"../finalGeoJson/Central_Region.geojson",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+                // console.log(feature)
+                popupContent = "NY Central Region <br/>" + feature.properties.Region;
+                layer.bindPopup(popupContent);              
+                layer.on({
+                    mouseover:function(e){layer.openPopup()},
+                    mouseout:function(e){layer.closePopup()}
+                })  
+            }
+        }
+    },
+    "Cities_PopOver20kAnno":{
+        path:"../finalGeoJson/Cities_PopOver20kAnno.geojson",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+                // console.log(feature)
+                popupContent = "NY Cities with Population over 20k <br/> City: " + feature.properties.TextString
+                layer.bindPopup(popupContent);              
+                layer.on({
+                    mouseover:function(e){layer.openPopup()},
+                    mouseout:function(e){layer.closePopup()}
+                })  
+            }
+        }
+    },
+    "City_Town":{
+        path:"../finalGeoJson/City_Town.json",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+                // console.log(feature)
+                            popupContent = "NY Cities with Population over 20k <br/> City: " + feature.properties.NAME + "<br/> Population in 2010: " + feature.properties.POP2010
+                layer.bindPopup(popupContent);              
+                layer.on({
+                    mouseover:function(e){layer.openPopup()},
+                    mouseout:function(e){layer.closePopup()}
+                })  
+            }
+        }
+    },
+    "Class1Rail":{
+        path:"../finalGeoJson/Class1Rail.json",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+                // console.log(feature)
+                popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
+                layer.bindPopup(popupContent);              
+                layer.on({
+                    mouseover:function(e){layer.openPopup()},
+                    mouseout:function(e){layer.closePopup()}
+                })  
+            }
+        }
+    },
+    "Class 1 Track Rights":{
+        path:"../finalGeoJson/Class1TrackRights.json",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+                // console.log(feature)
+                popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
+                layer.bindPopup(popupContent);              
+                layer.on({
+                    mouseover:function(e){layer.openPopup()},
+                    mouseout:function(e){layer.closePopup()}
+                })  
+            }
+        }
+    },
+    "County":{
+        path:"../finalGeoJson/County.geojson",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+                // console.log(feature)
+                            popupContent = "NY All Regions <br/> County Name: " + feature.properties.NAME
+                layer.bindPopup(popupContent);              
+                layer.on({
+                    mouseover:function(e){layer.openPopup()},
+                    mouseout:function(e){layer.closePopup()}
+                })  
+            }
+        }
+    },
+    "HighwaysAnno":{
+        path:"../finalGeoJson/HighwaysAnno.geojson",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },
+            onEachFeature: function(feature,layer){
+ 
+            }
+        }
+    },
+    "Highways":{
+        path:"../finalGeoJson/Highways.json",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },
+            onEachFeature: function(feature,layer){
+
+            }
+        }
+    },
+    "Intermodal_Facility":{
+        path:"../finalGeoJson/Intermodal_Facility.geojson",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },pointToLayer: function (d, latlng) {
                 var options = {
 
                 }
@@ -148,40 +316,210 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                //console.log(feature)
-                popupContent = "Export Output <br/>" + feature.properties.FULLNAME;
-                layer.bindPopup(popupContent);
+                // console.log(feature)
+                popupContent = "US Facilities <br/> State: " + feature.properties.STATE + "<br/> City: " + feature.properties.CITY + "<br/> Type of Facility: " + feature.properties.MODE_TYPE
+                layer.bindPopup(popupContent);              
                 layer.on({
                     mouseover:function(e){layer.openPopup()},
                     mouseout:function(e){layer.closePopup()}
-                })
+                })  
             }
         }
     },
-    "MPO Boundaries":{
-        path:"../finalGeoJson/MPOBoundaries.json",
+    "InterstateAnno2":{
+        path:"../finalGeoJson/InterstateAnno2.geojson",
         options:{
             zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("MPOBoundaries")
+                    color:colorScale("Railroad")
+                }
+            },
+            onEachFeature: function(feature,layer){
+
+            }
+        }
+    },
+    "InterstateAnno3":{
+        path:"../finalGeoJson/InterstateAnno3.geojson",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },
+            onEachFeature: function(feature,layer){
+ 
+            }
+        }
+    },
+    "InterstateAnno4":{
+        path:"../finalGeoJson/InterstateAnno4.geojson",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },
+            onEachFeature: function(feature,layer){
+  
+            }
+        }
+    },
+    "InterstateAnno":{
+        path:"../finalGeoJson/InterstateAnno.geojson",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },
+            onEachFeature: function(feature,layer){
+ 
+            }
+        }
+    },
+    "Interstate":{
+        path:"../finalGeoJson/Interstate.json",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
                 }
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                //console.log(feature)
-                popupContent = "MPO Boundaries <br/>" + feature.properties.MPO_NAME;
-                layer.bindPopup(popupContent);
+                // console.log(feature)
+                                popupContent = "NY Frieght Network <br/> Route: " + feature.properties.SIGN1 + "<br/> Number of Lanes: " + feature.properties.ThruLanes
+                layer.bindPopup(popupContent);              
                 layer.on({
                     mouseover:function(e){layer.openPopup()},
                     mouseout:function(e){layer.closePopup()}
-                })
+                })  
             }
         }
     },
-    "MPO Cities":{
+    "Major_Airport":{
+        path:"../finalGeoJson/Major_Airport.geojson",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },pointToLayer: function (d, latlng) {
+                var options = {
+
+                }
+                var obj = L.circleMarker(latlng, {});
+                //obj.bindPopup(d.properties.PortName);
+                return obj;
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+                // console.log(feature)
+                                popupContent = "Export Output <br/>" + feature.properties.FULLNAME + "<br/> Number of Passengers: " + feature.properties.Passengers
+                layer.bindPopup(popupContent);              
+                layer.on({
+                    mouseover:function(e){layer.openPopup()},
+                    mouseout:function(e){layer.closePopup()}
+                })  
+            }
+        }
+    },
+    "Major_Ports":{
+        path:"../finalGeoJson/Major_Ports.geojson",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },pointToLayer: function (d, latlng) {
+                var options = {
+
+                }
+                var obj = L.circleMarker(latlng, {});
+                //obj.bindPopup(d.properties.PortName);
+                return obj;
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+                // console.log(feature)
+                popupContent = "NY Major Ports <br/> Port Name :"+feature.properties.PORT_NAME+"<br> Imports: " + feature.properties.IMPORTS +"<br/> Exports: "+ feature.properties.EXPORTS
+                layer.bindPopup(popupContent);              
+                layer.on({
+                    mouseover:function(e){layer.openPopup()},
+                    mouseout:function(e){layer.closePopup()}
+                })  
+            }
+        }
+    },
+    "MPO_Boundary":{
+        path:"../finalGeoJson/MPO_Boundary.json",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+                // console.log(feature)
+                popupContent = "MPO Boundaries <br/>" + feature.properties.MPO_NAME;
+                layer.bindPopup(popupContent);              
+                layer.on({
+                    mouseover:function(e){layer.openPopup()},
+                    mouseout:function(e){layer.closePopup()}
+                })  
+            }
+        }
+    },
+    "MPO_Cities_Anno":{
+        path:"../finalGeoJson/MPO_Cities_Anno.geojson",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+                // console.log(feature)
+                popupContent = "MPO Citites <br/>" + feature.properties.TextString;
+                layer.bindPopup(popupContent);              
+                layer.on({
+                    mouseover:function(e){layer.openPopup()},
+                    mouseout:function(e){layer.closePopup()}
+                })  
+            }
+        }
+    },
+    "MPO_Cities":{
         path:"../finalGeoJson/MPO_Cities.geojson",
         options:{
             zoomOnLoad:true,
@@ -189,10 +527,9 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("MPO_Cities")
+                    color:colorScale("Railroad")
                 }
-            },
-            pointToLayer: function (d, latlng) {
+            },pointToLayer: function (d, latlng) {
                 var options = {
 
                 }
@@ -202,263 +539,201 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                //console.log(feature)
-                popupContent = "MPO Citites <br/>" + feature.properties.AREANAME;
-                layer.bindPopup(popupContent);
+                // console.log(feature)
+                popupContent = "MPO Citites <br/>" + feature.properties.AREANAME + "<br/> Population in 2000: " + feature.properties.POP2000
+                layer.bindPopup(popupContent);              
                 layer.on({
                     mouseover:function(e){layer.openPopup()},
                     mouseout:function(e){layer.closePopup()}
-                })
+                })  
             }
         }
     },
-    "NTAD 2014 NYarea":{
-        path:"../finalGeoJson/NTAD_2014_NYarea.json",
+    "MPO_Cities_Resize":{
+        path:"../finalGeoJson/MPO_Cities_Resize.geojson",
         options:{
             zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("NTAD_2014_NYarea")
+                    color:colorScale("Railroad")
                 }
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                //console.log(feature)
-                popupContent = "NTAD 2014 NY area";
-                layer.bindPopup(popupContent);
+                // console.log(feature)
+                popupContent = "MPO Citites <br/>" + feature.properties.TextString;
+                layer.bindPopup(popupContent);              
                 layer.on({
                     mouseover:function(e){layer.openPopup()},
                     mouseout:function(e){layer.closePopup()}
-                })
+                })  
             }
         }
     },
-    "NY Capital Region":{
-        path:"../finalGeoJson/NYSDOT_Capital_Region_Dissolve.geojson",
+    "nhd24kwb_a_ny":{
+        //path:"../finalGeoJson/nhd24kwb_a_ny.geojson",
         options:{
             zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("NYSDOT_Capital_Region_Dissolve")
+                    color:colorScale("Railroad")
                 }
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                //console.log(feature)
-                popupContent = "NY Capital Region <br/>" + feature.properties.Region;
-                layer.bindPopup(popupContent);
+                // console.log(feature)
+                //popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
+                layer.bindPopup(popupContent);              
                 layer.on({
                     mouseover:function(e){layer.openPopup()},
                     mouseout:function(e){layer.closePopup()}
-                })
+                })  
             }
         }
     },
-    "NY Central Region":{
-        path:"../finalGeoJson/NYSDOT_Central_Region_Dissolve.geojson",
+    "NTAD_2014_NYArea":{
+        path:"../finalGeoJson/NTAD_2014_NYArea.json",
         options:{
             zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("NYSDOT_Central_Region_Dissolve")
+                    color:colorScale("Railroad")
                 }
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                //console.log(feature)
-                popupContent = "NY Central Region <br/>" + feature.properties.Region;
-                layer.bindPopup(popupContent);
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){e.layer.closePopup()}
-                })
-            }
-        }
-    },
-    "NY Metro Region":{
-        path:"../finalGeoJson/NYSDOT_NYMTC_Region_Dissolve.geojson",
-        options:{
-            zoomOnLoad:true,
-            visible:false,
-            loaded:false,
-            style:function(feat){
-                return{
-                    color:colorScale("NYSDOT_NYMTC_Region_Dissolve")
-                }
-            },
-            onEachFeature: function(feature,layer){
-                var popupContent;
-                //console.log(feature)
-                popupContent = "NY Metro Region <br/>" + feature.properties.Region;
-                layer.bindPopup(popupContent);
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){e.layer.closePopup()}
-                })
-            }
-        }
-    },
-    "NY Western Region":{
-        path:"../finalGeoJson/NYSDOT_Regions_Dissolve.geojson",
-        options:{
-            zoomOnLoad:true,
-            visible:false,
-            loaded:false,
-            style:function(feat){
-                return{
-                    color:colorScale("NYSDOT_Regions_Dissolve")
-                }
-            },
-            onEachFeature: function(feature,layer){
-                var popupContent;
-                //console.log(feature)
-                popupContent = "NY Western Region <br/>" + feature.properties.Region;
-                layer.bindPopup(popupContent);
+                // console.log(feature)
+                popupContent = "NTAD_2014<br/>Description: " + feature.properties.CONN_DES +"<br/>Number of lanes: " + feature.properties.ThruLanes;
+                layer.bindPopup(popupContent);              
                 layer.on({
                     mouseover:function(e){layer.openPopup()},
                     mouseout:function(e){layer.closePopup()}
-                })
+                })  
             }
         }
     },
-    "NY All Regions With County Lines":{
-        path:"../finalGeoJson/../finalGeoJson/NYSDOT_Regions.geojson",
+    "NYMTC_HudsonValleyRegion":{
+        path:"../finalGeoJson/NYMTC_HudsonValleyRegion.geojson",
         options:{
             zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("NYSDOT_Regions")
+                    color:colorScale("Railroad")
                 }
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                //console.log(feature)
+                // console.log(feature)
+                popupContent = "NY Hudson Valley Region <br/>"
+                layer.bindPopup(popupContent);              
+                layer.on({
+                    mouseover:function(e){layer.openPopup()},
+                    mouseout:function(e){layer.closePopup()}
+                })  
+            }
+        }
+    },
+    "NYS_Canal_System":{
+        path:"../finalGeoJson/NYS_Canal_System.json",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+                // console.log(feature)
+                popupContent = "NYS Canal System <br/>" + feature.properties.Canal_Name +" Canal";
+                layer.bindPopup(popupContent);              
+                layer.on({
+                    mouseover:function(e){layer.openPopup()},
+                    mouseout:function(e){layer.closePopup()}
+                })  
+            }
+        }
+    },
+    "NYSDOT_Regions and Counties":{
+        path:"../finalGeoJson/NYSDOT_Regions.geojson",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+                // console.log(feature)
                 popupContent = "NY All Regions <br/> Region: " + feature.properties.Region + "<br/> County Name: " + feature.properties.NAME
-                layer.bindPopup(popupContent);
+                layer.bindPopup(popupContent);              
                 layer.on({
                     mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){e.layer.closePopup()}
-                })
+                    mouseout:function(e){layer.closePopup()}
+                })  
             }
         }
     },
-    "NY Freight Network":{
-        path:"../finalGeoJson/NYSDOT_FreightNetwork_Draft.json",
+    "NYS Pop20k_Cities_Resize":{
+        path:"../finalGeoJson/Pop20k_Cities_Resize.geojson",
         options:{
             zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("NYSDOT_FreightNetwork_Draft")
+                    color:colorScale("Railroad")
                 }
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                //console.log(feature)
+                // console.log(feature)
+                popupContent = "NY Cities with Population over 20k <br/> City: " + feature.properties.TextString
+                layer.bindPopup(popupContent);              
+                layer.on({
+                    mouseover:function(e){layer.openPopup()},
+                    mouseout:function(e){layer.closePopup()}
+                })  
+            }
+        }
+    },
+    "NYS Primary_Freight_Network":{
+        path:"../finalGeoJson/Primary_Freight_Network.json",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+                // console.log(feature)
                 popupContent = "NY Frieght Network <br/> Route: " + feature.properties.SIGN1
-                layer.bindPopup(popupContent);
+                layer.bindPopup(popupContent);              
                 layer.on({
                     mouseover:function(e){layer.openPopup()},
                     mouseout:function(e){layer.closePopup()}
-                })
+                })  
             }
         }
     },
-    "NY Major Ports":{
-        path:"../finalGeoJson/NY_MajorPorts.geojson",
-        options:{
-            zoomOnLoad:true,
-            visible:false,
-            loaded:false,
-            style:function(feat){
-                return{
-                    color:colorScale("NY_MajorPorts")
-                }
-            },
-            pointToLayer: function (d, latlng) {
-                var options = {
-
-                }
-                var obj = L.circleMarker(latlng, {});
-                //obj.bindPopup(d.properties.PortName);
-                return obj;
-            },
-            onEachFeature: function(feature,layer){
-                var popupContent;
-                //console.log(feature)
-                popupContent = "NY Major Ports <br/> Port Name :"+feature.properties.PORT_NAME+"<br> Imports: " + feature.properties.IMPORTS +"<br/> Exports: "+ feature.properties.EXPORTS
-                layer.bindPopup(popupContent);
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })
-            }
-        }
-    },
-    "US Counties":{
-        path:"../finalGeoJson/cb_2013_us_county_500k.geojson",
-        options:{
-            zoomOnLoad:true,
-            visible:false,
-            loaded:false,
-            style:function(feat){
-                return{
-                    color:colorScale("cb_2013_us_county_500k")
-                }
-            },
-            onEachFeature: function(feature,layer){
-                var popupContent;
-                //console.log(feature)
-                popupContent = "US Counties<br/> State FIPS: " + feature.properties.STATEFP + "<br/> County Name: " + feature.properties.NAME
-                layer.bindPopup(popupContent);
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){e.layer.closePopup()}
-                })
-            }
-        }
-    },
-    "US Cities":{
-        path:"../finalGeoJson/cities.json",
-        options:{
-            zoomOnLoad:true,
-            visible:false,
-            loaded:false,
-            style:function(feat){
-                return{
-                    color:colorScale("cities")
-                }
-            },
-            pointToLayer: function (d, latlng) {
-                var options = {
-
-                }
-                var obj = L.circleMarker(latlng, {});
-                //obj.bindPopup(d.properties.PortName);
-                return obj;
-            },
-            onEachFeature: function(feature,layer){
-                var popupContent;
-                //console.log(feature)
-                popupContent = "US Cities <br/> State: " + feature.properties.ST + "<br/> City: " + feature.properties.AREANAME
-                layer.bindPopup(popupContent);
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })
-            }
-        }
-    },
-    "NY Cities with Population Over 20k":{
+    "NYS SelectCities_PopOver20k":{
         path:"../finalGeoJson/SelectCities_PopOver20k.geojson",
         options:{
             zoomOnLoad:true,
@@ -466,59 +741,117 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("SelectCities_PopOver20k")
+                    color:colorScale("Railroad")
                 }
-            },
-            pointToLayer: function (d, latlng) {
-                var options = {
-
-                }
-                var obj = L.circleMarker(latlng, {});
-                //obj.bindPopup(d.properties.PortName);
-                return obj;
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                //console.log(feature)
+                // console.log(feature)
                 popupContent = "NY Cities with Population over 20k <br/> City: " + feature.properties.NAME + "<br/> Population in 2010: " + feature.properties.POP2010
-                layer.bindPopup(popupContent);
+                layer.bindPopup(popupContent);              
                 layer.on({
                     mouseover:function(e){layer.openPopup()},
                     mouseout:function(e){layer.closePopup()}
-                })
+                })  
             }
         }
     },
-    "Facilities":{
-        path:"../finalGeoJson/facility.json",
+    "NYS ShortLine":{
+        path:"../finalGeoJson/ShortLine.json",
         options:{
             zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("facility")
+                    color:colorScale("Railroad")
                 }
-            },
-            pointToLayer: function (d, latlng) {
-                var options = {
-
-                }
-                var obj = L.circleMarker(latlng, {});
-                //obj.bindPopup(d.properties.PortName);
-                return obj;
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                //console.log(feature)
-                popupContent = "US Facilities <br/> State: " + feature.properties.STATE + "<br/> City: " + feature.properties.CITY + "<br/> Type of Facility: " + feature.properties.MODE_TYPE
-                layer.bindPopup(popupContent);
+                // console.log(feature)
+                popupContent = "NY Area ShortLine<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
+                layer.bindPopup(popupContent);              
                 layer.on({
                     mouseover:function(e){layer.openPopup()},
                     mouseout:function(e){layer.closePopup()}
-                })
+                })  
             }
         }
-    }
+    },
+    "NYS ShortLineTrackRights":{
+        path:"../finalGeoJson/ShortLineTrackRights.json",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+                // console.log(feature)
+               popupContent = "NY Area ShortLine Track Rights<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
+                layer.bindPopup(popupContent);              
+                layer.on({
+                    mouseover:function(e){layer.openPopup()},
+                    mouseout:function(e){layer.closePopup()}
+                })  
+            }
+        }
+    },
+    "New York State":{
+        path:"../finalGeoJson/State.geojson",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+                // console.log(feature)
+                popupContent = "New York State"
+                layer.bindPopup(popupContent);              
+                layer.on({
+                    mouseover:function(e){layer.openPopup()},
+                    mouseout:function(e){layer.closePopup()}
+                })  
+            }
+        }
+    },
+    "Western_Region":{
+        path:"../finalGeoJson/Western_Region.geojson",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("Railroad")
+                }
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+                // console.log(feature)
+                popupContent = "NY Hudson Valley Region <br/>"
+                layer.bindPopup(popupContent);              
+                layer.on({
+                    mouseover:function(e){layer.openPopup()},
+                    mouseout:function(e){layer.closePopup()}
+                })  
+            }
+        }
+    },
+
+
+
+
+
 
 }

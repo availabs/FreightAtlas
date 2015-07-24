@@ -26,7 +26,7 @@ var LayerItem = React.createClass({
     },
     handleClick:function () {
         this.setState({selected: !this.state.selected})
-        console.log('click',this)
+        //console.log('click',this)
         this.props.onClick(this)
     },
 

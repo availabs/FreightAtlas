@@ -49,13 +49,13 @@ var Map = React.createClass({
     
     componentWillReceiveProps: function(nextProps) {
         var scope = this;
-
+        console.log(this)
         if(nextProps.layers){
       
             Object.keys(nextProps.layers).forEach(function(key){
 
                 var currLayer = nextProps.layers[key];
-                console.log(currLayer);
+                //console.log(currLayer);
                 
                 if(currLayer.geo.type == "Topology"){
                     for(var key in currLayer.geo.objects){
