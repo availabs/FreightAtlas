@@ -11,7 +11,7 @@ var LayerItem = React.createClass({
         var curStyle = this.state.selected ? 'layListActive' : 'layListInactive',
             btnStyle = {
                 width:'100%',
-                textAlign:'center',
+                textAlign:'left',
                 padding:'10px',
                 border:'none'
             }
