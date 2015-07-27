@@ -10,9 +10,10 @@ var React = require('react'),
     LayerList = require('../components/layerList.react'),
 
     // -- data
-    LayerInfo = require('../data/layerInfo'),
-    Streets = require('../data/streets'),
-
+    Areas = require('../data/areas'),
+    Facilities = require('../data/facilities'),
+    Rail = require('../data/rail'),
+    Road = require('../data/road'),
     // -- actions
     
     // -- utils;
@@ -29,8 +30,10 @@ var WalkerDashboard = React.createClass({
 
         return {
             mapLayers:{},
-            layersInfo: LayerInfo,
-            streets: Streets,
+            areas:Areas,
+            facilities:Facilities,
+            rail:Rail,
+            road:Road
         }
 
     },
@@ -69,14 +72,23 @@ var WalkerDashboard = React.createClass({
             {
                 name:'home',
                 icon:'fa fa-home',
-                content: <LayerList title="Freight Layers" dataset='layersInfo' layers={this.state.layersInfo} onClick = {this.handleClick} />
-
+                content: <LayerList title="Freight Atlas Areas" dataset='areas' layers={this.state.areas} onClick = {this.handleClick} />
             },
             {
                 name:'home2',
                 icon:'fa fa-home',
-                content:<LayerList dataset='streets' layers={this.state.streets} onClick = {this.handleClick} />
-            }        
+                content:<LayerList title="Freight Atlas Facilities" dataset='facilities' layers={this.state.facilities} onClick = {this.handleClick} />
+            },            
+            {
+                name:'home3',
+                icon:'fa fa-home',
+                content:<LayerList title="Freight Atlas Rail" dataset='rail' layers={this.state.rail} onClick = {this.handleClick} />
+            },            
+            {
+                name:'home4',
+                icon:'fa fa-home',
+                content:<LayerList title="Freight Atlas Road" dataset='road' layers={this.state.road} onClick = {this.handleClick} />
+            }              
         ]
     },
 
@@ -105,16 +117,11 @@ var WalkerDashboard = React.createClass({
         
 
         return (
-        	
-            <div style={{width:'100%',height:'100%'}} >
-                <MapSidebar panes={this.getPanes()} />
-                            
-                <Map layers={this.state.mapLayers} />
-
-            
-            </div> 
-        	
-        );
+                <div style={{width:'100%',height:'100%'}} >
+                    <MapSidebar panes={this.getPanes()} />  
+                    <Map layers={this.state.mapLayers} />
+                </div>
+        )
     
     }
 });

@@ -197,8 +197,8 @@ var Map = React.createClass({
         });
 
         var baseMaps = {
-            "Grayscale": mapquestOSM,
-            "Streets": layertwo
+            "Streets": mapquestOSM,
+            "Grayscale": layertwo
         },
         overlayMaps = {};
 

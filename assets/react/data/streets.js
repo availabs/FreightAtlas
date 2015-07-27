@@ -24,7 +24,7 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                console.log(feature)
+                //console.log(feature)
                 popupContent = "NYS Major Border Crosssings <br/>" + feature.properties.CP_Name;
                 layer.bindPopup(popupContent);              
                 layer.on({
@@ -47,7 +47,7 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                console.log(feature)
+                //console.log(feature)
                 popupContent = "US States<br/>" + feature.properties.STATE_NAME
                 layer.bindPopup(popupContent);              
                 layer.on({
@@ -72,7 +72,7 @@ module.exports = {
                 var popupContent;
                 // console.log(feature)
                 //popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
-                layer.bindPocolor(popupContent);              
+                layer.bindPopup(popupContent);              
                 layer.on({
                     mouseover:function(e){layer.openPopup()},
                     mouseout:function(e){layer.closePopup()}
@@ -93,7 +93,7 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                console.log(feature)
+                //console.log(feature)
                 popupContent = "Canadian Provinces <br/>" + feature.properties.NAME_1;
                 layer.bindPopup(popupContent);              
                 layer.on({
@@ -116,7 +116,7 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                console.log(feature)
+                //console.log(feature)
                 popupContent = "NY Capital Region <br/>" + feature.properties.Region;
                 layer.bindPopup(popupContent);              
                 layer.on({
@@ -210,7 +210,7 @@ module.exports = {
                 var popupContent;
                 // console.log(feature)
                 popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
-                layer.bindPocolor(popupContent);              
+                layer.bindPopup(popupContent);              
                 layer.on({
                     mouseover:function(e){layer.openPopup()},
                     mouseout:function(e){layer.closePopup()}
@@ -233,7 +233,7 @@ module.exports = {
                 var popupContent;
                 // console.log(feature)
                 popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
-                layer.bindPocolor(popupContent);              
+                layer.bindPopup(popupContent);              
                 layer.on({
                     mouseover:function(e){layer.openPopup()},
                     mouseout:function(e){layer.closePopup()}
@@ -296,7 +296,7 @@ module.exports = {
             }
         }
     },
-    "Intermodal_Facility":{
+    "Intermodal Facilities of NY":{
         path:"../finalGeoJson/Intermodal_Facility.geojson",
         options:{
             zoomOnLoad:true,
@@ -587,7 +587,7 @@ module.exports = {
                 var popupContent;
                 // console.log(feature)
                 //popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
-                layer.bindPocolor(popupContent);              
+                layer.bindPopup(popupContent);              
                 layer.on({
                     mouseover:function(e){layer.openPopup()},
                     mouseout:function(e){layer.closePopup()}
@@ -734,7 +734,7 @@ module.exports = {
         }
     },
     "NYS SelectCities_PopOver20k":{
-        path:"../finalGeoJson/SelectCities_PopOver20k.geojson",
+        path:"../SelectCities_PopOver20k.geojson",
         options:{
             zoomOnLoad:true,
             visible:false,
@@ -847,7 +847,7 @@ module.exports = {
                 })  
             }
         }
-    },
+    }
 
 
 

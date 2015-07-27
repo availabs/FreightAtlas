@@ -63,11 +63,13 @@ var layerList = React.createClass({
 
         return (
         	
-            <div className= "layerList" style={{width:'100%',height:'100%'}}   >
-                <h3 onClick={this.handleClick}>{this.props.title}</h3>
-                {list}
-                
-            </div> 
+
+                <div className= "layerList" style={{width:'100%',height:'100%'}}   >
+                    <h3 onClick={this.handleClick}>{this.props.title}</h3>
+                    {list}
+                    
+                </div> 
+
         	
         );
     

@@ -16,10 +16,12 @@ module.exports = {
                 }
             },
             onEachFeature: function(feature,layer){
+                var popup = L.popup();
             	var popupContent;
             	//console.log(feature)
             	popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
-				layer.bindPopup(popupContent);          	
+				popup.setContent(popupContent)
+                layer.bindPopup(popup);          	
             	layer.on({
             		mouseover:function(e){layer.openPopup()},
             		mouseout:function(e){layer.closePopup()}
@@ -127,7 +129,7 @@ module.exports = {
             }
         }
     },
-    "Export Output":{
+    "Major Airports":{
     	path:"Export_Output.geojson",
     	options:{
     		zoomOnLoad:true,
@@ -149,7 +151,7 @@ module.exports = {
             onEachFeature: function(feature,layer){
             	var popupContent;
             	//console.log(feature)
-            	popupContent = "Export Output <br/>" + feature.properties.FULLNAME;
+            	popupContent = "Major Airports <br/>" + feature.properties.FULLNAME;
             	layer.bindPopup(popupContent);
             	layer.on({
             		mouseover:function(e){layer.openPopup()},
