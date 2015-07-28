@@ -15,7 +15,11 @@
 }
 
 .layerLegend{
-  z-index: 1000000;
+  position: absolute;
+  z-index: 1000;
+  background-color: white;
+  right: 10px;
+  top:70px;
 }
 
 .sidebar-content{

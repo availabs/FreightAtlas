@@ -246,18 +246,12 @@ var Map = React.createClass({
     },
 
     render: function() {
-        console.log(this.props.layers)
         if(map){    
             map.invalidateSize();
         }
         return (
             <div style={{height:'100%'}}>
-
-
-                <div id="legend" className={"layerLegend"} >
-                    <LayerLegend activeLayers={this.props.layers} />
-                </div>
-
+                <LayerLegend activeLayers={this.props.layers} />
                 <div className="sidebar-map" id="map" >
                     <ToolTip/>
                 </div>

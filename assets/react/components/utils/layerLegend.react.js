@@ -14,27 +14,27 @@ var layerLegend = React.createClass({
     },
 
 	render: function() {
-		console.log("legend",this.props.activeLayers)
+
 		var scope = this;
 
 
 		var list = Object.keys(this.props.activeLayers).map(function(key,index){
-			 console.log(scope)
-			 var style = {height:5,width:5,backgroundColor:colorScale(key),display:"block"}
+
+			 var style = {height:10,width:10,backgroundColor:colorScale(key)}
 
 			if(scope.props.activeLayers[key].options.visible == true){
 	            return (
 	            		<div id={key}>
-		            		<div style={style}> 
-		            		</div>
-		            		<h3>{key}</h3>
+		            		<div style={style}> </div>
+		            		{key}
 	            		</div>
 	                )
         	}
         })
 
 		return (
-				<div id = "layerLegend" className={"layerLegend"} >
+				<div className={"layerLegend"} >
+					
 					{list}
 				</div>
 			)
