@@ -5,7 +5,8 @@ var React = require('react'),
     
     //--Components
     ToolTip = require('./ToolTip.react'),
-    
+        LayerLegend = require('./layerLegend.react'),
+
     //--Utils
     L = require('leaflet'),
     MapSidebar = require ('./MapSidebar'),
@@ -49,7 +50,7 @@ var Map = React.createClass({
     
     componentWillReceiveProps: function(nextProps) {
         var scope = this;
-        console.log(this)
+
         if(nextProps.layers){
       
             Object.keys(nextProps.layers).forEach(function(key){
@@ -62,7 +63,7 @@ var Map = React.createClass({
                         currLayer.geojson = topojson.feature(currLayer.geo,currLayer.geo.objects[key])
                     } 
                        
-                console.log(currLayer);                  
+                
                    if(layers[key]){
                         //if layer existed previously check version ids
 
@@ -138,7 +139,7 @@ var Map = React.createClass({
                 layer: new L.geoJson({type:'FeatureCollection',features:[]},layer.options)
             }
             if(layer.geo){
-                console.log(layer);
+
                 if(layer.geo.type == "Topology"){
                     layers[key].layer.addData(layer.geojson); // to get layerAdd event
                     map.addLayer(layers[key].layer);
@@ -245,15 +246,24 @@ var Map = React.createClass({
     },
 
     render: function() {
+        console.log(this.props.layers)
         if(map){    
             map.invalidateSize();
         }
-
         return (
-            <div className="sidebar-map" id="map" style={{height:'100%'}}>
-                <ToolTip/>
-            </div>
+            <div style={{height:'100%'}}>
 
+
+                <div id="legend" className={"layerLegend"} >
+                    <LayerLegend activeLayers={this.props.layers} />
+                </div>
+
+                <div className="sidebar-map" id="map" >
+                    <ToolTip/>
+                </div>
+
+
+            </div>
         );
     },
 

@@ -4,6 +4,7 @@ var React = require('react'),
     
     // -- componetnts
     Map = require('../components/utils/map.react'),
+    LayerLegend = require('../components/utils/layerLegend.react'),
     
     //    -- sidebar components
     MapSidebar = require('../components/utils/MapSidebar.react'),
@@ -40,7 +41,7 @@ var WalkerDashboard = React.createClass({
 
     loadLayer:function(layName,url,datasetName){
         console.log(url);
-        console.log(this);
+
         var scope = this,
             newState = scope.state;
         if(!this.state[datasetName][layName].options.loaded){
@@ -118,8 +119,14 @@ var WalkerDashboard = React.createClass({
 
         return (
                 <div style={{width:'100%',height:'100%'}} >
-                    <MapSidebar panes={this.getPanes()} />  
-                    <Map layers={this.state.mapLayers} />
+
+                    <LayerLegend />
+                    <MapSidebar panes={this.getPanes()} /> 
+
+
+                    <Map layers={this.state.mapLayers}  />
+
+
                 </div>
         )
     

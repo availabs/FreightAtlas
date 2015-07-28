@@ -14,6 +14,10 @@
 	background-color: #ddd;
 }
 
+.layerLegend{
+  z-index: 1000000;
+}
+
 .sidebar-content{
 	position: absolute;
   left: 60px;
