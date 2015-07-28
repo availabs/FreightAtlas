@@ -186,22 +186,33 @@ var Map = React.createClass({
         }else{
         }
         //pencil am3081.kml65fk1
-        var mapquestOSM = L.tileLayer("http://{s}.tiles.mapbox.com/v3/am3081.h0pml9h7/{z}/{x}/{y}.png"),
-            layertwo = L.tileLayer("http://{s}.tiles.mapbox.com/v3/am3081.kml65fk1/{z}/{x}/{y}.png");
-        
+        var tContours = L.tileLayer("https://c.tiles.mapbox.com/v3/aj.um7z9lus/{z}/{x}/{y}.png"),
+            streetMap = L.tileLayer("http://a.tiles.mapbox.com/v3/am3081.h0po4e8k/{z}/{x}/{y}.png"),
+            aImagery = L.tileLayer('http://{s}.tiles.mapbox.com/v3/am3081.h0pml9h7/{z}/{x}/{y}.png'),
+            aImageStreets = L.tileLayer('http://oatile2.mqcdn.com/tiles/1.0.0/hyb/{z}/{x}/{y}.png'),   //+ http://{s}.tiles.mapbox.com/v3/am3081.h0pml9h7/{z}/{x}/{y}.png              
+            aImageTerr = L.tileLayer('https://a.tiles.mapbox.com/v3/matt.hd0b27jd/{z}/{x}/{y}.png'),
+            greyScale = L.tileLayer("http://{s}.tiles.mapbox.com/v3/am3081.kml65fk1/{z}/{x}/{y}.png");                    
+                                    
+                                    
+                                    
         map = L.map(this.getDOMNode(), {
             center: [39.8282, -98.5795],
             zoom: 4,
-            layers: [mapquestOSM,layertwo],
+            layers: [tContours,streetMap,aImagery,aImageStreets,aImageTerr],
             zoomControl: this.props.zoomControl,
             attributionControl: false
         });
 
         var baseMaps = {
-            "Streets": mapquestOSM,
-            "Grayscale": layertwo
+            "Terrain Countours": tContours,
+            "Street Map": streetMap,
+            "Aerial Imagery" : aImagery,
+            "Aerial Imagery with Terrain" : aImageTerr,
+            "Greyscale" : greyScale
         },
-        overlayMaps = {};
+        overlayMaps = {
+            "Street Overlay" : aImageStreets
+        };
 
         L.control.layers(baseMaps, overlayMaps).addTo(map);
         //map.invalidateSize();
