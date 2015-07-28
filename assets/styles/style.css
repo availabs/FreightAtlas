@@ -21,6 +21,10 @@
   right: 10px;
   top:70px;
 }
+.header{
+  z-index:1001;
+  text-align:center;
+}
 
 .sidebar-content{
 	position: absolute;

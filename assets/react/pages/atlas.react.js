@@ -119,7 +119,7 @@ var WalkerDashboard = React.createClass({
 
         return (
                 <div style={{width:'100%',height:'100%'}} >
-
+                    <div className={"header"}> NYSDOT Logo and Title</div>
                     <LayerLegend />
                     <MapSidebar panes={this.getPanes()} /> 
 
