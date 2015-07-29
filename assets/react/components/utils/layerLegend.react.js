@@ -13,6 +13,8 @@ var layerLegend = React.createClass({
     
     },
 
+    //Add hover function
+
 	render: function() {
 
 		var scope = this;
