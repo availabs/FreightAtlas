@@ -18,12 +18,14 @@ var React = require('react'),
     App = require('./pages/layout.react'),
 
 //  --- Pages
-    Dashboard = require('./pages/atlas.react');
+    Dashboard = require('./pages/atlas.react'),
+    TransDashboard = require('./pages/transAtlas.react')
 
 //  --- Routes 
 var routes = (
   <Route name="app" path="/" handler={App}>
     <Route name="dashboard" path="/" handler={Dashboard}/>
+    <Route name="TransDashboard" path="/transearch" handler={TransDashboard}/>
     <DefaultRoute handler={Dashboard}/>
   </Route>
 );
