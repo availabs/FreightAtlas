@@ -216,7 +216,7 @@ var Map = React.createClass({
         overlayMaps = {
             "Street Overlay" : aImageStreets
         };
-
+        console.log(baseMaps)
         L.control.layers(baseMaps, overlayMaps).addTo(map);
         //map.invalidateSize();
         if(this.props.sidebar){
@@ -271,7 +271,6 @@ var Map = React.createClass({
                 },
                 onEachFeature: function(feature,layer){
                     var popupContent;
-                    // console.log(feature)
                     popupContent = "NY All Regions <br/> County Name: " + feature.properties.NAME
                     layer.bindPopup(popupContent);              
                 }
@@ -292,7 +291,7 @@ var Map = React.createClass({
             <div style={{height:'100%'}}>
                 <LayerLegend activeLayers={this.props.layers} />
                 <div className="sidebar-map" id="map" >
-                    <ToolTip/>
+
                 </div>
 
 
