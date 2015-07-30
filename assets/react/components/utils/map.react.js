@@ -5,7 +5,7 @@ var React = require('react'),
     
     //--Components
     ToolTip = require('./ToolTip.react'),
-        LayerLegend = require('./layerLegend.react'),
+    LayerLegend = require('./layerLegend.react'),
 
     //--Utils
     L = require('leaflet'),
@@ -196,8 +196,8 @@ var Map = React.createClass({
                                     
                                     
         map = L.map(this.getDOMNode(), {
-            center: [39.8282, -98.5795],
-            zoom: 4,
+            center: [42.8282, -78.5795],
+            zoom: 7,
             layers: [tContours,streetMap,aImagery,aImageStreets,aImageTerr],
             zoomControl: this.props.zoomControl,
             attributionControl: false

@@ -11,15 +11,25 @@ var React = require('react'),
     // -- actions
     
     // -- utils;
-    d3 = require('d3');
-    
+    d3 = require('d3'),
+    Areas = require('../data/areas'),
+    Facilities = require('../data/facilities'),
+    Rail = require('../data/rail'),
+    Road = require('../data/road');
 
 
 var TransDashboard = React.createClass({
 
     getInitialState:function(){
-        //var geoLayerInfo = geoLayer;
-        return {}
+        
+
+        return {            
+            mapLayers:{},
+            areas:Areas,
+            facilities:Facilities,
+            rail:Rail,
+            road:Road
+        }
 
     },
     
@@ -42,7 +52,7 @@ var TransDashboard = React.createClass({
     },
 
     render: function() {
-        
+        console.log(this);
         var button = <span />
         
        
@@ -52,6 +62,7 @@ var TransDashboard = React.createClass({
         return (
                 <div style={{width:'100%',height:'100%'}} >
                     <MapSidebar panes={this.getPanes()} /> 
+                    <Map layers={this.state.mapLayers}  />
                 </div>
         )
     
