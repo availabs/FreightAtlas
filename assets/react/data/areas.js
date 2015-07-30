@@ -12,7 +12,8 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Capital_Region")
+                    color:colorScale("Capital_Region"),
+                    fillOpacity:0.40,
                 }
             },
             onEachFeature: function(feature,layer){

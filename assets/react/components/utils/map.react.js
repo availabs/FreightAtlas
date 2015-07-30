@@ -191,24 +191,25 @@ var Map = React.createClass({
             aImagery = L.tileLayer('http://{s}.tiles.mapbox.com/v3/am3081.h0pml9h7/{z}/{x}/{y}.png'),
             aImageStreets = L.tileLayer('http://oatile2.mqcdn.com/tiles/1.0.0/hyb/{z}/{x}/{y}.png'),   //+ http://{s}.tiles.mapbox.com/v3/am3081.h0pml9h7/{z}/{x}/{y}.png              
             aImageTerr = L.tileLayer('https://a.tiles.mapbox.com/v3/matt.hd0b27jd/{z}/{x}/{y}.png'),
-            greyScale = L.tileLayer("http://{s}.tiles.mapbox.com/v3/am3081.kml65fk1/{z}/{x}/{y}.png");                    
+            greyScale = L.tileLayer("http://{s}.tiles.mapbox.com/v3/erickrans.4f9126ad/{z}/{x}/{y}.png");                    
                                     
                                     
                                     
         map = L.map(this.getDOMNode(), {
             center: [42.8282, -78.5795],
             zoom: 7,
-            layers: [tContours],
+            layers: [greyScale],
             zoomControl: this.props.zoomControl,
             attributionControl: false
         });
 
         var baseMaps = {
+            "Greyscale" : greyScale,
             "Terrain Countours": tContours,
             "Street Map": streetMap,
             "Aerial Imagery" : aImagery,
             "Aerial Imagery with Terrain" : aImageTerr,
-            "Greyscale" : greyScale
+            
         },
         overlayMaps = {
             "Street Overlay" : aImageStreets
