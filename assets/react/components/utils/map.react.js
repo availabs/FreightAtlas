@@ -198,7 +198,7 @@ var Map = React.createClass({
         map = L.map(this.getDOMNode(), {
             center: [42.8282, -78.5795],
             zoom: 7,
-            layers: [tContours,streetMap,aImagery,aImageStreets,aImageTerr],
+            layers: [tContours],
             zoomControl: this.props.zoomControl,
             attributionControl: false
         });

@@ -201,7 +201,7 @@ var Map = React.createClass({
         map = L.map(this.getDOMNode(), {
             center: [42.8282, -78.5795],
             zoom: 7,
-            layers: [tContours,streetMap,aImagery,aImageStreets,aImageTerr],
+            layers: [tContours],
             zoomControl: this.props.zoomControl,
             attributionControl: false
         });
@@ -272,7 +272,7 @@ var Map = React.createClass({
                 onEachFeature: function(feature,layer){
                     var popupContent;
                     // console.log(feature)
-                                popupContent = "NY All Regions <br/> County Name: " + feature.properties.NAME
+                    popupContent = "NY All Regions <br/> County Name: " + feature.properties.NAME
                     layer.bindPopup(popupContent);              
                     layer.on({
                         mouseover:function(e){layer.openPopup()},
@@ -288,6 +288,7 @@ var Map = React.createClass({
     },
 
     render: function() {
+        console.log(map)
         if(map){    
             map.invalidateSize();
         }
