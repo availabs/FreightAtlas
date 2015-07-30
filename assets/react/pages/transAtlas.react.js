@@ -3,10 +3,11 @@
 var React = require('react'),
     
     // -- componetnts
-    Map = require('../components/utils/map.react'),
-    
+    Map = require('../components/utils/transMap.react'),
+  
     //    -- sidebar components
     MapSidebar = require('../components/utils/MapSidebar.react'),
+
 
     // -- actions
     
@@ -21,7 +22,7 @@ var React = require('react'),
 var TransDashboard = React.createClass({
 
     getInitialState:function(){
-        
+
 
         return {            
             mapLayers:{},
@@ -38,7 +39,7 @@ var TransDashboard = React.createClass({
             {
                 name:'home',
                 icon:'fa fa-home',
-                content: <h3>Hello from Ryan </h3>
+                content:  <h3>Hello from Ryan</h3>
             } 
         ]
     },
@@ -51,13 +52,12 @@ var TransDashboard = React.createClass({
 
     },
 
-    render: function() {
-        console.log(this);
-        var button = <span />
-        
-       
 
-        
+    render: function() {
+
+
+                var button = <span />
+
 
         return (
                 <div style={{width:'100%',height:'100%'}} >
