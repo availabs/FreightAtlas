@@ -257,7 +257,7 @@ var Map = React.createClass({
                 }
             });
         }
-    console.log(this)
+
 
     d3.json("data/finalGeoJson/County.geojson",function(err,data){
         var curLayer = {id:"County",geo:data,options:{
@@ -274,10 +274,6 @@ var Map = React.createClass({
                     // console.log(feature)
                     popupContent = "NY All Regions <br/> County Name: " + feature.properties.NAME
                     layer.bindPopup(popupContent);              
-                    layer.on({
-                        mouseover:function(e){layer.openPopup()},
-                        mouseout:function(e){layer.closePopup()}
-                    })  
                 }
             } 
         }
@@ -288,7 +284,7 @@ var Map = React.createClass({
     },
 
     render: function() {
-        console.log(map)
+
         if(map){    
             map.invalidateSize();
         }
