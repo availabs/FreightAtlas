@@ -145,7 +145,7 @@ var WalkerDashboard = React.createClass({
                     <MapSidebar panes={this.getPanes()} /> 
 
 
-                    <Map layers={this.state.mapLayers}  />
+                    <Map layers={this.state.mapLayers zoomControl={true}}  />
 
 
                 </div>

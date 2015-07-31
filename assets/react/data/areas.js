@@ -212,7 +212,7 @@ module.exports = {
             }
         }
     },
-    "Western_Region":{
+    "Western Region":{
         path:"../finalGeoJson/Western_Region.geojson",
         options:{
             zoomOnLoad:true,
