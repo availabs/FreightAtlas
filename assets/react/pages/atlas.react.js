@@ -72,29 +72,34 @@ var WalkerDashboard = React.createClass({
         return [
             {
                 name:'home',
-                icon:'/styles/images/layers.png',
+                icon:'/images/nyslogo.png',
                 content: <h3> NYS Freight Atlas </h3>
             },
             {
                 name:'home2',
-                icon:'/styles/images/layers.png',
+                icon:'/images/areas.png',
                 content: <LayerList title="New York State Regions" dataset='areas' layers={this.state.areas} onClick = {this.handleClick} />
             },
             {
                 name:'home3',
-                icon:'/images/facilities.png',
+                icon:'/images/facilities2.png',
                 content:<LayerList title="Freight Facilities" dataset='facilities' layers={this.state.facilities} onClick = {this.handleClick} />
             },            
             {
                 name:'home4',
-                icon:'/images/rail.png',
+                icon:'/images/rail2.png',
                 content:<LayerList title="Rail Network" dataset='rail' layers={this.state.rail} onClick = {this.handleClick} />
             },            
             {
                 name:'home5',
-                icon:'/images/truck.png',
+                icon:'/images/truck2.png',
                 content:<LayerList title="Road Network" dataset='road' layers={this.state.road} onClick = {this.handleClick} />
-            }              
+            },
+            {
+                name:'home6',
+                icon:'/images/comments.png',
+                content:<LayerList title="Freight Plan Comments" dataset='comments' layers={this.state.road} onClick = {this.handleClick} />
+            }                            
         ]
     },
 
@@ -126,14 +131,13 @@ var WalkerDashboard = React.createClass({
 
         
        
-
+// <div className={"header"} style={{textAlign:'center'}}>
+                    // <img style={imgStyle} src="/images/nygov-logo.png"/>
+                    // New York State Freight Atlas</div>
         
 
         return (
                 <div style={{width:'100%',height:'100%'}} >
-                    <div className={"header"} style={{textAlign:'center'}}>
-                    <img style={imgStyle} src="/images/nygov-logo.png"/>
-                    New York State Freight Atlas</div>
                     <LayerLegend />
                     <MapSidebar panes={this.getPanes()} /> 
 

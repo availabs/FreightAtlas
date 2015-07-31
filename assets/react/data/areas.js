@@ -227,7 +227,8 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("State")
+                    color:colorScale("State"),
+                    fillOpacity:0.01,
                 }
             },
             onEachFeature: function(feature,layer){
