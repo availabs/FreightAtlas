@@ -1,7 +1,11 @@
 
-var d3 = require('d3');
+var d3 = require('d3'),
+    colorbrewer = require('colorbrewer');
 
-var colorScale = d3.scale.category20();   
+var colorScale = d3.scale.ordinal()
+                 .domain(["Highways","Primary_Freight_Network"])
+                 .range(colorbrewer.RdPu[9]);  
+  
 
 module.exports = {
     "Highways":{

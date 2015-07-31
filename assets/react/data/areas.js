@@ -1,9 +1,33 @@
 
-var d3 = require('d3');
+var d3 = require('d3'),
+    colorbrewer = require('colorbrewer');
 
-var colorScale = d3.scale.category20();   
+var colorScale = d3.scale.ordinal()
+                 .domain(["CAN_adm1","Western_Region"])
+                 .range(colorbrewer.YlGn[9]);   
 
 module.exports = {
+    "Canadian Provinces":{
+        path:"../finalGeoJson/CAN_adm1.json",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("CAN_adm1"),
+                    fillOpacity:0.40,
+                }
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+
+                popupContent = "Canadian Provinces <br/>" + feature.properties.NAME_1;
+                layer.bindPopup(popupContent);              
+
+            }
+        }
+    },    
 	"Capital Region":{
         path:"../finalGeoJson/Capital_Region.geojson",
         options:{
@@ -18,7 +42,7 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                //console.log(feature)
+
                 popupContent = "NY Capital Region <br/>" + feature.properties.Region;
                 layer.bindPopup(popupContent);              
 
@@ -38,7 +62,7 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
+                
                 popupContent = "NY Central Region <br/>" + feature.properties.Region;
                 layer.bindPopup(popupContent);              
 
@@ -58,7 +82,7 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
+                
                             popupContent = "NY Cities with Population over 20k <br/> City: " + feature.properties.NAME + "<br/> Population in 2010: " + feature.properties.POP2010
                 layer.bindPopup(popupContent);              
  
@@ -78,7 +102,7 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
+                
                             popupContent = "NY All Regions <br/> County Name: " + feature.properties.NAME
                 layer.bindPopup(popupContent);              
  
@@ -98,7 +122,7 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
+                
                 popupContent = "MPO Boundaries <br/>" + feature.properties.MPO_NAME;
                 layer.bindPopup(popupContent);              
  
@@ -125,7 +149,7 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
+                
                 popupContent = "MPO Citites <br/>" + feature.properties.AREANAME + "<br/> Population in 2000: " + feature.properties.POP2000
                 layer.bindPopup(popupContent);              
  
@@ -145,7 +169,7 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
+                
                 popupContent = "NY Hudson Valley Region <br/>"
                 layer.bindPopup(popupContent);              
  
@@ -165,7 +189,7 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
+                
                 popupContent = "NY All Regions <br/> Region: " + feature.properties.Region + "<br/> County Name: " + feature.properties.NAME
                 layer.bindPopup(popupContent);              
 
@@ -186,7 +210,7 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
+                
                 popupContent = "NY Cities with Population over 20k <br/> City: " + feature.properties.NAME + "<br/> Population in 2010: " + feature.properties.POP2010
                 layer.bindPopup(popupContent);              
  
@@ -200,7 +224,7 @@ module.exports = {
             visible:false,
             loaded:false,
             style:function(feat){
-                //console.log(colorScale("State"))
+
                 return{
                     color:colorScale("State"),
                     fillOpacity:0.01,
@@ -208,7 +232,7 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
+                
                 popupContent = "New York State"
                 layer.bindPopup(popupContent);              
   
@@ -228,7 +252,7 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
+                
                 popupContent = "NY Hudson Valley Region <br/>"
                 layer.bindPopup(popupContent);              
 

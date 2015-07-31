@@ -133,34 +133,6 @@ var WalkerDashboard = React.createClass({
                 top: '5px'
         }
 
-
-
-        // d3.json("data/finalGeoJson/State.geojson",function(err,data){
-        //     var curLayer = {id:"New York State",geo:data,options:{
-        //             zoomOnLoad:false,
-        //             visible:true,
-        //             loaded:true,
-        //             style:function(feat){
-        //                 return{
-        //                     color:colorScale("New York State")
-        //                 }
-        //             },
-        //             onEachFeature: function(feature,layer){
-        //                 var popupContent;
-        //                 popupContent = "NY All Regions <br/> County Name: " + feature.properties.NAME
-        //                 layer.bindPopup(popupContent);              
-        //             }
-        //         } 
-        //     }
-        //     scope.loadLayer("New York State",curLayer);
-        //     scope.props.layers["New York State"] = curLayer;
-        //     scope.setState({"myKey":"New Value"});
-
-        // })
-       
-// <div className={"header"} style={{textAlign:'center'}}>
-                    // <img style={imgStyle} src="/images/nygov-logo.png"/>
-                    // New York State Freight Atlas</div>
         
 
         return (
