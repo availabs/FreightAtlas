@@ -1,13 +1,62 @@
+@font-face {
+    font-family: 'gotham_boldregular';
+    src: url('/styles/typography/gotham-bold-webfont.eot');
+    src: url('/styles/typography/gotham-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/styles/typography/gotham-bold-webfont.woff2') format('woff2'),
+         url('/styles/typography/gotham-bold-webfont.woff') format('woff'),
+         url('/styles/typography/gotham-bold-webfont.ttf') format('truetype'),
+         url('/styles/typography/gotham-bold-webfont.svg#gotham_boldregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'gotham_bookregular';
+    src: url('/styles/typography/gotham-book-webfont.eot');
+    src: url('/styles/typography/gotham-book-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/styles/typography/gotham-book-webfont.woff') format('woff'),
+         url('/styles/typography/gotham-book-webfont.ttf') format('truetype'),
+         url('/styles/typography/gotham-book-webfont.svg#gotham_bookregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'gotham_mediumregular';
+    src: url('/styles/typography/gotham-medium-webfont.eot');
+    src: url('/styles/typography/gotham-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/styles/typography/gotham-medium-webfont.woff2') format('woff2'),
+         url('/styles/typography/gotham-medium-webfont.woff') format('woff'),
+         url('/styles/typography/gotham-medium-webfont.ttf') format('truetype'),
+         url('/styles/typography/gotham-medium-webfont.svg#gotham_mediumregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body{
+  font-family: 'gotham_mediumregular'
+}
+
 .layListInactive{
 	
 	background:white;
 	color:black;
-	font:12px/1.5 "calibri", Arial, Helvetica, sans-serif;
+	font:12px/1.5 "gotham_mediumregular", Arial, Helvetica, sans-serif;
 }
+
 .layListActive{
-	background:#5d5d5d;
-	color:#fff;
-	font:12px/1.5 "Calibri", Arial, Helvetica, sans-serif;
+	background:#ddd;
+	color:000;
+	font:12px/1.5 "gotham_mediumregular", Arial, Helvetica, sans-serif;
 }
 
 .layListInactive:hover{
@@ -102,18 +151,4 @@
       text-decoration: none;
       text-align: center;
 }
-@font-face {
-   font-family: 'gotham_boldregular';
-   src: url('/styles/typography/gotham-bold-webfont.eot');
-   src: url('/styles/typography/gotham-bold-webfont.eot?#iefix') format('embedded-opentype'),
-        url('/styles/typography/gotham-bold-webfont.woff2') format('woff2'),
-        url('/styles/typography/gotham-bold-webfont.woff') format('woff'),
-        url('/styles/typography/gotham-bold-webfont.ttf') format('truetype'),
-        url('/styles/typography/gotham-bold-webfont.svg#gotham_boldregular') format('svg');
-   font-weight: normal;
-   font-style: normal;
-
-}
-
-
 

@@ -32,13 +32,14 @@ var layerLegend = React.createClass({
 
 			 var style = {height:10,width:10,backgroundColor:scope.props.activeLayers[key].options.style().color}
 
+			if(scope.props.activeLayers[key].options.visible == true){
 	            return (
         		   		<tr id={key}> 
 	            		<td style={style}> </td>
 	            		<td style={{padding:"5px"}}> {key} </td>
 		           		</tr>
 	                )
-        	
+        	}
         })
         //console.log(this.props.activeLayers)
 		var legendStyle={display: Object.keys(this.props.activeLayers).filter(function(d){ return scope.props.activeLayers[d].options.visible === true }).length > 0 ? "block" : 'none'};
