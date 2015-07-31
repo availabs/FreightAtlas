@@ -216,7 +216,7 @@ var Map = React.createClass({
         overlayMaps = {
             "Street Overlay" : aImageStreets
         };
-        console.log(baseMaps)
+
         L.control.layers(baseMaps, overlayMaps).addTo(map);
         //map.invalidateSize();
         if(this.props.sidebar){
