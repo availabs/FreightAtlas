@@ -4,7 +4,15 @@ var React = require('react');
 
 var LayerItem = React.createClass({
     getInitialState: function() {
-        return {selected: false};
+
+
+        if(this.props.layerName == "New York State"){
+            return {selected: true};  
+        }
+        else{
+            return {selected: false};            
+        }
+
       },
 
     render: function(){

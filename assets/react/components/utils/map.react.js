@@ -19,7 +19,7 @@ var map = null,
     markers = {},
     sidebar;
 
-
+var colorScale = d3.scale.category20();   
 
 
 
@@ -255,9 +255,12 @@ var Map = React.createClass({
                 }
             });
         }
+
+
     },
 
     render: function() {
+
         if(map){    
             map.invalidateSize();
         }
