@@ -103,7 +103,7 @@ var WalkerDashboard = React.createClass({
             {
                 name:'home6',
                 icon:'/images/comments.png',
-                content:<LayerList title="Freight Plan Comments" dataset='comments' layers={this.state.road} onClick = {this.handleClick} />
+                content: <h3> Comments </h3>
             }                            
         ]
     },

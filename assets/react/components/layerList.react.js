@@ -34,7 +34,6 @@ var LayerItem = React.createClass({
     },
     handleClick:function () {
         this.setState({selected: !this.state.selected})
-        //console.log('click',this)
         this.props.onClick(this)
     },
 
@@ -54,7 +53,6 @@ var layerList = React.createClass({
         }
     },
     handleClick:function (childComponent) {
-        //console.log(childComponent)
         this.props.onClick(childComponent)
     },
 
