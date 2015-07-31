@@ -12,7 +12,8 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Border_Crossing_Port")
+                    color:colorScale("Border_Crossing_Port"),
+                    fillOpacity:0.55,
                 }
             },pointToLayer: function (d, latlng) {
                 var options = {
@@ -72,7 +73,8 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Major_Airport")
+                    color:colorScale("Major_Airport"),
+                    fillOpacity:0.55,
                 }
             },pointToLayer: function (d, latlng) {
                 var options = {
@@ -102,7 +104,8 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Export_Output")
+                    color:colorScale("Export_Output"),
+                    fillOpacity:0.55,
                 }
             },
             pointToLayer: function (d, latlng) {
@@ -133,7 +136,8 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Major_Ports")
+                    color:colorScale("Major_Ports"),
+                    fillOpacity:0.55,
                 }
             },pointToLayer: function (d, latlng) {
                 var options = {
