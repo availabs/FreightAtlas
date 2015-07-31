@@ -25,7 +25,7 @@ var React = require('react'),
 var WalkerDashboard = React.createClass({
 
     getInitialState:function(){
-        console.log("initial")
+
 
 
         return {
@@ -110,12 +110,8 @@ var WalkerDashboard = React.createClass({
 
     componentDidMount:function(){
 
-        console.log("hello");
-        console.log(Object.keys(this.state.mapLayers).length)
-
         if(Object.keys(this.state.mapLayers).length === 0){
             this.loadLayer("New York State", "../finalGeoJson/State.geojson","areas");
-            console.log("Add NYS");
         }
 
 
@@ -131,7 +127,7 @@ var WalkerDashboard = React.createClass({
 
     render: function() {
         var scope = this;
-        console.log("render")
+
         var nextCoords = this.props.currentHouse ? this.props.currentHouse.geometry.coordinates : null;
         var button = <span />;
         var imgStyle = {
