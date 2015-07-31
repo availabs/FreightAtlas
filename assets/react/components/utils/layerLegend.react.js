@@ -18,7 +18,7 @@ var layerLegend = React.createClass({
 	render: function() {
 
 		var scope = this;
-
+		//console.log(scope)
 
 		var list = Object.keys(this.props.activeLayers).map(function(key,index){
 
@@ -33,7 +33,7 @@ var layerLegend = React.createClass({
 	                )
         	}
         })
-        console.log(this.props.activeLayers)
+        //console.log(this.props.activeLayers)
 		var legendStyle={display: Object.keys(this.props.activeLayers).filter(function(d){ return scope.props.activeLayers[d].options.visible === true }).length > 0 ? "block" : 'none'};
 		return (
 				<div className={"layerLegend"} style={legendStyle}>

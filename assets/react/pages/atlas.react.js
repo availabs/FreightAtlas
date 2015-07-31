@@ -25,8 +25,7 @@ var React = require('react'),
 var WalkerDashboard = React.createClass({
 
     getInitialState:function(){
-        //var geoLayerInfo = geoLayer;
-
+        console.log("initial")
 
 
         return {
@@ -35,6 +34,7 @@ var WalkerDashboard = React.createClass({
             facilities:Facilities,
             rail:Rail,
             road:Road
+
         }
 
     },
@@ -106,7 +106,12 @@ var WalkerDashboard = React.createClass({
     componentDidMount:function(){
 
         console.log("hello");
+        console.log(Object.keys(this.state.mapLayers).length)
 
+        if(Object.keys(this.state.mapLayers).length === 0){
+            this.loadLayer("New York State", "../finalGeoJson/State.geojson","areas");
+            console.log("Add NYS");
+        }
 
 
     },
@@ -115,11 +120,13 @@ var WalkerDashboard = React.createClass({
         var curLayerName = childComponent.props.layerName;
         var datasetName = childComponent.props.dataset;
         var curLayerPath = this.state[datasetName][childComponent.props.layerName].path;
+
         this.loadLayer(curLayerName,curLayerPath,datasetName)
     },
 
     render: function() {
-        
+        var scope = this;
+        console.log("render")
         var nextCoords = this.props.currentHouse ? this.props.currentHouse.geometry.coordinates : null;
         var button = <span />;
         var imgStyle = {
@@ -129,7 +136,30 @@ var WalkerDashboard = React.createClass({
                 top: '5px'
         }
 
-        
+
+
+        // d3.json("data/finalGeoJson/State.geojson",function(err,data){
+        //     var curLayer = {id:"New York State",geo:data,options:{
+        //             zoomOnLoad:false,
+        //             visible:true,
+        //             loaded:true,
+        //             style:function(feat){
+        //                 return{
+        //                     color:colorScale("New York State")
+        //                 }
+        //             },
+        //             onEachFeature: function(feature,layer){
+        //                 var popupContent;
+        //                 popupContent = "NY All Regions <br/> County Name: " + feature.properties.NAME
+        //                 layer.bindPopup(popupContent);              
+        //             }
+        //         } 
+        //     }
+        //     scope.loadLayer("New York State",curLayer);
+        //     scope.props.layers["New York State"] = curLayer;
+        //     scope.setState({"myKey":"New Value"});
+
+        // })
        
 // <div className={"header"} style={{textAlign:'center'}}>
                     // <img style={imgStyle} src="/images/nygov-logo.png"/>
