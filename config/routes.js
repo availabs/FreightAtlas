@@ -24,6 +24,8 @@ module.exports.routes = {
 
   '/': 'HelloController.index',
 
-  '/transearch': 'HelloController.transearch'
+  '/transearch': 'HelloController.transearch',
+
+  '/sendmail' : 'HelloController.sendmail'
 
   };

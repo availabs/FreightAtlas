@@ -5,6 +5,7 @@ var React = require('react'),
     // -- componetnts
     Map = require('../components/utils/map.react'),
     LayerLegend = require('../components/utils/layerLegend.react'),
+    Comments = require('../components/comments.react'),
     
     //    -- sidebar components
     MapSidebar = require('../components/utils/MapSidebar.react'),
@@ -103,7 +104,7 @@ var WalkerDashboard = React.createClass({
             {
                 name:'home6',
                 icon:'/images/comments.png',
-                content: <h3> Comments </h3>
+                content: <Comments />
             }                            
         ]
     },

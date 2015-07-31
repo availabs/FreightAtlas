@@ -19,7 +19,7 @@ var React = require('react'),
 
 //  --- Pages
     Dashboard = require('./pages/atlas.react'),
-    TransDashboard = require('./pages/transAtlas.react')
+    TransDashboard = require('./pages/transAtlas.react');
 
 //  --- Routes 
 var routes = (
