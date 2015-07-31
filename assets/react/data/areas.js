@@ -4,7 +4,28 @@ var d3 = require('d3');
 var colorScale = d3.scale.category20();   
 
 module.exports = {
-	"Capital Region":{
+	    "New York State":{
+        path:"../finalGeoJson/State.geojson",
+        options:{
+            zoomOnLoad:true,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("State"),
+                    fillOpacity:0.01,
+                }
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+                // console.log(feature)
+                popupContent = "New York State"
+                layer.bindPopup(popupContent);              
+  
+            }
+        }
+    },
+    "Capital Region":{
         path:"../finalGeoJson/Capital_Region.geojson",
         options:{
             zoomOnLoad:true,
@@ -12,8 +33,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Capital_Region"),
-                    fillOpacity:0.40,
+                    color:colorScale("Capital_Region")
                 }
             },
             onEachFeature: function(feature,layer){
@@ -53,7 +73,8 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("City_Town")
+                    color:colorScale("City_Town"),
+                    weight:2,
                 }
             },
             onEachFeature: function(feature,layer){
@@ -73,7 +94,8 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("County")
+                    color:colorScale("County"),
+                    weight:2,
                 }
             },
             onEachFeature: function(feature,layer){
@@ -160,7 +182,8 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("NYSDOT_Regions")
+                    color:colorScale("NYSDOT_Regions"),
+                    weight:2,
                 }
             },
             onEachFeature: function(feature,layer){
@@ -190,27 +213,6 @@ module.exports = {
                 popupContent = "NY Cities with Population over 20k <br/> City: " + feature.properties.NAME + "<br/> Population in 2010: " + feature.properties.POP2010
                 layer.bindPopup(popupContent);              
  
-            }
-        }
-    },
-    "New York State":{
-        path:"../finalGeoJson/State.geojson",
-        options:{
-            zoomOnLoad:true,
-            visible:false,
-            loaded:false,
-            style:function(feat){
-                return{
-                    color:colorScale("State"),
-                    fillOpacity:0.01,
-                }
-            },
-            onEachFeature: function(feature,layer){
-                var popupContent;
-                // console.log(feature)
-                popupContent = "New York State"
-                layer.bindPopup(popupContent);              
-  
             }
         }
     },

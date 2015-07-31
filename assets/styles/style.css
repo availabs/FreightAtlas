@@ -2,12 +2,12 @@
 	
 	background:white;
 	color:black;
-	font:12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+	font:12px/1.5 "calibri", Arial, Helvetica, sans-serif;
 }
 .layListActive{
-	background:#ddd;
-	color:000;
-	font:12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+	background:#5d5d5d;
+	color:#fff;
+	font:12px/1.5 "Calibri", Arial, Helvetica, sans-serif;
 }
 
 .layListInactive:hover{
@@ -37,7 +37,7 @@
 .mapsidebar {
   position: absolute;
   left: 40;
-  top: 100;
+  top: 50;
   bottom: 100;
   width: 100%;
   overflow: hidden;
@@ -47,7 +47,7 @@
   @media (min-width: 768px) {
     .mapsidebar {
       left: 40px;
-      top: 100px;
+      top: 50px;
       bottom: 30px;
       transition: width 500ms; } }
   @media (min-width: 768px) and (max-width: 991px) {
@@ -83,7 +83,7 @@
   .sidebar-tabs-li {
     width: 100%;
     height: 60px;
-    color: #333;
+    color: #fff;
     font-size: 18pt;
     overflow: hidden;
     transition: all 80ms; }
@@ -91,8 +91,8 @@
       color: #000;
       background-color: #eee; }
     .sidebar-tabs-li.active {
-      color: #000;
-      background-color: #ddd; }
+      color: #fff;
+      background-color: #5d5d5d; }
     .sidebar-tabs-li > a {
       display: block;
       width: 100%;

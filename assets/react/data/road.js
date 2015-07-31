@@ -4,22 +4,23 @@ var d3 = require('d3');
 var colorScale = d3.scale.category20();   
 
 module.exports = {
-    "Highways":{
-        path:"../finalGeoJson/Highways.json",
-        options:{
-            zoomOnLoad:true,
-            visible:false,
-            loaded:false,
-            style:function(feat){
-                return{
-                    color:colorScale("Highways")
-                }
-            },
-            onEachFeature: function(feature,layer){
+    // "Highways":{
+    //     path:"../finalGeoJson/Highways.json",
+    //     options:{
+    //         zoomOnLoad:true,
+    //         visible:false,
+    //         loaded:false,
+    //         style:function(feat){
+    //             return{
+    //                 color:colorScale("Highways"),
+    //                 weight:2,
+    //             }
+    //         },
+    //         onEachFeature: function(feature,layer){
 
-            }
-        }
-    },
+    //         }
+    //     }
+    // },
     "Interstate":{
         path:"../finalGeoJson/Interstate.json",
         options:{
@@ -28,7 +29,8 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Interstate")
+                    color:colorScale("Interstate"),
+                    weight:3.5,
                 }
             },
             onEachFeature: function(feature,layer){
@@ -48,7 +50,8 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("NTAD_2014_NYArea")
+                    color:colorScale("NTAD_2014_NYArea"),
+                    weight:3.5,
                 }
             },
             onEachFeature: function(feature,layer){
