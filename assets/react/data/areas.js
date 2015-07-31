@@ -21,10 +21,7 @@ module.exports = {
                 //console.log(feature)
                 popupContent = "NY Capital Region <br/>" + feature.properties.Region;
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+
             }
         }
     },
@@ -44,10 +41,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NY Central Region <br/>" + feature.properties.Region;
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+
             }
         }
     },
@@ -67,10 +61,7 @@ module.exports = {
                 // console.log(feature)
                             popupContent = "NY Cities with Population over 20k <br/> City: " + feature.properties.NAME + "<br/> Population in 2010: " + feature.properties.POP2010
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+ 
             }
         }
     },
@@ -90,10 +81,7 @@ module.exports = {
                 // console.log(feature)
                             popupContent = "NY All Regions <br/> County Name: " + feature.properties.NAME
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+ 
             }
         }
     },
@@ -113,10 +101,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "MPO Boundaries <br/>" + feature.properties.MPO_NAME;
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+ 
             }
         }
     },
@@ -143,10 +128,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "MPO Citites <br/>" + feature.properties.AREANAME + "<br/> Population in 2000: " + feature.properties.POP2000
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+ 
             }
         }
     },
@@ -166,10 +148,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NY Hudson Valley Region <br/>"
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+ 
             }
         }
     },
@@ -189,10 +168,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NY All Regions <br/> Region: " + feature.properties.Region + "<br/> County Name: " + feature.properties.NAME
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+
             }
         }
     },
@@ -212,10 +188,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NY Cities with Population over 20k <br/> City: " + feature.properties.NAME + "<br/> Population in 2010: " + feature.properties.POP2010
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+ 
             }
         }
     },
@@ -235,10 +208,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "New York State"
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+  
             }
         }
     },
@@ -258,10 +228,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NY Hudson Valley Region <br/>"
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+
             }
         }
     }

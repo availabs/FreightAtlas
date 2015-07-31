@@ -20,10 +20,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -43,10 +40,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -66,10 +60,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NY Area ShortLine<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -89,10 +80,7 @@ module.exports = {
                 // console.log(feature)
                popupContent = "NY Area ShortLine Track Rights<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },

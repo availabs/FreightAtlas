@@ -27,10 +27,7 @@ module.exports = {
                 //console.log(feature)
                 popupContent = "NYS Major Border Crosssings <br/>" + feature.properties.CP_Name;
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -50,10 +47,7 @@ module.exports = {
                 //console.log(feature)
                 popupContent = "US States<br/>" + feature.properties.STATE_NAME
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -73,10 +67,7 @@ module.exports = {
                 // console.log(feature)
                 //popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -96,10 +87,7 @@ module.exports = {
                 //console.log(feature)
                 popupContent = "Canadian Provinces <br/>" + feature.properties.NAME_1;
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -119,10 +107,7 @@ module.exports = {
                 //console.log(feature)
                 popupContent = "NY Capital Region <br/>" + feature.properties.Region;
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -142,10 +127,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NY Central Region <br/>" + feature.properties.Region;
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -165,10 +147,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NY Cities with Population over 20k <br/> City: " + feature.properties.TextString
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -188,10 +167,7 @@ module.exports = {
                 // console.log(feature)
                             popupContent = "NY Cities with Population over 20k <br/> City: " + feature.properties.NAME + "<br/> Population in 2010: " + feature.properties.POP2010
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -211,10 +187,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -234,10 +207,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -257,10 +227,7 @@ module.exports = {
                 // console.log(feature)
                             popupContent = "NY All Regions <br/> County Name: " + feature.properties.NAME
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -319,10 +286,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "US Facilities <br/> State: " + feature.properties.STATE + "<br/> City: " + feature.properties.CITY + "<br/> Type of Facility: " + feature.properties.MODE_TYPE
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -406,10 +370,7 @@ module.exports = {
                 // console.log(feature)
                                 popupContent = "NY Frieght Network <br/> Route: " + feature.properties.SIGN1 + "<br/> Number of Lanes: " + feature.properties.ThruLanes
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -436,10 +397,7 @@ module.exports = {
                 // console.log(feature)
                                 popupContent = "Export Output <br/>" + feature.properties.FULLNAME + "<br/> Number of Passengers: " + feature.properties.Passengers
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -466,10 +424,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NY Major Ports <br/> Port Name :"+feature.properties.PORT_NAME+"<br> Imports: " + feature.properties.IMPORTS +"<br/> Exports: "+ feature.properties.EXPORTS
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -489,10 +444,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "MPO Boundaries <br/>" + feature.properties.MPO_NAME;
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -512,10 +464,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "MPO Citites <br/>" + feature.properties.TextString;
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -542,10 +491,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "MPO Citites <br/>" + feature.properties.AREANAME + "<br/> Population in 2000: " + feature.properties.POP2000
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -565,10 +511,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "MPO Citites <br/>" + feature.properties.TextString;
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -588,10 +531,7 @@ module.exports = {
                 // console.log(feature)
                 //popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -611,10 +551,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NTAD_2014<br/>Description: " + feature.properties.CONN_DES +"<br/>Number of lanes: " + feature.properties.ThruLanes;
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -634,10 +571,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NY Hudson Valley Region <br/>"
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -657,10 +591,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NYS Canal System <br/>" + feature.properties.Canal_Name +" Canal";
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -680,10 +611,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NY All Regions <br/> Region: " + feature.properties.Region + "<br/> County Name: " + feature.properties.NAME
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -703,10 +631,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NY Cities with Population over 20k <br/> City: " + feature.properties.TextString
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -726,10 +651,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NY Frieght Network <br/> Route: " + feature.properties.SIGN1
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -749,10 +671,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NY Cities with Population over 20k <br/> City: " + feature.properties.NAME + "<br/> Population in 2010: " + feature.properties.POP2010
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -772,10 +691,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NY Area ShortLine<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -795,10 +711,7 @@ module.exports = {
                 // console.log(feature)
                popupContent = "NY Area ShortLine Track Rights<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -818,10 +731,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "New York State"
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -841,10 +751,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NY Hudson Valley Region <br/>"
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     }
