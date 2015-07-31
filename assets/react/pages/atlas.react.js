@@ -25,7 +25,7 @@ var React = require('react'),
 var WalkerDashboard = React.createClass({
 
     getInitialState:function(){
-        console.log("initial")
+
 
 
         return {
@@ -73,7 +73,12 @@ var WalkerDashboard = React.createClass({
             {
                 name:'home',
                 icon:'/images/nyslogo.png',
-                content: <h3> NYS Freight Atlas </h3>
+                content: <span> <h3> NYS Freight Atlas </h3><p>Welcome to the New York State Freight Atlas. This web-based map includes a selection
+                of the GIS layers generated during the Freight Plan process.</p><p>Click on the menu icons at left to access various layer types, all of which 
+                can be added to or removed from the map by clicking on the layer title.</p><p>As the Freight Plan progresses, new analytical layers will be
+                added, including freight flows and traffic volumes.</p>
+                <p>If you have any questions or comments please click on the
+                comments menu icon in the lower left corner.</p></span>
             },
             {
                 name:'home2',
@@ -98,7 +103,7 @@ var WalkerDashboard = React.createClass({
             {
                 name:'home6',
                 icon:'/images/comments.png',
-                content:<LayerList title="Freight Plan Comments" dataset='comments' layers={this.state.road} onClick = {this.handleClick} />
+                content: <h3> Comments </h3>
             }                            
         ]
     },
@@ -107,7 +112,6 @@ var WalkerDashboard = React.createClass({
 
         if(Object.keys(this.state.mapLayers).length === 0){
             this.loadLayer("New York State", "../finalGeoJson/State.geojson","areas");
-
         }
 
 
@@ -123,7 +127,7 @@ var WalkerDashboard = React.createClass({
 
     render: function() {
         var scope = this;
-        console.log("render")
+
         var nextCoords = this.props.currentHouse ? this.props.currentHouse.geometry.coordinates : null;
         var button = <span />;
         var imgStyle = {
@@ -133,34 +137,6 @@ var WalkerDashboard = React.createClass({
                 top: '5px'
         }
 
-
-
-        // d3.json("data/finalGeoJson/State.geojson",function(err,data){
-        //     var curLayer = {id:"New York State",geo:data,options:{
-        //             zoomOnLoad:false,
-        //             visible:true,
-        //             loaded:true,
-        //             style:function(feat){
-        //                 return{
-        //                     color:colorScale("New York State")
-        //                 }
-        //             },
-        //             onEachFeature: function(feature,layer){
-        //                 var popupContent;
-        //                 popupContent = "NY All Regions <br/> County Name: " + feature.properties.NAME
-        //                 layer.bindPopup(popupContent);              
-        //             }
-        //         } 
-        //     }
-        //     scope.loadLayer("New York State",curLayer);
-        //     scope.props.layers["New York State"] = curLayer;
-        //     scope.setState({"myKey":"New Value"});
-
-        // })
-       
-// <div className={"header"} style={{textAlign:'center'}}>
-                    // <img style={imgStyle} src="/images/nygov-logo.png"/>
-                    // New York State Freight Atlas</div>
         
 
         return (

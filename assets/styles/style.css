@@ -52,9 +52,10 @@ body{
 	color:black;
 	font:12px/1.5 "gotham_mediumregular", Arial, Helvetica, sans-serif;
 }
+
 .layListActive{
-	background:#ddd;
-	color:000;
+	background:#5d5d5d;
+	color:#fff;
 	font:12px/1.5 "gotham_mediumregular", Arial, Helvetica, sans-serif;
 }
 
@@ -85,7 +86,7 @@ body{
 .mapsidebar {
   position: absolute;
   left: 40;
-  top: 100;
+  top: 50;
   bottom: 100;
   width: 100%;
   overflow: hidden;
@@ -95,7 +96,7 @@ body{
   @media (min-width: 768px) {
     .mapsidebar {
       left: 40px;
-      top: 100px;
+      top: 50px;
       bottom: 30px;
       transition: width 500ms; } }
   @media (min-width: 768px) and (max-width: 991px) {
@@ -131,7 +132,7 @@ body{
   .sidebar-tabs-li {
     width: 100%;
     height: 60px;
-    color: #333;
+    color: #fff;
     font-size: 18pt;
     overflow: hidden;
     transition: all 80ms; }
@@ -139,8 +140,8 @@ body{
       color: #000;
       background-color: #eee; }
     .sidebar-tabs-li.active {
-      color: #000;
-      background-color: #ddd; }
+      color: #fff;
+      background-color: #5d5d5d; }
     .sidebar-tabs-li > a {
       display: block;
       width: 100%;

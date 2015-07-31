@@ -1,8 +1,7 @@
 'use strict';
 
 var React = require('react'),    
-	d3 = require('d3'),
-	colorScale = d3.scale.category20();   
+	d3 = require('d3');
 
 var layerLegend = React.createClass({
     getDefaultProps:function(){
@@ -18,12 +17,7 @@ var layerLegend = React.createClass({
 	render: function() {
 
 		var scope = this;
-		console.log(scope.props.activeLayers)
-		if(scope.props.activeLayers[Object.keys(scope.props.activeLayers)[1]]){
-		console.log(scope.props.activeLayers[Object.keys(scope.props.activeLayers)[1]])			
-		console.log(scope.props.activeLayers[Object.keys(scope.props.activeLayers)[1]].options.style().color)
 
-		}
 		
 
 
@@ -41,7 +35,7 @@ var layerLegend = React.createClass({
 	                )
         	}
         })
-        //console.log(this.props.activeLayers)
+
 		var legendStyle={display: Object.keys(this.props.activeLayers).filter(function(d){ return scope.props.activeLayers[d].options.visible === true }).length > 0 ? "block" : 'none'};
 		return (
 				<div className={"layerLegend"} style={legendStyle}>

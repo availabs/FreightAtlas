@@ -1,10 +1,15 @@
 
-var d3 = require('d3');
+var d3 = require('d3'),
+    colorbrewer = require('colorbrewer');
 
-var colorScale = d3.scale.category20();   
+var colorScale = d3.scale.ordinal()
+                 .domain(["Class1Rail","ShortLineTrackRights"])
+                 .range(colorbrewer.PRGn[4]),
+                 
+    comma = d3.format(",");  
 
 module.exports = {
-"Class1Rail":{
+"Class 1 Rail":{
         path:"../finalGeoJson/Class1Rail.json",
         options:{
             zoomOnLoad:true,
@@ -17,10 +22,9 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
+
                 popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
-                layer.bindPopup(popupContent);              
-                  
+                layer.bindPopup(popupContent);                
             }
         }
     },
@@ -37,14 +41,13 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
+
                 popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
-                layer.bindPopup(popupContent);              
-                  
+                layer.bindPopup(popupContent);                 
             }
         }
     },
-    "NYS ShortLine":{
+    "NYS Short Line":{
         path:"../finalGeoJson/ShortLine.json",
         options:{
             zoomOnLoad:true,
@@ -57,14 +60,13 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
+
                 popupContent = "NY Area ShortLine<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
-                layer.bindPopup(popupContent);              
-                  
+                layer.bindPopup(popupContent);                  
             }
         }
     },
-    "NYS ShortLineTrackRights":{
+    "NYS Short Line Track Rights":{
         path:"../finalGeoJson/ShortLineTrackRights.json",
         options:{
             zoomOnLoad:true,
@@ -77,10 +79,9 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
-               popupContent = "NY Area ShortLine Track Rights<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
+
+                popupContent = "NY Area ShortLine Track Rights<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
                 layer.bindPopup(popupContent);              
-                  
             }
         }
     },
