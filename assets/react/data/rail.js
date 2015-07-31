@@ -4,7 +4,9 @@ var d3 = require('d3'),
 
 var colorScale = d3.scale.ordinal()
                  .domain(["Class1Rail","ShortLineTrackRights"])
-                 .range(colorbrewer.PRGn[4]);  
+                 .range(colorbrewer.PRGn[4]),
+                 
+    comma = d3.format(",");  
 
 module.exports = {
 "Class 1 Rail":{
@@ -20,10 +22,9 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
+
                 popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
-                layer.bindPopup(popupContent);              
-                  
+                layer.bindPopup(popupContent);                
             }
         }
     },
@@ -40,10 +41,9 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
+
                 popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
-                layer.bindPopup(popupContent);              
-                  
+                layer.bindPopup(popupContent);                 
             }
         }
     },
@@ -60,10 +60,9 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
+
                 popupContent = "NY Area ShortLine<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
-                layer.bindPopup(popupContent);              
-                  
+                layer.bindPopup(popupContent);                  
             }
         }
     },
@@ -80,10 +79,9 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
-               popupContent = "NY Area ShortLine Track Rights<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
+
+                popupContent = "NY Area ShortLine Track Rights<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
                 layer.bindPopup(popupContent);              
-                  
             }
         }
     },

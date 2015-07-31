@@ -4,7 +4,9 @@ var d3 = require('d3'),
 
 var colorScale = d3.scale.ordinal()
                  .domain(["CAN_adm1","Western_Region"])
-                 .range(colorbrewer.Paired[9]);   
+                 .range(colorbrewer.Paired[9]),
+
+    comma = d3.format(",");
 
 module.exports = {
     "New York State":{
@@ -14,7 +16,6 @@ module.exports = {
             visible:false,
             loaded:false,
             style:function(feat){
-
                 return{
                     color:colorScale("State"),
                     fillOpacity:0.01,
@@ -25,7 +26,6 @@ module.exports = {
                 
                 popupContent = "New York State"
                 layer.bindPopup(popupContent);              
-  
             }
         }
     },
@@ -43,9 +43,9 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                popupContent = "NY Cities with Population over 20k <br/> City: " + feature.properties.NAME + "<br/> Population in 2010: " + feature.properties.POP2010
+
+                popupContent = "NY Cities with Population over 20k <br/> City: " + feature.properties.NAME + "<br/> Population in 2010: " + comma(feature.properties.POP2010);
                 layer.bindPopup(popupContent);              
- 
             }
         }
     },
@@ -63,9 +63,9 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
+
                 popupContent = "NY All Regions <br/> County Name: " + feature.properties.NAME
                 layer.bindPopup(popupContent);              
- 
             }
         }
     },
@@ -83,9 +83,9 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                popupContent = "NY Cities with Population over 20k <br/> City: " + feature.properties.NAME + "<br/> Population in 2010: " + feature.properties.POP2010
+
+                popupContent = "NY Cities with Population over 20k <br/> City: " + feature.properties.NAME + "<br/> Population in 2010: " + comma(feature.properties.POP2010);
                 layer.bindPopup(popupContent);              
- 
             }
         }
     },
@@ -102,9 +102,9 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
+
                 popupContent = "MPO Boundaries <br/>" + feature.properties.MPO_NAME;
                 layer.bindPopup(popupContent);              
- 
             }
         }
     },
@@ -129,9 +129,9 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                popupContent = "MPO Citites <br/>" + feature.properties.AREANAME + "<br/> Population in 2000: " + feature.properties.POP2000
+
+                popupContent = "MPO Citites <br/>" + feature.properties.AREANAME + "<br/> Population in 2000: " + comma(feature.properties.POP2000);
                 layer.bindPopup(popupContent);              
- 
             }
         }
     },
@@ -149,9 +149,9 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
+
                 popupContent = "NY All Regions <br/> Region: " + feature.properties.Region + "<br/> County Name: " + feature.properties.NAME
                 layer.bindPopup(popupContent);              
-
             }
         }
     },
@@ -169,9 +169,8 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
                 
-                popupContent = "NY Hudson Valley Region <br/>"
+                popupContent = "NY Hudson Valley and Metro Region"
                 layer.bindPopup(popupContent);              
- 
             }
         }
     },
@@ -188,9 +187,9 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                popupContent = "NY Capital Region <br/>" + feature.properties.Region;
-                layer.bindPopup(popupContent);              
 
+                popupContent = "NY Capital Region";
+                layer.bindPopup(popupContent);              
             }
         }
     },
@@ -207,9 +206,9 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                popupContent = "NY Central Region <br/>" + feature.properties.Region;
-                layer.bindPopup(popupContent);              
 
+                popupContent = "NY Central Region";
+                layer.bindPopup(popupContent);              
             }
         }
     },
@@ -227,9 +226,8 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
                 
-                popupContent = "NY Hudson Valley Region <br/>"
+                popupContent = "NY Western Region"
                 layer.bindPopup(popupContent);              
-
             }
         }
     },
@@ -250,7 +248,6 @@ module.exports = {
 
                 popupContent = "Canadian Provinces <br/>" + feature.properties.NAME_1;
                 layer.bindPopup(popupContent);              
-
             }
         }
     }

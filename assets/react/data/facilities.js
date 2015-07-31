@@ -4,7 +4,9 @@ var d3 = require('d3'),
 
 var colorScale = d3.scale.ordinal()
                  .domain(["Border_Crossing_Port","NYS_Canal_System"])
-                 .range(colorbrewer.YlOrBr[6]);  
+                 .range(colorbrewer.YlOrBr[6]),
+                 
+    comma = d3.format(",");
 
 module.exports = {
     "Border Crossing Port":{
@@ -23,15 +25,14 @@ module.exports = {
 
                 }
                 var obj = L.circleMarker(latlng, {});
-                //obj.bindPopup(d.properties.PortName);
+
                 return obj;
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                //console.log(feature)
-                popupContent = "NYS Major Border Crosssings <br/>" + feature.properties.CP_Name;
-                layer.bindPopup(popupContent);              
-                  
+
+                popupContent = "NYS Major Border Crosssings <br/>" + feature.properties.CP_Name + "<br/>Bus Passengers (2013): "+comma(feature.properties.Bus_Passen);
+                layer.bindPopup(popupContent);                   
             }
         }
     },
@@ -50,15 +51,14 @@ module.exports = {
 
                 }
                 var obj = L.circleMarker(latlng, {});
-                //obj.bindPopup(d.properties.PortName);
+
                 return obj;
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
+
                 popupContent = "US Facilities <br/> State: " + feature.properties.STATE + "<br/> City: " + feature.properties.CITY + "<br/> Type of Facility: " + feature.properties.MODE_TYPE
-                layer.bindPopup(popupContent);              
-                  
+                layer.bindPopup(popupContent);                    
             }
         }
     },
@@ -78,15 +78,14 @@ module.exports = {
 
                 }
                 var obj = L.circleMarker(latlng, {});
-                //obj.bindPopup(d.properties.PortName);
+
                 return obj;
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
-                                popupContent = "Export Output <br/>" + feature.properties.FULLNAME + "<br/> Number of Passengers: " + feature.properties.Passengers
-                layer.bindPopup(popupContent);              
-                  
+
+                popupContent = "Major Airports1 <br/>" + feature.properties.FULLNAME + "<br/> Number of Passengers: " + comma(feature.properties.Passengers);
+                layer.bindPopup(popupContent);                  
             }
         }
     },
@@ -107,15 +106,14 @@ module.exports = {
 
                 }
                 var obj = L.circleMarker(latlng, {});
-                //obj.bindPopup(d.properties.PortName);
+
                 return obj;
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                //console.log(feature)
-                popupContent = "Major Airports <br/>" + feature.properties.FULLNAME;
-                layer.bindPopup(popupContent);
-                
+
+                popupContent = "Major Airports2 <br/>" + feature.properties.FULLNAME + "<br/> Number of Passengers: " + comma(feature.properties.Passengers);
+                layer.bindPopup(popupContent);   
             }
         }
     },
@@ -135,15 +133,14 @@ module.exports = {
 
                 }
                 var obj = L.circleMarker(latlng, {});
-                //obj.bindPopup(d.properties.PortName);
+
                 return obj;
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
-                popupContent = "NY Major Ports <br/> Port Name :"+feature.properties.PORT_NAME+"<br> Imports: " + feature.properties.IMPORTS +"<br/> Exports: "+ feature.properties.EXPORTS
-                layer.bindPopup(popupContent);              
-                  
+
+                popupContent = "NY Major Ports <br/> Port Name: "+feature.properties.PORT_NAME+"<br> Imports: " + comma(feature.properties.IMPORTS) +"<br/> Exports: "+ comma(feature.properties.EXPORTS)
+                layer.bindPopup(popupContent);                   
             }
         }
     },
@@ -160,10 +157,9 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
+
                 popupContent = "NYS Canal System <br/>" + feature.properties.Canal_Name +" Canal";
-                layer.bindPopup(popupContent);              
-                  
+                layer.bindPopup(popupContent);                  
             }
         }
     }

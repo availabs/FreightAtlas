@@ -39,10 +39,9 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
-                                popupContent = "NY Frieght Network <br/> Route: " + feature.properties.SIGN1 + "<br/> Number of Lanes: " + feature.properties.ThruLanes
-                layer.bindPopup(popupContent);              
-                  
+
+                popupContent = "NY Frieght Network <br/> Route: " + feature.properties.SIGN1 + "<br/> Number of Lanes: " + feature.properties.ThruLanes
+                layer.bindPopup(popupContent);                             
             }
         }
     },
@@ -60,10 +59,9 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
+
                 popupContent = "NTAD_2014<br/>Description: " + feature.properties.CONN_DES +"<br/>Number of lanes: " + feature.properties.ThruLanes;
-                layer.bindPopup(popupContent);              
-                  
+                layer.bindPopup(popupContent);                
             }
         }
     },    
@@ -80,10 +78,9 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
+
                 popupContent = "NY Frieght Network <br/> Route: " + feature.properties.SIGN1
-                layer.bindPopup(popupContent);              
-                  
+                layer.bindPopup(popupContent);                                
             }
         }
     }
