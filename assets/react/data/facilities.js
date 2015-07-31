@@ -28,10 +28,7 @@ module.exports = {
                 //console.log(feature)
                 popupContent = "NYS Major Border Crosssings <br/>" + feature.properties.CP_Name;
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -58,10 +55,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "US Facilities <br/> State: " + feature.properties.STATE + "<br/> City: " + feature.properties.CITY + "<br/> Type of Facility: " + feature.properties.MODE_TYPE
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -89,10 +83,7 @@ module.exports = {
                 // console.log(feature)
                                 popupContent = "Export Output <br/>" + feature.properties.FULLNAME + "<br/> Number of Passengers: " + feature.properties.Passengers
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -121,10 +112,7 @@ module.exports = {
                 //console.log(feature)
                 popupContent = "Major Airports <br/>" + feature.properties.FULLNAME;
                 layer.bindPopup(popupContent);
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })
+                
             }
         }
     },
@@ -152,10 +140,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NY Major Ports <br/> Port Name :"+feature.properties.PORT_NAME+"<br> Imports: " + feature.properties.IMPORTS +"<br/> Exports: "+ feature.properties.EXPORTS
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     },
@@ -175,10 +160,7 @@ module.exports = {
                 // console.log(feature)
                 popupContent = "NYS Canal System <br/>" + feature.properties.Canal_Name +" Canal";
                 layer.bindPopup(popupContent);              
-                layer.on({
-                    mouseover:function(e){layer.openPopup()},
-                    mouseout:function(e){layer.closePopup()}
-                })  
+                  
             }
         }
     }

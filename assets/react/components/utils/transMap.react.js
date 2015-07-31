@@ -259,25 +259,7 @@ var Map = React.createClass({
         }
 
 
-    d3.json("data/finalGeoJson/County.geojson",function(err,data){
-        var curLayer = {id:"County",geo:data,options:{
-                zoomOnLoad:false,
-                visible:true,
-                loaded:true,
-                style:function(feat){
-                    return{
-                        color:colorScale("County")
-                    }
-                },
-                onEachFeature: function(feature,layer){
-                    var popupContent;
-                    popupContent = "NY All Regions <br/> County Name: " + feature.properties.NAME
-                    layer.bindPopup(popupContent);              
-                }
-            } 
-        }
-        scope._updateLayer("County",curLayer);
-    })
+
 
 
     },
