@@ -37,6 +37,7 @@ var layerLegend = React.createClass({
 		var legendStyle={display: Object.keys(this.props.activeLayers).filter(function(d){ return scope.props.activeLayers[d].options.visible === true }).length > 0 ? "block" : 'none'};
 		return (
 				<div className={"layerLegend"} style={legendStyle}>
+					<h4>Layers </h4>
 					<table className="table">
 					<tbody>
 					{list}
