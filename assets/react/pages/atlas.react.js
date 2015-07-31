@@ -72,23 +72,23 @@ var WalkerDashboard = React.createClass({
         return [
             {
                 name:'home',
-                icon:'fa fa-home',
-                content: <LayerList title="Freight Atlas Areas" dataset='areas' layers={this.state.areas} onClick = {this.handleClick} />
+                icon:'/styles/images/layers.png',
+                content: <LayerList title="New York State Regions" dataset='areas' layers={this.state.areas} onClick = {this.handleClick} />
             },
             {
                 name:'home2',
-                icon:'fa fa-home',
-                content:<LayerList title="Freight Atlas Facilities" dataset='facilities' layers={this.state.facilities} onClick = {this.handleClick} />
+                icon:'/images/facilities.png',
+                content:<LayerList title="Freight Facilities" dataset='facilities' layers={this.state.facilities} onClick = {this.handleClick} />
             },            
             {
                 name:'home3',
-                icon:'fa fa-home',
-                content:<LayerList title="Freight Atlas Rail" dataset='rail' layers={this.state.rail} onClick = {this.handleClick} />
+                icon:'/images/rail.png',
+                content:<LayerList title="Rail Network" dataset='rail' layers={this.state.rail} onClick = {this.handleClick} />
             },            
             {
                 name:'home4',
-                icon:'fa fa-home',
-                content:<LayerList title="Freight Atlas Road" dataset='road' layers={this.state.road} onClick = {this.handleClick} />
+                icon:'/images/truck.png',
+                content:<LayerList title="Road Network" dataset='road' layers={this.state.road} onClick = {this.handleClick} />
             }              
         ]
     },
@@ -111,7 +111,14 @@ var WalkerDashboard = React.createClass({
     render: function() {
         
         var nextCoords = this.props.currentHouse ? this.props.currentHouse.geometry.coordinates : null;
-        var button = <span />
+        var button = <span />;
+        var imgStyle = {
+                position: 'absolute',
+                left: '10px',
+                height: '41px',
+                top: '5px'
+        }
+
         
        
 
@@ -119,7 +126,9 @@ var WalkerDashboard = React.createClass({
 
         return (
                 <div style={{width:'100%',height:'100%'}} >
-                    <div className={"header"}> NYSDOT Logo and Title</div>
+                    <div className={"header"} style={{textAlign:'center'}}>
+                    <img style={imgStyle} src="/images/nygov-logo.png"/>
+                    New York State Freight Atlas</div>
                     <LayerLegend />
                     <MapSidebar panes={this.getPanes()} /> 
 

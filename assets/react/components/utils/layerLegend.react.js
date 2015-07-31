@@ -26,18 +26,22 @@ var layerLegend = React.createClass({
 
 			if(scope.props.activeLayers[key].options.visible == true){
 	            return (
-	            		<div id={key}>
-		            		<div style={style}> </div>
-		            		{key}
-	            		</div>
+        		   		<tr id={key}> 
+	            		<td style={style}> </td>
+	            		<td style={{padding:"5px"}}> {key} </td>
+		           		</tr>
 	                )
         	}
         })
-
+        console.log(this.props.activeLayers)
+		var legendStyle={display: Object.keys(this.props.activeLayers).filter(function(d){ return scope.props.activeLayers[d].options.visible === true }).length > 0 ? "block" : 'none'};
 		return (
-				<div className={"layerLegend"} >
-					
+				<div className={"layerLegend"} style={legendStyle}>
+					<table className="table">
+					<tbody>
 					{list}
+					</tbody>
+					</table>
 				</div>
 			)
 
