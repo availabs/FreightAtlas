@@ -1,7 +1,10 @@
 
-var d3 = require('d3');
+var d3 = require('d3'),
+    colorbrewer = require('colorbrewer');
 
-var colorScale = d3.scale.category20();   
+var colorScale = d3.scale.ordinal()
+                 .domain(["Border_Crossing_Port","NYS_Canal_System"])
+                 .range(colorbrewer.YlOrBr[6]);  
 
 module.exports = {
     "Border Crossing Port":{

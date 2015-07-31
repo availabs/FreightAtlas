@@ -1,7 +1,10 @@
 
-var d3 = require('d3');
+var d3 = require('d3'),
+    colorbrewer = require('colorbrewer');
 
-var colorScale = d3.scale.category20();   
+var colorScale = d3.scale.ordinal()
+                 .domain(["Class1Rail","ShortLineTrackRights"])
+                 .range(colorbrewer.PuBu[9]);  
 
 module.exports = {
 "Class 1 Rail":{
