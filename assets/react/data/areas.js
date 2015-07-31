@@ -180,7 +180,8 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("SelectCities_PopOver20k")
+                    color:colorScale("SelectCities_PopOver20k"),
+                    fillOpacity:0.55,
                 }
             },
             onEachFeature: function(feature,layer){
@@ -200,7 +201,8 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("State")
+                    color:colorScale("State"),
+                    fillOpacity:0.01,
                 }
             },
             onEachFeature: function(feature,layer){
