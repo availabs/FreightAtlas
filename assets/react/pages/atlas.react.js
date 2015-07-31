@@ -73,20 +73,25 @@ var WalkerDashboard = React.createClass({
             {
                 name:'home',
                 icon:'/styles/images/layers.png',
-                content: <LayerList title="New York State Regions" dataset='areas' layers={this.state.areas} onClick = {this.handleClick} />
+                content: <h3> NYS Freight Atlas </h3>
             },
             {
                 name:'home2',
+                icon:'/styles/images/layers.png',
+                content: <LayerList title="New York State Regions" dataset='areas' layers={this.state.areas} onClick = {this.handleClick} />
+            },
+            {
+                name:'home3',
                 icon:'/images/facilities.png',
                 content:<LayerList title="Freight Facilities" dataset='facilities' layers={this.state.facilities} onClick = {this.handleClick} />
             },            
             {
-                name:'home3',
+                name:'home4',
                 icon:'/images/rail.png',
                 content:<LayerList title="Rail Network" dataset='rail' layers={this.state.rail} onClick = {this.handleClick} />
             },            
             {
-                name:'home4',
+                name:'home5',
                 icon:'/images/truck.png',
                 content:<LayerList title="Road Network" dataset='road' layers={this.state.road} onClick = {this.handleClick} />
             }              
