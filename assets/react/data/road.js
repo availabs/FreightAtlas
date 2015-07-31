@@ -4,7 +4,7 @@ var d3 = require('d3'),
 
 var colorScale = d3.scale.ordinal()
                  .domain(["Highways","Primary_Freight_Network"])
-                 .range(colorbrewer.RdPu[9]);  
+                 .range(colorbrewer.RdYlBu[3]);  
   
 
 module.exports = {
