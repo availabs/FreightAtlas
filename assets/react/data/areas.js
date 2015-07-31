@@ -4,7 +4,7 @@ var d3 = require('d3');
 var colorScale = d3.scale.category20();   
 
 module.exports = {
-	    "New York State":{
+    "New York State":{
         path:"../finalGeoJson/State.geojson",
         options:{
             zoomOnLoad:true,
@@ -216,6 +216,8 @@ module.exports = {
             }
         }
     },
+
+
     "Western_Region":{
         path:"../finalGeoJson/Western_Region.geojson",
         options:{

@@ -105,12 +105,9 @@ var WalkerDashboard = React.createClass({
 
     componentDidMount:function(){
 
-        console.log("hello");
-        console.log(Object.keys(this.state.mapLayers).length)
-
         if(Object.keys(this.state.mapLayers).length === 0){
             this.loadLayer("New York State", "../finalGeoJson/State.geojson","areas");
-            console.log("Add NYS");
+
         }
 
 
