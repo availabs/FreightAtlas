@@ -4,7 +4,7 @@ var d3 = require('d3');
 var colorScale = d3.scale.category20();   
 
 module.exports = {
-"Class1Rail":{
+"Class 1 Rail":{
         path:"../finalGeoJson/Class1Rail.json",
         options:{
             zoomOnLoad:true,
@@ -44,7 +44,7 @@ module.exports = {
             }
         }
     },
-    "NYS ShortLine":{
+    "NYS Short Line":{
         path:"../finalGeoJson/ShortLine.json",
         options:{
             zoomOnLoad:true,
@@ -64,7 +64,7 @@ module.exports = {
             }
         }
     },
-    "NYS ShortLineTrackRights":{
+    "NYS Short Line Track Rights":{
         path:"../finalGeoJson/ShortLineTrackRights.json",
         options:{
             zoomOnLoad:true,

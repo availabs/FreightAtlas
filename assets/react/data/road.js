@@ -42,7 +42,7 @@ module.exports = {
             }
         }
     },
-    "NTAD_2014_NYArea":{
+    "NTAD 2014 NYArea":{
         path:"../finalGeoJson/NTAD_2014_NYArea.json",
         options:{
             zoomOnLoad:true,
@@ -63,7 +63,7 @@ module.exports = {
             }
         }
     },    
-    "NYS Primary_Freight_Network":{
+    "NYS Primary Freight Network":{
         path:"../finalGeoJson/Primary_Freight_Network.json",
         options:{
             zoomOnLoad:true,

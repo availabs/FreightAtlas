@@ -73,7 +73,12 @@ var WalkerDashboard = React.createClass({
             {
                 name:'home',
                 icon:'/images/nyslogo.png',
-                content: <h3> NYS Freight Atlas </h3>
+                content: <span> <h3> NYS Freight Atlas </h3><p>Welcome to the New York State Freight Atlas. This web-based map includes a selection
+                of the GIS layers generated during the Freight Plan process.</p><p>Click on the menu icons at left to access various layer types, all of which 
+                can be added to or removed from the map by clicking on the layer title.</p><p>As the Freight Plan progresses, new analytical layers will be
+                added, including freight flows and traffic volumes.</p>
+                <p>If you have any questions or comments please click on the
+                comments menu icon in the lower left corner.</p></span>
             },
             {
                 name:'home2',
@@ -105,9 +110,12 @@ var WalkerDashboard = React.createClass({
 
     componentDidMount:function(){
 
+        console.log("hello");
+        console.log(Object.keys(this.state.mapLayers).length)
+
         if(Object.keys(this.state.mapLayers).length === 0){
             this.loadLayer("New York State", "../finalGeoJson/State.geojson","areas");
-
+            console.log("Add NYS");
         }
 
 

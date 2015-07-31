@@ -116,7 +116,7 @@ module.exports = {
             }
         }
     },
-    "Major_Ports":{
+    "Major Ports":{
         path:"../finalGeoJson/Major_Ports.geojson",
         options:{
             zoomOnLoad:true,
@@ -144,7 +144,7 @@ module.exports = {
             }
         }
     },
-    "NYS_Canal_System":{
+    "NYS Canal System":{
         path:"../finalGeoJson/NYS_Canal_System.json",
         options:{
             zoomOnLoad:true,
