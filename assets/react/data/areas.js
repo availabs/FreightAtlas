@@ -200,6 +200,7 @@ module.exports = {
             visible:false,
             loaded:false,
             style:function(feat){
+                //console.log(colorScale("State"))
                 return{
                     color:colorScale("State"),
                     fillOpacity:0.01,

@@ -18,20 +18,27 @@ var layerLegend = React.createClass({
 	render: function() {
 
 		var scope = this;
-		//console.log(scope)
+		console.log(scope.props.activeLayers)
+		if(scope.props.activeLayers[Object.keys(scope.props.activeLayers)[1]]){
+		console.log(scope.props.activeLayers[Object.keys(scope.props.activeLayers)[1]])			
+		console.log(scope.props.activeLayers[Object.keys(scope.props.activeLayers)[1]].options.style().color)
+
+		}
+		
+
+
 
 		var list = Object.keys(this.props.activeLayers).map(function(key,index){
 
-			 var style = {height:10,width:10,backgroundColor:colorScale(key)}
+			 var style = {height:10,width:10,backgroundColor:scope.props.activeLayers[key].options.style().color}
 
-			if(scope.props.activeLayers[key].options.visible == true){
 	            return (
         		   		<tr id={key}> 
 	            		<td style={style}> </td>
 	            		<td style={{padding:"5px"}}> {key} </td>
 		           		</tr>
 	                )
-        	}
+        	
         })
         //console.log(this.props.activeLayers)
 		var legendStyle={display: Object.keys(this.props.activeLayers).filter(function(d){ return scope.props.activeLayers[d].options.visible === true }).length > 0 ? "block" : 'none'};
