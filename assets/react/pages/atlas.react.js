@@ -88,17 +88,17 @@ var WalkerDashboard = React.createClass({
             },
             {
                 name:'home3',
-                icon:'/images/facilities2',
+                icon:'/images/facilities',
                 content:<LayerList title="Freight Facilities" dataset='facilities' layers={this.state.facilities} onClick = {this.handleClick} />
             },            
             {
                 name:'home4',
-                icon:'/images/rail2',
+                icon:'/images/rail',
                 content:<LayerList title="Rail Network" dataset='rail' layers={this.state.rail} onClick = {this.handleClick} />
             },            
             {
                 name:'home5',
-                icon:'/images/truck2',
+                icon:'/images/truck',
                 content:<LayerList title="Road Network" dataset='road' layers={this.state.road} onClick = {this.handleClick} />
             },
             {
