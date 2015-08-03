@@ -11,9 +11,13 @@ var React = require('react'),
 
 
 var Comments = React.createClass({
-
+    getInitialState:function(){
+      return{
+        messageSent:false
+      }
+    },
     sendMail:function(){
-        console.log("SendMail");
+        var scope = this;
         console.log('Author: ',this.refs.author.getDOMNode().value,"Message: ",this.refs.message.getDOMNode().value);
 
         var scope = this;
@@ -27,15 +31,15 @@ var Comments = React.createClass({
                 scope.refs.author.getDOMNode().value = "";
                 scope.refs.message.getDOMNode().value = "";
             }
+            scope.setState({messageSent:!scope.state.messageSent})
 
         })
     },
     render: function() {
         var scope = this;
         console.log("render",this.refs.author)
-        return (
-            <div style={{width:'100%',height:'100%'}} >
-               <div className='comments-box'>
+        var messageBox = (
+          <div className='comments-box'>
                <h3>Comments</h3>
                <input type='text' ref='author' placeholder='From:' />
                <br/>
@@ -44,7 +48,14 @@ var Comments = React.createClass({
                <br/>
                <br/>
                <button onClick={this.sendMail}>Submit</button>
-               </div>
+          </div>
+        );
+        var sent = (
+          <h3>Your message has been sent, thank you!</h3>
+        ) 
+        return (
+            <div style={{width:'100%',height:'100%'}} >
+               {this.state.messageSent ? sent : messageBox}
             </div>
         )
     
