@@ -152,3 +152,42 @@ body{
       text-align: center;
 }
 
+.comments-box{
+ 
+}
+
+.comments-box input{
+  font-size:15px;
+  width:90%;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  padding:15px;
+
+}
+.comments-box textArea{
+  font-size:15px;
+  width:90%;
+  height:300px;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  padding:15px;
+}
+.comments-box button{
+  font-size:15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding:10px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.65);
+}
+
+.comments-box button:hover{
+  font-size:15px;
+  background-color: #5d5d5d;
+  color:#fff;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding:10px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.65);
+}
+
+

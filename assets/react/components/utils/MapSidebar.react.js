@@ -104,7 +104,7 @@ var MapSidebar = React.createClass({
         var sidebarClass = this.state.collapsed ? 'mapsidebar collapsed' : 'mapsidebar';
 
         return (
-            <div id={this.props.sidebarId} className={sidebarClass} style={{color:'#000'}}>
+            <div id={this.props.sidebarId} className={sidebarClass} style={{color:'#000', textAlign:'justify', paddingRight:'30px'}}>
                
                 <ul className="sidebar-tabs" role="tablist">
                    {tabs}

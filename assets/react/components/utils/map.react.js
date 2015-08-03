@@ -202,6 +202,8 @@ var Map = React.createClass({
             attributionControl: false
         });
 
+        new L.Control.Zoom({ position: 'topright' }).addTo(map); 
+
         var baseMaps = {
             "Greyscale" : greyScale,
             "Terrain Countours": tContours,

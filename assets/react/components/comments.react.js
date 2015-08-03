@@ -35,14 +35,16 @@ var Comments = React.createClass({
         console.log("render",this.refs.author)
         return (
             <div style={{width:'100%',height:'100%'}} >
+               <div className='comments-box'>
                <h3>Comments</h3>
-               <input type='text' ref='author' placeholder='from' />
+               <input type='text' ref='author' placeholder='From:' />
                <br/>
                <br/>
-               <textArea ref='message' placeholder='comment'/>
+               <textArea ref='message' placeholder='Comment:'/>
                <br/>
                <br/>
                <button onClick={this.sendMail}>Submit</button>
+               </div>
             </div>
         )
     
