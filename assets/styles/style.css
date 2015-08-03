@@ -8,6 +8,7 @@
          url('/styles/typography/gotham-bold-webfont.svg#gotham_boldregular') format('svg');
     font-weight: normal;
     font-style: normal;
+    color:#5d5d5d;
 
 }
 
@@ -23,6 +24,7 @@
          url('/styles/typography/gotham-book-webfont.svg#gotham_bookregular') format('svg');
     font-weight: normal;
     font-style: normal;
+    color:#5d5d5d;
 
 }
 
@@ -39,17 +41,19 @@
          url('/styles/typography/gotham-medium-webfont.svg#gotham_mediumregular') format('svg');
     font-weight: normal;
     font-style: normal;
+    color:#5d5d5d;
 
 }
 
 body{
-  font-family: 'gotham_mediumregular'
+  font-family: 'gotham_mediumregular';
+  color:#5d5d5d;
 }
 
 .layListInactive{
 	
 	background:white;
-	color:black;
+	color:#5d5d5d;
 	font:12px/1.5 "gotham_mediumregular", Arial, Helvetica, sans-serif;
 }
 
@@ -137,7 +141,7 @@ body{
     overflow: hidden;
     transition: all 80ms; }
     .sidebar-tabs-li:hover {
-      color: #000;
+      color:#5d5d5d;
       background-color: #eee; }
     .sidebar-tabs-li.active {
       color: #fff;
@@ -158,6 +162,7 @@ body{
 
 .comments-box input{
   font-size:15px;
+  color:#5d5d5d;
   width:90%;
   border-radius: 5px;
   border: 2px solid #ccc;
@@ -166,6 +171,7 @@ body{
 }
 .comments-box textArea{
   font-size:15px;
+  color:#5d5d5d;
   width:90%;
   height:300px;
   border-radius: 5px;
@@ -174,6 +180,7 @@ body{
 }
 .comments-box button{
   font-size:15px;
+  color:#5d5d5d;
   border-radius: 5px;
   border: 1px solid #ccc;
   padding:10px;

@@ -83,7 +83,7 @@ var WalkerDashboard = React.createClass({
             },
             {
                 name:'home2',
-                icon:'/images/areas',
+                icon:'/images/geographies',
                 content: <LayerList title="New York State Regions" dataset='areas' layers={this.state.areas} onClick = {this.handleClick} />
             },
             {
@@ -93,12 +93,12 @@ var WalkerDashboard = React.createClass({
             },            
             {
                 name:'home4',
-                icon:'/images/rail',
+                icon:'/images/rail1',
                 content:<LayerList title="Rail Network" dataset='rail' layers={this.state.rail} onClick = {this.handleClick} />
             },            
             {
                 name:'home5',
-                icon:'/images/truck',
+                icon:'/images/truck1',
                 content:<LayerList title="Road Network" dataset='road' layers={this.state.road} onClick = {this.handleClick} />
             },
             {

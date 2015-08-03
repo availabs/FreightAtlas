@@ -79,7 +79,6 @@ var MapSidebar = React.createClass({
         var tabs = this.props.panes.map(function(d,i){
         var tabClass = 'sidebar-tabs-li ';
             tabClass += d.name === scope.state.activePane ? 'active' : '';
-        var imgStyle = d.name === scope.state.activePane  && d.name !== 'home' ? {'-webkit-filter':'brightness(300%)'} : {};
         var imgSource = d.name === scope.state.activePane ? d.icon+'_active.png' : d.icon+'.png';
 
   
@@ -87,7 +86,7 @@ var MapSidebar = React.createClass({
                 <Tappable onTap={scope.setActivePane.bind(null,d.name)} id={d.name+'_tap'}>
                     <li  key={i} className={tabClass}>
                         <a  role="tab">
-                            <img src={imgSource} style={imgStyle}/>
+                            <img src={imgSource} />
                         </a>
                     </li>
                 </Tappable>
