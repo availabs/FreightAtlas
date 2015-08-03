@@ -73,7 +73,7 @@ var WalkerDashboard = React.createClass({
         return [
             {
                 name:'home',
-                icon:'/images/nyslogo.png',
+                icon:'/images/nyslogo',
                 content:<span> <h3> NYS Freight Atlas </h3><p>Welcome to the New York State Freight Atlas. This web-based map includes a selection
                 of the GIS layers generated during the Freight Plan process.</p><p>Click on the menu icons at left to access various layer types, all of which 
                 can be added to or removed from the map by clicking on the layer title.</p><p>As the Freight Plan progresses, new analytical layers will be
@@ -83,27 +83,27 @@ var WalkerDashboard = React.createClass({
             },
             {
                 name:'home2',
-                icon:'/images/areas.png',
+                icon:'/images/areas',
                 content: <LayerList title="New York State Regions" dataset='areas' layers={this.state.areas} onClick = {this.handleClick} />
             },
             {
                 name:'home3',
-                icon:'/images/facilities2.png',
+                icon:'/images/facilities2',
                 content:<LayerList title="Freight Facilities" dataset='facilities' layers={this.state.facilities} onClick = {this.handleClick} />
             },            
             {
                 name:'home4',
-                icon:'/images/rail2.png',
+                icon:'/images/rail2',
                 content:<LayerList title="Rail Network" dataset='rail' layers={this.state.rail} onClick = {this.handleClick} />
             },            
             {
                 name:'home5',
-                icon:'/images/truck2.png',
+                icon:'/images/truck2',
                 content:<LayerList title="Road Network" dataset='road' layers={this.state.road} onClick = {this.handleClick} />
             },
             {
                 name:'home6',
-                icon:'/images/comments.png',
+                icon:'/images/comments',
                 content: <Comments />
             }                            
         ]
@@ -128,7 +128,7 @@ var WalkerDashboard = React.createClass({
 
     render: function() {
         var scope = this;
-
+        
         var nextCoords = this.props.currentHouse ? this.props.currentHouse.geometry.coordinates : null;
         var button = <span />;
         var imgStyle = {
