@@ -40,7 +40,7 @@ var Comments = React.createClass({
         console.log("render",this.refs.author)
         var messageBox = (
           <div className='comments-box'>
-               <h3>Comments</h3><body><p>We welcome your comments on the Freight Plan.</p>
+               <h3>Comments</h3><body><p>We welcome your comments on the Core Freight Network.</p>
                <p>If you would like a reply, please enter your name and email. And please be location specific in regards to missing Core Freight Network assests.</p></body>
                <input type='text' ref='author' placeholder='From:' />
                <br/>
