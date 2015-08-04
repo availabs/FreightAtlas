@@ -31,8 +31,8 @@ module.exports = {
 
 		// setup e-mail data with unicode symbols
 		var mailOptions = {
-		    from: '<rdubowsky@albany.edu>', // sender address
-		    to: 'r.k.dubowsky@gmail.com, ekrans@albany.edu', // list of receivers
+		    from: '<nys.freight.network@gmail.com>', // sender address
+		    to: 'nys.freight.network@gmail.com', // list of receivers
 		    subject: 'Freight Atlas Comment Box from ' + author, // Subject line
 		    text: content, // plaintext body
 		    html: '<b>'+content+'</b>' // html body
