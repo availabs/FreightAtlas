@@ -89,9 +89,9 @@ body{
 
 .mapsidebar {
   position: absolute;
-  left: 40;
-  top: 50;
-  bottom: 100;
+  left: 0;
+  top: 0;
+  bottom: 0;
   width: 100%;
   overflow: hidden;
   z-index: 2000; }
@@ -99,9 +99,9 @@ body{
     width: 60px; }
   @media (min-width: 768px) {
     .mapsidebar {
-      left: 40px;
-      top: 50px;
-      bottom: 30px;
+      left: 10px;
+      top: 10px;
+      bottom: 10px;
       transition: width 500ms; } }
   @media (min-width: 768px) and (max-width: 991px) {
     .mapsidebar {
@@ -113,10 +113,28 @@ body{
     .mapsidebar {
       width: 460px; } }
 
+.sidebar-pane {
+  display: none;
+  right: 0;
+  box-sizing: border-box;
+  padding: 10px 20px; }
+  .sidebar-pane.active {
+    display: block; }
+  @media (min-width: 768px) and (max-width: 991px) {
+    .sidebar-pane {
+      width: 265px; } }
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .sidebar-pane {
+      width: 350px; } }
+  @media (min-width: 1200px) {
+    .sidebar-pane {
+      width: 420px; } }
+
 .sidebar-content{
 	position: absolute;
   left: 60px;
   right: 0;
+  padding-right: 30px;
   top: 0;
   bottom: 0;
   background-color: rgba(255, 255, 255, 1);
@@ -154,6 +172,10 @@ body{
       color: inherit;
       text-decoration: none;
       text-align: center;
+}
+
+.sidebarClass{
+  padding-right: 30px;
 }
 
 .comments-box{
