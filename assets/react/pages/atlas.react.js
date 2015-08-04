@@ -76,8 +76,8 @@ var WalkerDashboard = React.createClass({
                 icon:'/images/nyslogo',
                 content:<span> <h3> NYS Freight Atlas </h3><p>Welcome to the New York State Freight Atlas. This web-based map includes a selection
                 of the GIS layers generated during the Freight Plan process.</p><p>Click on the menu icons at left to access various layer types, all of which 
-                can be added to or removed from the map by clicking on the layer title.</p><p>As the Freight Plan progresses, new analytical layers will be
-                added, including freight flows and traffic volumes.</p>
+                can be added to or removed from the map by clicking on the layer title.</p><p>To hide the menu content, click on the active menu tab.</p>
+                <p>As the Freight Plan progresses, new analytical layers will be added, including freight flows and traffic volumes.</p>
                 <p>If you have any questions or comments please click on the
                 comments menu icon in the lower left corner.</p></span>
             },
