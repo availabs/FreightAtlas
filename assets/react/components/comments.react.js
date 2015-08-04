@@ -40,8 +40,9 @@ var Comments = React.createClass({
         console.log("render",this.refs.author)
         var messageBox = (
           <div className='comments-box'>
-               <h3>Comments</h3><body><p>We welcome your comments on the Core Freight Network.</p>
-               <p>If you would like a reply, please enter your name and email. And please be location specific in regards to missing Core Freight Network assests.</p></body>
+               <h3>Comments</h3><p className='subText'>We welcome your comments on the Core Freight Network.</p>
+               <p className='subText'>If you would like a reply, please enter your name and email. And please be location specific in 
+               regards to missing Core Freight Network assests.</p>
                <input type='text' ref='author' placeholder='From:' />
                <br/>
                <br/>
@@ -53,7 +54,7 @@ var Comments = React.createClass({
         );
         var sent = (
           <h4>We have received your comments. Thank you for your input in the New York State Freight Planning Process.</h4>
-        ) 
+        ); 
         return (
             <div style={{width:'100%',height:'100%'}} >
                {this.state.messageSent ? sent : messageBox}

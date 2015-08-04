@@ -50,6 +50,11 @@ body{
   color:#5d5d5d;
 }
 
+.subText{
+  font-size: 14px;
+  font-weight: 2px;
+}
+
 .layListInactive{
 	
 	background:white;
