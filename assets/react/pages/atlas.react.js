@@ -93,7 +93,8 @@ var WalkerDashboard = React.createClass({
                 <li>To hide the menu content, click on the active menu tab.</li>
                 <li>To report missing or incorrectly located facilities, or to submit a comment or question, 
                 please click on the Comments icon at the bottom of the menu on the left side.</li>
-                <li>Thank you for visiting the New York State Freight Atlas. We appreciate your interest and input.</li></ul>
+                </ul>
+                <h5>Thank you for visiting the New York State Freight Atlas. We appreciate your interest and input.</h5>
                 </span>
             },
             {
