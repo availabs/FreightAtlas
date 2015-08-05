@@ -89,7 +89,7 @@ var WalkerDashboard = React.createClass({
                 desire. To add or remove a facility layer from your current view, simply click on the 
                 desired labeled menu icons to the left of the map.</li> 
                 <li>To zoom in or out on the map, click the + or – symbols in the upper right corner of the 
-                screen, or scroll up and down with your mouse</li> 
+                screen, or scroll up and down with your mouse.</li> 
                 <li>To hide the menu content, click on the active menu tab.</li>
                 <li>To report missing or incorrectly located facilities, or to submit a comment or question, 
                 please click on the Comments icon at the bottom of the menu on the left side.</li>
