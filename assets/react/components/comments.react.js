@@ -59,7 +59,7 @@ var Comments = React.createClass({
           </div>
         );
         var sent = (
-          <div className='subText'>
+          <div className='comments-box'>
           <h3>Thank you for your input in the New York State Freight Planning Process.</h3>
           <p></p>
           <p>We have received your comments.</p>
