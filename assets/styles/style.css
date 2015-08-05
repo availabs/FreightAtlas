@@ -49,7 +49,9 @@ body{
   font-family: 'gotham_mediumregular';
   color:#5d5d5d;
 }
-
+.mouseOver{
+  background-color: #5d5d5d
+}
 .subText{
   font-size: 14px;
   font-weight: 2px;

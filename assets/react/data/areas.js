@@ -72,7 +72,7 @@ module.exports = {
     "NYS Select Cities Population 20K+":{
         path:"../finalGeoJson/SelectCities_PopOver20k.geojson",
         options:{
-            zoomOnLoad:true,
+            zoomOnLoad:false,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -92,7 +92,7 @@ module.exports = {
     "MPO Boundaries":{
         path:"../finalGeoJson/MPO_Boundary.json",
         options:{
-            zoomOnLoad:true,
+            zoomOnLoad:false,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -111,7 +111,7 @@ module.exports = {
     "MPO Cities":{
         path:"../finalGeoJson/MPO_Cities.geojson",
         options:{
-            zoomOnLoad:true,
+            zoomOnLoad:false,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -155,86 +155,10 @@ module.exports = {
             }
         }
     },
-    "NYMTC Hudson Valley Region":{
-        path:"../finalGeoJson/NYMTC_HudsonValleyRegion.geojson",
-        options:{
-            zoomOnLoad:true,
-            visible:false,
-            loaded:false,
-            style:function(feat){
-                return{
-                    color:colorScale("NYMTC_HudsonValleyRegion")
-                }
-            },
-            onEachFeature: function(feature,layer){
-                var popupContent;
-                
-                popupContent = "NY Hudson Valley and Metro Region"
-                layer.bindPopup(popupContent);              
-            }
-        }
-    },
-    "Capital Region":{
-        path:"../finalGeoJson/Capital_Region.geojson",
-        options:{
-            zoomOnLoad:true,
-            visible:false,
-            loaded:false,
-            style:function(feat){
-                return{
-                    color:colorScale("Capital_Region")
-                }
-            },
-            onEachFeature: function(feature,layer){
-                var popupContent;
-
-                popupContent = "NY Capital Region";
-                layer.bindPopup(popupContent);              
-            }
-        }
-    },
-    "Central Region":{
-        path:"../finalGeoJson/Central_Region.geojson",
-        options:{
-            zoomOnLoad:true,
-            visible:false,
-            loaded:false,
-            style:function(feat){
-                return{
-                    color:colorScale("Central_Region")
-                }
-            },
-            onEachFeature: function(feature,layer){
-                var popupContent;
-
-                popupContent = "NY Central Region";
-                layer.bindPopup(popupContent);              
-            }
-        }
-    },
-    "Western Region":{
-        path:"../finalGeoJson/Western_Region.geojson",
-        options:{
-            zoomOnLoad:true,
-            visible:false,
-            loaded:false,
-            style:function(feat){
-                return{
-                    color:colorScale("Western_Region")
-                }
-            },
-            onEachFeature: function(feature,layer){
-                var popupContent;
-                
-                popupContent = "NY Western Region"
-                layer.bindPopup(popupContent);              
-            }
-        }
-    },
      "Canadian Provinces":{
         path:"../finalGeoJson/CAN_adm1.json",
         options:{
-            zoomOnLoad:true,
+            zoomOnLoad:false,
             visible:false,
             loaded:false,
             style:function(feat){

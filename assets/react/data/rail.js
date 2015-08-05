@@ -17,7 +17,11 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Class1Rail")
+                    color:colorScale("Class1Rail"),
+                    dashArray: '2,5',
+                    opacity:1,
+                    weight:2.5,
+
                 }
             },
             onEachFeature: function(feature,layer){
@@ -36,7 +40,10 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Class1TrackRights")
+                    color:colorScale("Class1TrackRights"),
+                    dashArray: '2,5',
+                    opacity:1,
+                    weight:2.5,
                 }
             },
             onEachFeature: function(feature,layer){
@@ -55,7 +62,10 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("ShortLine")
+                    color:colorScale("ShortLine"),
+                    dashArray: '2,5',
+                    opacity:1,
+                    weight:2.5,
                 }
             },
             onEachFeature: function(feature,layer){
@@ -74,7 +84,10 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("ShortLineTrackRights")
+                    color:colorScale("ShortLineTrackRights"),
+                    dashArray: '2,5',
+                    opacity:1,
+                    weight:2.5,
                 }
             },
             onEachFeature: function(feature,layer){

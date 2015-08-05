@@ -74,6 +74,7 @@ var WalkerDashboard = React.createClass({
             {
                 name:'home',
                 icon:'/images/nyslogo',
+                title:'About',
                 content:<span> <h3> NYS Freight Atlas </h3><p>Welcome to the New York State Freight Atlas. This web-based map includes a selection
                 of the GIS layers generated during the Freight Plan process.</p><p>Click on the menu icons at left to access various layer types, all of which 
                 can be added to or removed from the map by clicking on the layer title.</p><p>To hide the menu content, click on the active menu tab.</p>
@@ -84,26 +85,31 @@ var WalkerDashboard = React.createClass({
             {
                 name:'home2',
                 icon:'/images/geographies',
+                title:'New York State Regions',
                 content: <LayerList title="New York State Regions" dataset='areas' layers={this.state.areas} onClick = {this.handleClick} />
             },
             {
                 name:'home3',
                 icon:'/images/facilities',
+                title:'Freight Facilities',
                 content:<LayerList title="Freight Facilities" dataset='facilities' layers={this.state.facilities} onClick = {this.handleClick} />
             },            
             {
                 name:'home4',
                 icon:'/images/rail1',
+                title:'Rail Network',
                 content:<LayerList title="Rail Network" dataset='rail' layers={this.state.rail} onClick = {this.handleClick} />
             },            
             {
                 name:'home5',
                 icon:'/images/truck1',
+                title:'Road Network',
                 content:<LayerList title="Road Network" dataset='road' layers={this.state.road} onClick = {this.handleClick} />
             },
             {
                 name:'home6',
                 icon:'/images/comments',
+                title:'Comment',
                 content: <Comments />
             }                            
         ]

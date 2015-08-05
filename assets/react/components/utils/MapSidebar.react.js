@@ -85,8 +85,8 @@ var MapSidebar = React.createClass({
             return (
                 <Tappable onTap={scope.setActivePane.bind(null,d.name)} id={d.name+'_tap'}>
                     <li  key={i} className={tabClass}>
-                        <a  role="tab">
-                            <img src={imgSource} />
+                        <a role="tab">
+                            <img title={d.title} src={imgSource} />
                         </a>
                     </li>
                 </Tappable>

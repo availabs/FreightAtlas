@@ -4,15 +4,15 @@ var d3 = require('d3'),
 
 var colorScale = d3.scale.ordinal()
                  .domain(["Border_Crossing_Port","NYS_Canal_System"])
-                 .range(colorbrewer.RdBu[6]),
+                 .range(colorbrewer.YlOrBr[6]),
                  
     comma = d3.format(",");
 
 module.exports = {
-    "Border Crossing/Port of Entry":{
+    "Border Crossing Port":{
         path:"../finalGeoJson/Border_Crossing_Port.geojson",
         options:{
-            zoomOnLoad:false,
+            zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -31,7 +31,7 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "NYS Major Border Crosssings <br/>" + feature.properties.CP_Name;
+                popupContent = "NYS Major Border Crosssings <br/>" + feature.properties.CP_Name + "<br/>Bus Passengers (2013): "+comma(feature.properties.Bus_Passen);
                 layer.bindPopup(popupContent);                   
             }
         }
@@ -62,7 +62,7 @@ module.exports = {
             }
         }
     },
-    "Major Airports":{
+    "Major Airports2":{
         path:"Export_Output.geojson",
         options:{
             zoomOnLoad:true,
@@ -85,7 +85,7 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "Major Airports2 <br/>" + feature.properties.FULLNAME;
+                popupContent = "Major Airports2 <br/>" + feature.properties.FULLNAME + "<br/> Number of Passengers: " + comma(feature.properties.Passengers);
                 layer.bindPopup(popupContent);   
             }
         }
@@ -112,7 +112,7 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "NY Major Ports <br/> Port Name: "+feature.properties.PORT_NAME;
+                popupContent = "NY Major Ports <br/> Port Name: "+feature.properties.PORT_NAME+"<br> Imports: " + comma(feature.properties.IMPORTS) +"<br/> Exports: "+ comma(feature.properties.EXPORTS)
                 layer.bindPopup(popupContent);                   
             }
         }
@@ -120,7 +120,7 @@ module.exports = {
     "NYS Canal System":{
         path:"../finalGeoJson/NYS_Canal_System.json",
         options:{
-            zoomOnLoad:false,
+            zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
