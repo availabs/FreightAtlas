@@ -69,7 +69,7 @@ module.exports = {
             }
         }
     },
-    "NYS Select Cities Population 20K+":{
+    "Non-MPO Cities over 20K Population":{
         path:"../finalGeoJson/SelectCities_PopOver20k.geojson",
         options:{
             zoomOnLoad:false,
@@ -85,25 +85,6 @@ module.exports = {
                 var popupContent;
 
                 popupContent = "NY Cities with Population over 20k <br/> City: " + feature.properties.NAME + "<br/> Population in 2010: " + comma(feature.properties.POP2010);
-                layer.bindPopup(popupContent);              
-            }
-        }
-    },
-    "MPO Boundaries":{
-        path:"../finalGeoJson/MPO_Boundary.json",
-        options:{
-            zoomOnLoad:false,
-            visible:false,
-            loaded:false,
-            style:function(feat){
-                return{
-                    color:colorScale("MPO_Boundary"),
-                }
-            },
-            onEachFeature: function(feature,layer){
-                var popupContent;
-
-                popupContent = "MPO Boundaries <br/>" + feature.properties.MPO_NAME;
                 layer.bindPopup(popupContent);              
             }
         }
@@ -131,6 +112,25 @@ module.exports = {
                 var popupContent;
 
                 popupContent = "MPO Citites <br/>" + feature.properties.AREANAME + "<br/> Population in 2000: " + comma(feature.properties.POP2000);
+                layer.bindPopup(popupContent);              
+            }
+        }
+    },
+        "MPO Boundaries":{
+        path:"../finalGeoJson/MPO_Boundary.json",
+        options:{
+            zoomOnLoad:false,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:colorScale("MPO_Boundary"),
+                }
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+
+                popupContent = "MPO Boundaries <br/>" + feature.properties.MPO_NAME;
                 layer.bindPopup(popupContent);              
             }
         }

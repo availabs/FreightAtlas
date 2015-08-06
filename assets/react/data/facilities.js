@@ -57,36 +57,35 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "US Facilities <br/> State: " + feature.properties.STATE + "<br/> City: " + feature.properties.CITY + "<br/> Type of Facility: " + feature.properties.MODE_TYPE
+                popupContent = "US Facilities <br/> State: " + feature.properties.STATE + "<br/> City: " + feature.properties.CITY + "<br/> Name: " + feature.properties.NAME + "<br/> Type of Facility: " + feature.properties.MODE_TYPE;
                 layer.bindPopup(popupContent);                    
             }
         }
     },
     "Major Airports":{
-        path:"Export_Output.geojson",
+        path:"../finalGeoJson/Major_Airport.geojson",
         options:{
             zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Export_Output"),
-                    fillOpacity:0.55,
+                    color:colorScale("Major_Airport")
                 }
-            },
-            pointToLayer: function (d, latlng) {
+            },pointToLayer: function (d, latlng) {
                 var options = {
 
                 }
                 var obj = L.circleMarker(latlng, {});
-
+                //obj.bindPopup(d.properties.PortName);
                 return obj;
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-
-                popupContent = "Major Airports2 <br/>" + feature.properties.FULLNAME;
-                layer.bindPopup(popupContent);   
+                // console.log(feature)
+                                popupContent = "Export Output <br/>" + feature.properties.FULLNAME;
+                layer.bindPopup(popupContent);              
+                  
             }
         }
     },
