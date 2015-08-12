@@ -168,7 +168,6 @@ var WalkerDashboard = React.createClass({
 
 
 
-                    <Map layers={this.state.mapLayers} zoomControl={true}  />
 
                     <Map layers={this.state.mapLayers} />
 
