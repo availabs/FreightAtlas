@@ -19,6 +19,7 @@ module.exports = {
                 return{
                     color:colorScale("Border_Crossing_Port"),
                     fillOpacity:0.55,
+                    opacity:0.9,
                 }
             },pointToLayer: function (d, latlng) {
                 var options = {
@@ -44,7 +45,9 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Intermodal_Facility")
+                    color:colorScale("Intermodal_Facility"),
+                    fillOpacity:0.55,
+                    opacity:0.9,
                 }
             },pointToLayer: function (d, latlng) {
                 var options = {
@@ -70,7 +73,9 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Major_Airport")
+                    color:colorScale("Major_Airport"),
+                    fillOpacity:0.55,
+                    opacity:0.9,
                 }
             },pointToLayer: function (d, latlng) {
                 var options = {
@@ -99,6 +104,7 @@ module.exports = {
                 return{
                     color:colorScale("Major_Ports"),
                     fillOpacity:0.55,
+                    opacity:0.9,
                 }
             },pointToLayer: function (d, latlng) {
                 var options = {
@@ -124,7 +130,8 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("NYS_Canal_System")
+                    color:colorScale("NYS_Canal_System"),
+                    opacity:0.65,
                 }
             },
             onEachFeature: function(feature,layer){

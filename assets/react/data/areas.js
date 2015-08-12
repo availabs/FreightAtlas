@@ -19,7 +19,8 @@ module.exports = {
             style:function(feat){
                 return{
                     color:colorScale("State"),
-                    fillOpacity:0.01,
+                    fillOpacity:0.075,
+                    opacity:0.85,
                 }
             },
             onEachFeature: function(feature,layer){
@@ -41,7 +42,9 @@ module.exports = {
             style:function(feat){
                 return{
                     color:colorScale("City_Town"),
-                    weight:2,
+                    weight:1.5,
+                    fillOpacity:0.1,
+                    opacity:0.85,
                 }
             },
             onEachFeature: function(feature,layer){
@@ -61,7 +64,9 @@ module.exports = {
             style:function(feat){
                 return{
                     color:colorScale("County"),
-                    weight:2,
+                    weight:1.5,
+                    fillOpacity:0.1,
+                    opacity:0.85,
                 }
             },
             onEachFeature: function(feature,layer){
@@ -81,7 +86,9 @@ module.exports = {
             style:function(feat){
                 return{
                     color:colorScale("SelectCities_PopOver20k"),
-                    fillOpacity:0.55,
+                    fillOpacity:0.35,
+                    weight:2,
+                    opacity:0.85,
                 }
             },
             onEachFeature: function(feature,layer){
@@ -101,7 +108,8 @@ module.exports = {
             style:function(feat){
                 return{
                     color:colorScale("MPO_Cities"),
-                    fillOpacity:0.5,
+                    fillOpacity:0.2,
+                    opacity:0.85,
                 }
             },pointToLayer: function (d, latlng) {
                 var options = {
@@ -128,6 +136,9 @@ module.exports = {
             style:function(feat){
                 return{
                     color:colorScale("MPO_Boundary"),
+                    fillOpacity:0.2,
+                    weight:1.5,
+                    opacity:0.85,
                 }
             },
             onEachFeature: function(feature,layer){
@@ -147,7 +158,9 @@ module.exports = {
             style:function(feat){
                 return{
                     color:colorScale("NYSDOT_Regions"),
-                    weight:2,
+                    weight:1.5,
+                    fillOpacity:0.2,
+                    opacity:0.85,
                 }
             },
             onEachFeature: function(feature,layer){
