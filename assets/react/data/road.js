@@ -34,7 +34,8 @@ module.exports = {
             style:function(feat){
                 return{
                     color:colorScale("Interstate"),
-                    weight:3.5,
+                    weight:2,
+                    opacity:0.55,
                 }
             },
             onEachFeature: function(feature,layer){
@@ -54,7 +55,8 @@ module.exports = {
             style:function(feat){
                 return{
                     color:colorScale("NTAD_2014_NYArea"),
-                    weight:3.5,
+                    weight:2,
+                    opacity:0.55,
                 }
             },
             onEachFeature: function(feature,layer){
@@ -65,25 +67,27 @@ module.exports = {
             }
         }
     },    
-    "NYS Primary Freight Network":{
-        path:"../finalGeoJson/Primary_Freight_Network.json",
-        options:{
-            zoomOnLoad:true,
-            visible:false,
-            loaded:false,
-            style:function(feat){
-                return{
-                    color:colorScale("Primary_Freight_Network")
-                }
-            },
-            onEachFeature: function(feature,layer){
-                var popupContent;
+    // "NYS Primary Freight Network":{
+    //     path:"../finalGeoJson/Primary_Freight_Network.json",
+    //     options:{
+    //         zoomOnLoad:true,
+    //         visible:false,
+    //         loaded:false,
+    //         style:function(feat){
+    //             return{
+    //                 color:colorScale("Primary_Freight_Network"),
+    //                 weight:2,
+    //                 opacity:0.55,
+    //             }
+    //         },
+    //         onEachFeature: function(feature,layer){
+    //             var popupContent;
 
-                popupContent = "NY Frieght Network <br/> Route: " + feature.properties.SIGN1
-                layer.bindPopup(popupContent);                                
-            }
-        }
-    }
+    //             popupContent = "NY Frieght Network <br/> Route: " + feature.properties.SIGN1
+    //             layer.bindPopup(popupContent);                                
+    //         }
+    //     }
+    // }
 
 
 }
