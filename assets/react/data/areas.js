@@ -12,6 +12,7 @@ module.exports = {
     "New York State":{
         path:"../finalGeoJson/State.geojson",
         options:{
+            featList:[],
             zoomOnLoad:true,
             visible:false,
             loaded:false,
@@ -25,7 +26,9 @@ module.exports = {
                 var popupContent;
                 
                 popupContent = "New York State"
-                layer.bindPopup(popupContent);              
+                layer.bindPopup(popupContent);  
+
+                this.featList.push(feature);
             }
         }
     },

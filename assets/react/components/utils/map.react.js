@@ -128,7 +128,6 @@ var Map = React.createClass({
     },
     
     _updateLayer : function(key,layer){
-
         if(layers[key] && mapVar.hasLayer(layers[key].layer)){
             mapVar.removeLayer(layers[key].layer)
         }

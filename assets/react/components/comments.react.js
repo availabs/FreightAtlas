@@ -40,7 +40,7 @@ var Comments = React.createClass({
     },
     render: function() {
         var scope = this;
-        console.log("render",this.refs.author)
+        //console.log("render",this.refs.author)
         var messageBox = (
           <div className='comments-box'>
                <h3>Comments</h3><p className='subText'>We welcome your comments on the Core Freight Network.</p>

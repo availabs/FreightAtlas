@@ -10,6 +10,7 @@ var React = require('react'),
     //    -- sidebar components
     MapSidebar = require('../components/utils/MapSidebar.react'),
     LayerList = require('../components/layerList.react'),
+    FeatureLegend = require('../components/utils/featureLegend.react'),
 
     // -- data
     Areas = require('../data/areas'),
@@ -126,7 +127,12 @@ var WalkerDashboard = React.createClass({
                 icon:'/images/comments',
                 title:'Comment',
                 content: <Comments />
-            }                            
+            },
+            {
+                name:'home7',
+                title:'featureLegend',
+                content: <FeatureLegend activeLayers={this.state.mapLayers} />
+            }                                      
         ]
     },
 
@@ -158,8 +164,6 @@ var WalkerDashboard = React.createClass({
                 height: '41px',
                 top: '5px'
         }
-
-        
 
         return (
                 <div style={{width:'100%',height:'100%'}} >
