@@ -55,7 +55,7 @@ var FeatureLayer = React.createClass({
     	var style;
     	var allFeatures = Object.keys(scope.props.featureList.featDetails).map(function(key,index){
     		//console.log(key);
-			style = {height:10,width:10,backgroundColor:scope.props.featureList.style().color}
+			style = {float:"left",height:30,width:10,backgroundColor:scope.props.featureList.style().color}
 
     		return(
 	    		<FeatureItem details={scope.props.featureList.featDetails[key]}>
@@ -67,7 +67,9 @@ var FeatureLayer = React.createClass({
         		<div>
         			<div>
 	        			<div style={style}></div>
-		            	<h2 style={{padding:"5px"}}>{this.props.layerName}</h2>
+		            	<div>
+		            		<span><h2 style={{paddingLeft:"15px",paddingTop:"2px"}}>{this.props.layerName}</h2></span>
+		            	</div>
 	            	</div>
 	            	{allFeatures}
 				</div>        
