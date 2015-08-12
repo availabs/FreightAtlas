@@ -75,7 +75,7 @@ var MapSidebar = React.createClass({
 
     render: function() {
         var scope = this;
-
+        console.log(this)
         var tabs = this.props.panes.map(function(d,i){
         var tabClass = 'sidebar-tabs-li ';
             tabClass += d.name === scope.state.activePane ? 'active' : '';

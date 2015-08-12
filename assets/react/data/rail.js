@@ -12,6 +12,7 @@ module.exports = {
 "Class 1 Rail":{
         path:"../finalGeoJson/Class1Rail.json",
         options:{
+            featDetails:[],
             zoomOnLoad:true,
             visible:false,
             loaded:false,
@@ -28,13 +29,20 @@ module.exports = {
                 var popupContent;
 
                 popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
-                layer.bindPopup(popupContent);                
+                layer.bindPopup(popupContent);
+
+                var legendContent;
+                legendContent = "Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
+                if(this.featDetails.indexOf(legendContent) === -1){
+                    this.featDetails.push(legendContent);                   
+                }                    
             }
         }
     },
     "Class 1 Track Rights":{
         path:"../finalGeoJson/Class1TrackRights.json",
         options:{
+            featDetails:[],
             zoomOnLoad:true,
             visible:false,
             loaded:false,
@@ -50,13 +58,20 @@ module.exports = {
                 var popupContent;
 
                 popupContent = "NY Area Railroad<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
-                layer.bindPopup(popupContent);                 
+                layer.bindPopup(popupContent);
+
+                var legendContent;
+                legendContent = "Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
+                if(this.featDetails.indexOf(legendContent) === -1){
+                    this.featDetails.push(legendContent);                   
+                }                 
             }
         }
     },
     "NYS Short Line":{
         path:"../finalGeoJson/ShortLine.json",
         options:{
+            featDetails:[],
             zoomOnLoad:true,
             visible:false,
             loaded:false,
@@ -72,13 +87,20 @@ module.exports = {
                 var popupContent;
 
                 popupContent = "NY Area ShortLine<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
-                layer.bindPopup(popupContent);                  
+                layer.bindPopup(popupContent);
+
+                var legendContent;
+                legendContent = "Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
+                if(this.featDetails.indexOf(legendContent) === -1){
+                    this.featDetails.push(legendContent);                   
+                }                  
             }
         }
     },
     "NYS Short Line Track Rights":{
         path:"../finalGeoJson/ShortLineTrackRights.json",
         options:{
+            featDetails:[],
             zoomOnLoad:true,
             visible:false,
             loaded:false,
@@ -94,7 +116,13 @@ module.exports = {
                 var popupContent;
 
                 popupContent = "NY Area ShortLine Track Rights<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
-                layer.bindPopup(popupContent);              
+                layer.bindPopup(popupContent);
+
+                var legendContent;
+                legendContent = "Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
+                if(this.featDetails.indexOf(legendContent) === -1){
+                    this.featDetails.push(legendContent);                   
+                }              
             }
         }
     },

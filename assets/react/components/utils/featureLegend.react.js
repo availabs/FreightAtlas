@@ -1,12 +1,8 @@
 'use strict';
 
 var React = require('react'),    
-	d3 = require('d3'),
-	// -- data
-    Areas = require('../../data/areas'),
-    Facilities = require('../../data/facilities'),
-    Rail = require('../../data/rail'),
-    Road = require('../../data/road');
+	d3 = require('d3');
+
 
 
 //featureItem is ONE feature from a layer
@@ -20,7 +16,7 @@ var React = require('react'),
 //featureLegend is ALL active layers
 //featureLegend is made up of many featureLayers
 
-var featureItem = React.createClass({
+var FeatureItem = React.createClass({
 	getInitialState: function() {
 
 		return{
@@ -30,16 +26,20 @@ var featureItem = React.createClass({
     },
 
     render: function(){
+    	//console.log("please",this)
+    	var scope = this;
         return (
-            <div >
-            	<tr>{this.props.details}</tr>       
-            </div>
+        		<div>
+	        		<div dangerouslySetInnerHTML={{__html: scope.props.details}}>
+	            	</div>
+	            	<br/>
+            	</div>
         )
     }
 
 })
 
-var featureLayer = React.createClass({
+var FeatureLayer = React.createClass({
 	getInitialState: function() {
 
 		return{
@@ -51,18 +51,26 @@ var featureLayer = React.createClass({
     render: function(){
 
     	//Populate featureList
+    	var scope = this;
+    	var style;
+    	var allFeatures = Object.keys(scope.props.featureList.featDetails).map(function(key,index){
+    		//console.log(key);
+			style = {height:10,width:10,backgroundColor:scope.props.featureList.style().color}
 
-
-    	var allFeatures = Object.keys(this.props.featureList).map(function(key,index){
-    		<featureItem >
-    		</featureItem>
+    		return(
+	    		<FeatureItem details={scope.props.featureList.featDetails[key]}>
+	    		</FeatureItem>
+    		)
     	})
 
         return (
-            <div >
-            	<tr>{this.props.layerName}</tr>
-            	<tr>{this.props.featureList}</tr> 
-            </div>
+        		<div>
+        			<div>
+	        			<div style={style}></div>
+		            	<h2 style={{padding:"5px"}}>{this.props.layerName}</h2>
+	            	</div>
+	            	{allFeatures}
+				</div>        
         )
     }
 
@@ -88,24 +96,24 @@ var featureLegend = React.createClass({
 
 		//Create a featureLayer for each activeLayer
 		var list = Object.keys(this.props.activeLayers).map(function(key,index){
-			console.log(key)
-            return (
-            	//Return a list of featureLayers.
-            	//Each has a name and a raw list of features
-                <featureLayer layerName={key}>
-                </featureLayer>
-                )
+			//console.log(scope.props.activeLayers[key].options.featDetails)
+
+			if(scope.props.activeLayers[key].options.visible === true){
+	            return (
+	            	//Return a list of featureLayers.
+	            	//Each has a name and a raw list of features
+	                <FeatureLayer layerName={key} featureList={scope.props.activeLayers[key].options}>
+	                </FeatureLayer>
+	                )
+        	}
         })
-		console.log(list)
 
 		return (
 				<div className={"featureLegend"} >
 					<h4>Layers </h4>
-					<table className="table">
-					<tbody>
+
 					{list}
-					</tbody>
-					</table>
+
 				</div>
 			)
 

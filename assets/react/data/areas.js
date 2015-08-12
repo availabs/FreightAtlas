@@ -12,7 +12,7 @@ module.exports = {
     "New York State":{
         path:"../finalGeoJson/State.geojson",
         options:{
-            featList:[],
+            featDetails:[],
             zoomOnLoad:true,
             visible:false,
             loaded:false,
@@ -29,13 +29,16 @@ module.exports = {
                 popupContent = "New York State"
                 layer.bindPopup(popupContent);  
 
-                this.featList.push(feature);
+                if(this.featDetails.indexOf(popupContent) === -1){
+                    this.featDetails.push(popupContent);                   
+                }
             }
         }
     },
     "Cities and Towns":{
         path:"../finalGeoJson/City_Town.json",
         options:{
+            featDetails:[],
             zoomOnLoad:true,
             visible:false,
             loaded:false,
@@ -51,13 +54,21 @@ module.exports = {
                 var popupContent;
 
                 popupContent = "NY Cities with Population over 20k <br/> City: " + feature.properties.NAME + "<br/> Population in 2010: " + comma(feature.properties.POP2010);
-                layer.bindPopup(popupContent);              
+                layer.bindPopup(popupContent);    
+
+                var legendContent;
+                legendContent = "City: " + feature.properties.NAME + "<br/> Population in 2010: " + comma(feature.properties.POP2010)
+
+                if(this.featDetails.indexOf(legendContent) === -1){
+                    this.featDetails.push(legendContent);                   
+                }          
             }
         }
     },
     "Counties":{
         path:"../finalGeoJson/County.geojson",
         options:{
+            featDetails:[],
             zoomOnLoad:true,
             visible:false,
             loaded:false,
@@ -73,13 +84,20 @@ module.exports = {
                 var popupContent;
 
                 popupContent = "NY All Regions <br/> County Name: " + feature.properties.NAME
-                layer.bindPopup(popupContent);              
+                layer.bindPopup(popupContent);  
+
+                var legendContent;
+                legendContent = "County Name: " + feature.properties.NAME
+                if(this.featDetails.indexOf(legendContent) === -1){
+                    this.featDetails.push(legendContent);                   
+                }             
             }
         }
     },
     "Non-MPO Cities over 20K Population":{
         path:"../finalGeoJson/SelectCities_PopOver20k.geojson",
         options:{
+            featDetails:[],
             zoomOnLoad:false,
             visible:false,
             loaded:false,
@@ -95,13 +113,20 @@ module.exports = {
                 var popupContent;
 
                 popupContent = "NY Cities with Population over 20k <br/> City: " + feature.properties.NAME + "<br/> Population in 2010: " + comma(feature.properties.POP2010);
-                layer.bindPopup(popupContent);              
+                layer.bindPopup(popupContent);   
+
+                var legendContent;
+                legendContent = "City: " + feature.properties.NAME + "<br/> Population in 2010: " + comma(feature.properties.POP2010);
+                if(this.featDetails.indexOf(legendContent) === -1){
+                    this.featDetails.push(legendContent);                   
+                }             
             }
         }
     },
     "MPO Cities":{
         path:"../finalGeoJson/MPO_Cities.geojson",
         options:{
+            featDetails:[],
             zoomOnLoad:false,
             visible:false,
             loaded:false,
@@ -123,13 +148,20 @@ module.exports = {
                 var popupContent;
 
                 popupContent = "MPO Citites <br/>" + feature.properties.AREANAME + "<br/> Population in 2000: " + comma(feature.properties.POP2000);
-                layer.bindPopup(popupContent);              
+                layer.bindPopup(popupContent);    
+
+                var legendContent;
+                legendContent = feature.properties.AREANAME + "<br/> Population in 2000: " + comma(feature.properties.POP2000);
+                if(this.featDetails.indexOf(legendContent) === -1){
+                    this.featDetails.push(legendContent);                   
+                }            
             }
         }
     },
         "MPO Boundaries":{
         path:"../finalGeoJson/MPO_Boundary.json",
         options:{
+            featDetails:[],
             zoomOnLoad:false,
             visible:false,
             loaded:false,
@@ -145,13 +177,20 @@ module.exports = {
                 var popupContent;
 
                 popupContent = "MPO Boundaries <br/>" + feature.properties.MPO_NAME;
-                layer.bindPopup(popupContent);              
+                layer.bindPopup(popupContent);     
+
+                var legendContent;
+                legendContent = feature.properties.MPO_NAME;
+                if(this.featDetails.indexOf(legendContent) === -1){
+                    this.featDetails.push(legendContent);                   
+                }           
             }
         }
     },
     "NYSDOT Regions and Counties":{
         path:"../finalGeoJson/NYSDOT_Regions.geojson",
         options:{
+            featDetails:[],
             zoomOnLoad:true,
             visible:false,
             loaded:false,
@@ -167,13 +206,20 @@ module.exports = {
                 var popupContent;
 
                 popupContent = "NY All Regions <br/> Region: " + feature.properties.Region + "<br/> County Name: " + feature.properties.NAME
-                layer.bindPopup(popupContent);              
+                layer.bindPopup(popupContent);      
+
+                var legendContent;
+                legendContent = "Region: " + feature.properties.Region + "<br/> County Name: " + feature.properties.NAME
+                if(this.featDetails.indexOf(legendContent) === -1){
+                    this.featDetails.push(legendContent);                   
+                }          
             }
         }
     },
      "Canadian Provinces":{
         path:"../finalGeoJson/CAN_adm1.json",
         options:{
+            featDetails:[],
             zoomOnLoad:false,
             visible:false,
             loaded:false,
@@ -187,7 +233,13 @@ module.exports = {
                 var popupContent;
 
                 popupContent = "Canadian Provinces <br/>" + feature.properties.NAME_1;
-                layer.bindPopup(popupContent);              
+                layer.bindPopup(popupContent);     
+
+                var legendContent;
+                legendContent = feature.properties.NAME_1;
+                if(this.featDetails.indexOf(legendContent) === -1){
+                    this.featDetails.push(legendContent);                   
+                }           
             }
         }
     }

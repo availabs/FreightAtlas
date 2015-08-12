@@ -28,6 +28,7 @@ module.exports = {
     "Interstate":{
         path:"../finalGeoJson/Interstate.json",
         options:{
+            featDetails:[],
             zoomOnLoad:true,
             visible:false,
             loaded:false,
@@ -42,13 +43,20 @@ module.exports = {
                 var popupContent;
 
                 popupContent = "NY Frieght Network <br/> Route: " + feature.properties.SIGN1 + "<br/> Number of Lanes: " + feature.properties.ThruLanes
-                layer.bindPopup(popupContent);                             
+                layer.bindPopup(popupContent);
+
+                var legendContent;
+                legendContent = "Route: " + feature.properties.SIGN1 + "<br/> Number of Lanes: " + feature.properties.ThruLanes
+                if(this.featDetails.indexOf(legendContent) === -1){
+                    this.featDetails.push(legendContent);                   
+                }                          
             }
         }
     },
     "NTAD 2014 NYArea":{
         path:"../finalGeoJson/NTAD_2014_NYArea.json",
         options:{
+            featDetails:[],
             zoomOnLoad:true,
             visible:false,
             loaded:false,
@@ -63,7 +71,13 @@ module.exports = {
                 var popupContent;
 
                 popupContent = "NTAD_2014<br/>Description: " + feature.properties.CONN_DES +"<br/>Number of lanes: " + feature.properties.ThruLanes;
-                layer.bindPopup(popupContent);                
+                layer.bindPopup(popupContent);
+
+                var legendContent;
+                legendContent = "Description: " + feature.properties.CONN_DES +"<br/>Number of lanes: " + feature.properties.ThruLanes;
+                if(this.featDetails.indexOf(legendContent) === -1){
+                    this.featDetails.push(legendContent);                   
+                }                
             }
         }
     },    
