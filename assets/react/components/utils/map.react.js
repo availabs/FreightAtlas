@@ -14,7 +14,7 @@ var React = require('react'),
     topojson = require('topojson');
     
 
-var map = null,
+var mapVar = null,
     layers = {},
     markers = {},
     sidebar;
@@ -40,10 +40,10 @@ var Map = React.createClass({
         L.Icon.Default.imagePath = '/img/icons';
         this.renderMap();
 
-        map.invalidateSize()
+        mapVar.invalidateSize()
         setTimeout(function () {
             //onsole.log('invalideate')
-            map.invalidateSize()
+            mapVar.invalidateSize()
         }, 50);
 
     },
@@ -117,7 +117,7 @@ var Map = React.createClass({
                         id: curMarker.id,
                         marker:L.marker([curMarker.latlng[1],curMarker.latlng[0]], { icon: icon })
                     }
-                    markers[key].marker.addTo(map);
+                    markers[key].marker.addTo(mapVar);
                 }
 
                 
@@ -129,8 +129,8 @@ var Map = React.createClass({
     
     _updateLayer : function(key,layer){
 
-        if(layers[key] && map.hasLayer(layers[key].layer)){
-            map.removeLayer(layers[key].layer)
+        if(layers[key] && mapVar.hasLayer(layers[key].layer)){
+            mapVar.removeLayer(layers[key].layer)
         }
         if(layer.options.visible){
             layers[key] = {
@@ -141,35 +141,35 @@ var Map = React.createClass({
 
                 if(layer.geo.type == "Topology"){
                     layers[key].layer.addData(layer.geojson); // to get layerAdd event
-                    map.addLayer(layers[key].layer);
+                    mapVar.addLayer(layers[key].layer);
                     if(layer.options.centerOnLoad){
-                            map.setView(L.latLng(layer.geo.features[0].geometry.coordinates.reverse()),15)
+                            mapVar.setView(L.latLng(layer.geo.features[0].geometry.coordinates.reverse()),15)
                     }
                     if(layer.options.zoomOnLoad){
                         
                         
                             var ezBounds = d3.geo.bounds(layer.geo);
 
-                            map.invalidateSize();
+                            mapVar.invalidateSize();
 
-                            map.fitBounds(layers[key].layer.getBounds());
+                            mapVar.fitBounds(layers[key].layer.getBounds());
                         
                     }
                 }
                 else{
                     layers[key].layer.addData(layer.geo); // to get layerAdd event
-                    map.addLayer(layers[key].layer);
+                    mapVar.addLayer(layers[key].layer);
                     if(layer.options.centerOnLoad){
-                            map.setView(L.latLng(layer.geo.features[0].geometry.coordinates.reverse()),15)
+                            mapVar.setView(L.latLng(layer.geo.features[0].geometry.coordinates.reverse()),15)
                     }
                     if(layer.options.zoomOnLoad){
                         
                         
                             var ezBounds = d3.geo.bounds(layer.geo);
 
-                            map.invalidateSize();
+                            mapVar.invalidateSize();
 
-                            map.fitBounds(layers[key].layer.getBounds());
+                            mapVar.fitBounds(layers[key].layer.getBounds());
                         
                     }
                 }
@@ -194,13 +194,15 @@ var Map = React.createClass({
                                     
                                     
                                     
-        map = L.map(this.getDOMNode(), {
+        mapVar = L.map(this.getDOMNode(), {
             center: [42.8282, -78.5795],
             zoom: 7,
             layers: [greyScale],
             zoomControl: this.props.zoomControl,
             attributionControl: false
         });
+
+        new L.Control.Zoom({ position: 'topright' }).addTo(mapVar); 
 
         var baseMaps = {
             "Greyscale" : greyScale,
@@ -214,10 +216,10 @@ var Map = React.createClass({
             "Street Overlay" : aImageStreets
         };
 
-        L.control.layers(baseMaps, overlayMaps).addTo(map);
-        //map.invalidateSize();
+        L.control.layers(baseMaps, overlayMaps).addTo(mapVar);
+        //mapVar.invalidateSize();
         if(this.props.sidebar){
-            sidebar = L.control.sidebar('sidebar').addTo(map);
+            sidebar = L.control.sidebar('sidebar').addTo(mapVar);
         }
 
         if(this.props.layers){
@@ -228,11 +230,11 @@ var Map = React.createClass({
                     id:currLayer.id,
                     layer: L.geoJson(currLayer.geo,layer.options)
                 };  
-                map.addLayer(layers[key].layer);
+                mapVar.addLayer(layers[key].layer);
                 if(currLayer.geo && currLayer.options.zoomOnLoad && currLayer.geo.features.length > 0){
                     var ezBounds = d3.geo.bounds(currLayer.geo);
 
-                    map.fitBounds(layers[key].layer.getBounds());
+                    mapVar.fitBounds(layers[key].layer.getBounds());
                 }
             
             });
@@ -250,7 +252,7 @@ var Map = React.createClass({
                         id: curMarker.id,
                         marker:L.marker([curMarker.latlng[1],curMarker.latlng[0]], { icon: icon })
                     }
-                    markers[key].marker.addTo(map);
+                    markers[key].marker.addTo(mapVar);
                 }
             });
         }
@@ -260,8 +262,8 @@ var Map = React.createClass({
 
     render: function() {
 
-        if(map){    
-            map.invalidateSize();
+        if(mapVar){    
+            mapVar.invalidateSize();
         }
         return (
             <div style={{height:'100%'}}>

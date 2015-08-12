@@ -4,15 +4,15 @@ var d3 = require('d3'),
 
 var colorScale = d3.scale.ordinal()
                  .domain(["Border_Crossing_Port","NYS_Canal_System"])
-                 .range(colorbrewer.RdBu[6]),
+                 .range(colorbrewer.YlOrBr[6]),
                  
     comma = d3.format(",");
 
 module.exports = {
-    "Border Crossing/Port of Entry":{
+    "Border Crossing Port":{
         path:"../finalGeoJson/Border_Crossing_Port.geojson",
         options:{
-            zoomOnLoad:false,
+            zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -31,7 +31,7 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "NYS Major Border Crosssings <br/>" + feature.properties.CP_Name;
+                popupContent = "NYS Major Border Crosssings <br/>" + feature.properties.CP_Name + "<br/>Bus Passengers (2013): "+comma(feature.properties.Bus_Passen);
                 layer.bindPopup(popupContent);                   
             }
         }
@@ -57,35 +57,36 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "US Facilities <br/> State: " + feature.properties.STATE + "<br/> City: " + feature.properties.CITY + "<br/> Name: " + feature.properties.NAME + "<br/> Type of Facility: " + feature.properties.MODE_TYPE;
+                popupContent = "US Facilities <br/> State: " + feature.properties.STATE + "<br/> City: " + feature.properties.CITY + "<br/> Type of Facility: " + feature.properties.MODE_TYPE
                 layer.bindPopup(popupContent);                    
             }
         }
     },
-    "Major Airports":{
-        path:"../finalGeoJson/Major_Airport.geojson",
+    "Major Airports2":{
+        path:"Export_Output.geojson",
         options:{
             zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Major_Airport")
+                    color:colorScale("Export_Output"),
+                    fillOpacity:0.55,
                 }
-            },pointToLayer: function (d, latlng) {
+            },
+            pointToLayer: function (d, latlng) {
                 var options = {
 
                 }
                 var obj = L.circleMarker(latlng, {});
-                //obj.bindPopup(d.properties.PortName);
+
                 return obj;
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
-                                popupContent = "Export Output <br/>" + feature.properties.FULLNAME;
-                layer.bindPopup(popupContent);              
-                  
+
+                popupContent = "Major Airports2 <br/>" + feature.properties.FULLNAME + "<br/> Number of Passengers: " + comma(feature.properties.Passengers);
+                layer.bindPopup(popupContent);   
             }
         }
     },
@@ -111,7 +112,7 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "NY Major Ports <br/> Port Name: "+feature.properties.PORT_NAME;
+                popupContent = "NY Major Ports <br/> Port Name: "+feature.properties.PORT_NAME+"<br> Imports: " + comma(feature.properties.IMPORTS) +"<br/> Exports: "+ comma(feature.properties.EXPORTS)
                 layer.bindPopup(popupContent);                   
             }
         }
@@ -119,7 +120,7 @@ module.exports = {
     "NYS Canal System":{
         path:"../finalGeoJson/NYS_Canal_System.json",
         options:{
-            zoomOnLoad:false,
+            zoomOnLoad:true,
             visible:false,
             loaded:false,
             style:function(feat){

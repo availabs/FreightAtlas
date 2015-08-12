@@ -73,37 +73,58 @@ var WalkerDashboard = React.createClass({
         return [
             {
                 name:'home',
-                icon:'/images/nyslogo.png',
-                content: <span> <h3> NYS Freight Atlas </h3><p>Welcome to the New York State Freight Atlas. This web-based map includes a selection
-                of the GIS layers generated during the Freight Plan process.</p><p>Click on the menu icons at left to access various layer types, all of which 
-                can be added to or removed from the map by clicking on the layer title.</p><p>As the Freight Plan progresses, new analytical layers will be
-                added, including freight flows and traffic volumes.</p>
-                <p>If you have any questions or comments please click on the
-                comments menu icon in the lower left corner.</p></span>
+                icon:'/images/nyslogo',
+                title:'About',
+                content:<span> <h4> New York State Freight Network Atlas <span style={{fontSize:'85%'}}>1.0</span></h4>
+                <p className='subText'> Welcome to the New York State Freight Network Atlas, Version 1.0. 
+                This interactive, web-based map includes various freight-related transportation facilities that have been identified to date 
+                under the current New York State Freight Transportation Plan (FTP) development process.  The 
+                Atlas is a work-in-progress that we will update periodically during the course of the FTP process 
+                (2015-2016).  We invite you to review and comment on the Atlas so we may be sure to include 
+                the most accurate and current information possible.</p>
+                <h4>Navigating the Atlas</h4>
+                <ul className='subText'><li>We have organized the state’s freight-related transportation facilities into “layers” of 
+                map data (e.g., Port, Intermodal, Interstate Highway, Rail, Border Crossing, etc.) to allow 
+                you to view the state with one or more categories of freight facilities shown as you 
+                desire. To add or remove a facility layer from your current view, simply click on the 
+                desired labeled menu icons to the left of the map.</li> 
+                <li>To zoom in or out on the map, click the + or – symbols in the upper right corner of the 
+                screen, or scroll up and down with your mouse.</li> 
+                <li>To hide the menu content, click on the active menu tab.</li>
+                <li>To report missing or incorrectly located facilities, or to submit a comment or question, 
+                please click on the Comments icon at the bottom of the menu on the left side.</li>
+                </ul>
+                <h5>Thank you for visiting the New York State Freight Atlas. We appreciate your interest and input.</h5>
+                </span>
             },
             {
                 name:'home2',
-                icon:'/images/areas.png',
+                icon:'/images/geographies',
+                title:'New York State Regions',
                 content: <LayerList title="New York State Regions" dataset='areas' layers={this.state.areas} onClick = {this.handleClick} />
             },
             {
                 name:'home3',
-                icon:'/images/facilities2.png',
+                icon:'/images/facilities',
+                title:'Freight Facilities',
                 content:<LayerList title="Freight Facilities" dataset='facilities' layers={this.state.facilities} onClick = {this.handleClick} />
             },            
             {
                 name:'home4',
-                icon:'/images/rail2.png',
+                icon:'/images/rail1',
+                title:'Rail Network',
                 content:<LayerList title="Rail Network" dataset='rail' layers={this.state.rail} onClick = {this.handleClick} />
             },            
             {
                 name:'home5',
-                icon:'/images/truck2.png',
+                icon:'/images/truck1',
+                title:'Road Network',
                 content:<LayerList title="Road Network" dataset='road' layers={this.state.road} onClick = {this.handleClick} />
             },
             {
                 name:'home6',
-                icon:'/images/comments.png',
+                icon:'/images/comments',
+                title:'Comment',
                 content: <Comments />
             }                            
         ]
@@ -128,7 +149,7 @@ var WalkerDashboard = React.createClass({
 
     render: function() {
         var scope = this;
-
+        
         var nextCoords = this.props.currentHouse ? this.props.currentHouse.geometry.coordinates : null;
         var button = <span />;
         var imgStyle = {
@@ -146,7 +167,11 @@ var WalkerDashboard = React.createClass({
                     <MapSidebar panes={this.getPanes()} /> 
 
 
+
                     <Map layers={this.state.mapLayers} zoomControl={true}  />
+
+                    <Map layers={this.state.mapLayers} />
+
 
 
                 </div>

@@ -23,19 +23,20 @@ module.exports = {
     'sendmail': function (req,res){
 
 		var author = req.param('author'),
+			email = req.param('email'),
 			content = req.param('content');
 			
-		console.log("mail",author,content);	
+		console.log("mail",author,email,content);	
 		//MAIL TIME
 
 
 		// setup e-mail data with unicode symbols
 		var mailOptions = {
-		    from: '<rdubowsky@albany.edu>', // sender address
-		    to: 'r.k.dubowsky@gmail.com, ekrans@albany.edu', // list of receivers
-		    subject: 'Freight Atlas Comment Box from ' + author, // Subject line
-		    text: content, // plaintext body
-		    html: '<b>'+content+'</b>' // html body
+		    from: '<nys.freight.network@gmail.com>', // sender address
+		    to: 'nys.freight.network@gmail.com', // list of receivers
+		    subject: 'Comment From ' + author, // Subject line
+		    text: email+'/n/n/n'+content, // plaintext body
+		    html: '<b>'+email+'<br/><br/>'+content+'</b>' // html body
 		};
 
 

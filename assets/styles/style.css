@@ -8,6 +8,7 @@
          url('/styles/typography/gotham-bold-webfont.svg#gotham_boldregular') format('svg');
     font-weight: normal;
     font-style: normal;
+    color:#5d5d5d;
 
 }
 
@@ -23,6 +24,7 @@
          url('/styles/typography/gotham-book-webfont.svg#gotham_bookregular') format('svg');
     font-weight: normal;
     font-style: normal;
+    color:#5d5d5d;
 
 }
 
@@ -39,17 +41,26 @@
          url('/styles/typography/gotham-medium-webfont.svg#gotham_mediumregular') format('svg');
     font-weight: normal;
     font-style: normal;
+    color:#5d5d5d;
 
 }
 
 body{
-  font-family: 'gotham_mediumregular'
+  font-family: 'gotham_mediumregular';
+  color:#5d5d5d;
+}
+.mouseOver{
+  background-color: #5d5d5d
+}
+.subText{
+  font-size: 13px;
+  font-weight: 2px;
 }
 
 .layListInactive{
 	
 	background:white;
-	color:black;
+	color:#5d5d5d;
 	font:12px/1.5 "gotham_mediumregular", Arial, Helvetica, sans-serif;
 }
 
@@ -85,9 +96,9 @@ body{
 
 .mapsidebar {
   position: absolute;
-  left: 40;
-  top: 50;
-  bottom: 100;
+  left: 0;
+  top: 0;
+  bottom: 0;
   width: 100%;
   overflow: hidden;
   z-index: 2000; }
@@ -95,9 +106,9 @@ body{
     width: 60px; }
   @media (min-width: 768px) {
     .mapsidebar {
-      left: 40px;
-      top: 50px;
-      bottom: 30px;
+      left: 10px;
+      top: 10px;
+      bottom: 10px;
       transition: width 500ms; } }
   @media (min-width: 768px) and (max-width: 991px) {
     .mapsidebar {
@@ -109,10 +120,28 @@ body{
     .mapsidebar {
       width: 460px; } }
 
+.sidebar-pane {
+  display: none;
+  right: 0;
+  box-sizing: border-box;
+  padding: 10px 20px; }
+  .sidebar-pane.active {
+    display: block; }
+  @media (min-width: 768px) and (max-width: 991px) {
+    .sidebar-pane {
+      width: 265px; } }
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .sidebar-pane {
+      width: 350px; } }
+  @media (min-width: 1200px) {
+    .sidebar-pane {
+      width: 420px; } }
+
 .sidebar-content{
 	position: absolute;
   left: 60px;
   right: 0;
+  padding-right: 30px;
   top: 0;
   bottom: 0;
   background-color: rgba(255, 255, 255, 1);
@@ -137,7 +166,7 @@ body{
     overflow: hidden;
     transition: all 80ms; }
     .sidebar-tabs-li:hover {
-      color: #000;
+      color:#5d5d5d;
       background-color: #eee; }
     .sidebar-tabs-li.active {
       color: #fff;
@@ -151,4 +180,50 @@ body{
       text-decoration: none;
       text-align: center;
 }
+
+.sidebarClass{
+  padding-right: 30px;
+}
+
+.comments-box{
+ 
+}
+
+.comments-box input{
+  font-size:15px;
+  color:#5d5d5d;
+  width:90%;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  padding:15px;
+
+}
+.comments-box textArea{
+  font-size:15px;
+  color:#5d5d5d;
+  width:90%;
+  height:300px;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  padding:15px;
+}
+.comments-box button{
+  font-size:15px;
+  color:#5d5d5d;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding:10px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.65);
+}
+
+.comments-box button:hover{
+  font-size:15px;
+  background-color: #5d5d5d;
+  color:#fff;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding:10px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.65);
+}
+
 
