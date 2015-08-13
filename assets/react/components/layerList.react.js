@@ -16,9 +16,10 @@ var LayerItem = React.createClass({
       },
 
     render: function(){
+
         var curStyle = this.state.selected ? 'layListActive' : 'layListInactive',
             btnStyle = {
-                width:'100%',
+                width:'95%',
                 textAlign:'left',
                 padding:'10px',
                 border:'none'
@@ -58,15 +59,31 @@ var layerList = React.createClass({
 
     render: function() {
         var scope = this;
+        
+
+
+
 
         var list = Object.keys(this.props.layers).map(function(key,index){
+            var style = {
+                float:"left",
+                height:38,
+                width:10,
+                backgroundColor:scope.props.layers[key].options.style().color
+            }
             return (
-                <LayerItem dataset={scope.props.dataset} layerName={key} onClick={scope.handleClick} >
-                </LayerItem>
+                <div>
+                    <div style={style}></div>  
+                    <span><LayerItem dataset={scope.props.dataset} layerName={key} onClick={scope.handleClick} >
+                    </LayerItem></span>              
+                </div>
                 )
         })
-              
 
+
+
+              
+        console.log(this.props.layers)
         return (
         	
 
