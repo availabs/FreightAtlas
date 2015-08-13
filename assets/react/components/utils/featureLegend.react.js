@@ -138,12 +138,11 @@ var featureLegend = React.createClass({
 	                )
         	}
         })
-
+		//List of FeatureLayers
+		//Each FeatureLayer is a list of FeatureItems
 		return (
 				<div className={"featureLegend"} >
 					<h1>Layers </h1>
-					//List of FeatureLayers
-					//Each FeatureLayer is a list of FeatureItems
 					{list}
 				</div>
 			)
