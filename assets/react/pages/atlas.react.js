@@ -42,7 +42,7 @@ var WalkerDashboard = React.createClass({
     },
 
     loadLayer:function(layName,url,datasetName){
-        console.log(url);
+        //console.log(url);
 
         var scope = this,
             newState = scope.state;
@@ -164,7 +164,7 @@ var WalkerDashboard = React.createClass({
                 height: '41px',
                 top: '5px'
         }
-        console.log("atlas",scope.state.mapLayers);
+
         return (
                 <div style={{width:'100%',height:'100%'}} >
                     <LayerLegend />

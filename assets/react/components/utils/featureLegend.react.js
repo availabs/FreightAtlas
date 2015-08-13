@@ -58,7 +58,7 @@ var FeatureLayer = React.createClass({
 
     },
     handleClick:function () {
-    	console.log("handled")
+    	//console.log("handled")
         this.setState({display: !this.state.display})
     },
     render: function(){
@@ -135,7 +135,7 @@ var featureLegend = React.createClass({
 	render: function() {
 
 		var scope = this;
-		console.log("'this' in featureLegend",scope)
+		//console.log("'this' in featureLegend",scope)
 
 
 		//Create a featureLayer for each activeLayer
@@ -154,7 +154,7 @@ var featureLegend = React.createClass({
 
 		return (
 				<div className={"featureLegend"} >
-					<h4>Layers </h4>
+					<h1>Layers </h1>
 
 					{list}
 
