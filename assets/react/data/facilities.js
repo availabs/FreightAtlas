@@ -33,7 +33,7 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "NYS Major Border Crosssings <br/>" + feature.properties.CP_Name;
+                popupContent = "Border Crossing/Port of Entry <br/>Name: " + feature.properties.CP_Name;
                 layer.bindPopup(popupContent);
 
                 var legendContent;
@@ -68,7 +68,7 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "US Facilities <br/> State: " + feature.properties.STATE + "<br/> City: " + feature.properties.CITY + "<br/> Name: " + feature.properties.NAME + "<br/> Type of Facility: " + feature.properties.MODE_TYPE;
+                popupContent = "Intermodal Facilities of NY <br/>City: " + feature.properties.CITY + "<br/> Name: " + feature.properties.NAME + "<br/> Type of Facility: " + feature.properties.MODE_TYPE;
                 layer.bindPopup(popupContent);
 
                 var legendContent;
@@ -102,7 +102,7 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "Export Output <br/>" + feature.properties.FULLNAME;
+                popupContent = "Major Airports <br/>" + feature.properties.FULLNAME;
                 layer.bindPopup(popupContent);
 
                 var legendContent;
@@ -138,7 +138,7 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "NY Major Ports <br/> Port Name: "+feature.properties.PORT_NAME;
+                popupContent = "Major Ports <br/> Port Name: "+feature.properties.PORT_NAME;
                 layer.bindPopup(popupContent);
 
                 var legendContent;

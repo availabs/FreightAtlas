@@ -24,13 +24,12 @@ module.exports = {
                 }
             },
             onEachFeature: function(feature,layer){
-                var popupContent;
+                var legendContent;
                 
-                popupContent = "New York State"
-                layer.bindPopup(popupContent);  
+                legendContent = "New York State"
 
-                if(this.featDetails.indexOf(popupContent) === -1){
-                    this.featDetails.push(popupContent);                   
+                if(this.featDetails.indexOf(legendContent) === -1){
+                    this.featDetails.push(legendContent);                   
                 }
             }
         }
@@ -83,7 +82,7 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "NY All Regions <br/> County Name: " + feature.properties.NAME
+                popupContent = "NY Counties <br/> County Name: " + feature.properties.NAME
                 layer.bindPopup(popupContent);  
 
                 var legendContent;
@@ -112,7 +111,7 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "NY Cities with Population over 20k <br/> City: " + feature.properties.NAME + "<br/> Population in 2010: " + comma(feature.properties.POP2010);
+                popupContent = "Non-MPO Cities over 20K Population <br/> City: " + feature.properties.NAME + "<br/> Population in 2010: " + comma(feature.properties.POP2010);
                 layer.bindPopup(popupContent);   
 
                 var legendContent;
@@ -205,7 +204,7 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "NY All Regions <br/> Region: " + feature.properties.Region + "<br/> County Name: " + feature.properties.NAME
+                popupContent = "NYSDOT Regions and Counties <br/> Region: " + feature.properties.Region + "<br/> County Name: " + feature.properties.NAME
                 layer.bindPopup(popupContent);      
 
                 var legendContent;

@@ -25,7 +25,7 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "NY Frieght Network <br/> Route: " + feature.properties.SIGN1 + "<br/> Number of Lanes: " + feature.properties.ThruLanes
+                popupContent = "Interstate <br/> Route: " + feature.properties.SIGN1 + "<br/> Number of Lanes: " + feature.properties.ThruLanes
                 layer.bindPopup(popupContent);
 
                 var legendContent;
@@ -53,14 +53,23 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "NTAD_2014<br/>Description: " + feature.properties.CONN_DES +"<br/>Number of lanes: " + feature.properties.ThruLanes;
-                layer.bindPopup(popupContent);
+                var legendContent = "";
+                if(feature.properties.SIGN1 != " "){
+                    legendContent += "<b>Name:</b> " + feature.properties.SIGN1 + "<br/>";
+                }
+                if(feature.properties.CONN_DES != " "){
+                    legendContent += "<b>Description:</b> " + feature.properties.CONN_DES + "<br/>";
+                }
+                if(feature.properties.ThruLanes != " "){
+                    legendContent += "<b>Number of Lanes:</b> " + feature.properties.ThruLanes + "<br/>";                    
+                }
 
-                var legendContent;
-                legendContent = "Description: " + feature.properties.CONN_DES +"<br/>Number of lanes: " + feature.properties.ThruLanes;
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
-                }                
+                }
+
+                popupContent = "NTAD 2014 NYArea<br/>" + legendContent;
+                layer.bindPopup(popupContent);
             }
         }
     }
