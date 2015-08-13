@@ -28,7 +28,7 @@ var FeatureItem = React.createClass({
 			textAlign:'left',
 			paddingLeft:"20px",
 			paddingTop:"5px",
-			fontSize:"12px"
+			fontSize:"10px"
 		}
 
         return (
@@ -61,15 +61,14 @@ var FeatureLayer = React.createClass({
             btnStyle = {
                 width:'95%',
                 textAlign:'left',
-				paddingLeft:"15px",
-				fontSize:"20px",
+				padding:"10px",
                 border:'none'
             },
 
     		allFeatures = Object.keys(scope.props.featureList.featDetails).map(function(key,index){
 				style = {
 					float:"left",
-					height:32,
+					height:38,
 					width:10,
 					backgroundColor:scope.props.featureList.style().color
 				}
@@ -141,7 +140,7 @@ var featureLegend = React.createClass({
 		//Each FeatureLayer is a list of FeatureItems
 		return (
 				<div className={"featureLegend"} >
-					<h1>Layers </h1>
+					<h3>Layer Details </h3>
 					{list}
 				</div>
 			)
