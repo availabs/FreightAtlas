@@ -8,20 +8,22 @@ var React = require('react'),
     // -- utils;
     d3 = require('d3');
     
-
-
 var Comments = React.createClass({
     getInitialState:function(){
+
       return{
         messageSent:false
       }
+
     },
     sendMail:function(){
         var scope = this;
-        console.log('Author: ',this.refs.author.getDOMNode().value,'email: ',this.refs.email.getDOMNode().value,"Message: ",this.refs.message.getDOMNode().value);
 
-        var scope = this;
-        var  data = {author:this.refs.author.getDOMNode().value,email:this.refs.email.getDOMNode().value,content:this.refs.message.getDOMNode().value}
+        var  data = {
+          author:this.refs.author.getDOMNode().value,
+          email:this.refs.email.getDOMNode().value,
+          content:this.refs.message.getDOMNode().value
+        }
         
         d3.json('/sendmail')
         .post(JSON.stringify(data),function(err,data){
@@ -40,7 +42,7 @@ var Comments = React.createClass({
     },
     render: function() {
         var scope = this;
-        //console.log("render",this.refs.author)
+
         var messageBox = (
           <div className='comments-box'>
                <h3>Comments</h3><p className='subText'>We welcome your comments on the Core Freight Network.</p>
@@ -58,14 +60,13 @@ var Comments = React.createClass({
                <button onClick={this.sendMail}>Submit</button>
           </div>
         );
+
         var sent = (
           <div className='comments-box'>
-          <h3>Thank you for your input in the New York State Freight Planning Process.</h3>
-          <p></p>
-          <p>We have received your comments.</p>
-          <button onClick={this.toggleSent} className='btn'>Send Another Comment</button>
-          
-          
+            <h3>Thank you for your input in the New York State Freight Planning Process.</h3>
+            <p></p>
+            <p>We have received your comments.</p>
+            <button onClick={this.toggleSent} className='btn'>Send Another Comment</button>
           </div>
         ); 
         return (
@@ -73,7 +74,6 @@ var Comments = React.createClass({
                {this.state.messageSent ? sent : messageBox}
             </div>
         )
-    
     }
 });
 

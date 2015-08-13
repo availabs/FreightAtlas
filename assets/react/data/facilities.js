@@ -97,12 +97,11 @@ module.exports = {
 
                 }
                 var obj = L.circleMarker(latlng, {});
-                //obj.bindPopup(d.properties.PortName);
                 return obj;
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                // console.log(feature)
+
                 popupContent = "Export Output <br/>" + feature.properties.FULLNAME;
                 layer.bindPopup(popupContent);
 

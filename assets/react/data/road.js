@@ -8,23 +8,6 @@ var colorScale = d3.scale.ordinal()
   
 
 module.exports = {
-    // "Highways":{
-    //     path:"../finalGeoJson/Highways.json",
-    //     options:{
-    //         zoomOnLoad:true,
-    //         visible:false,
-    //         loaded:false,
-    //         style:function(feat){
-    //             return{
-    //                 color:colorScale("Highways"),
-    //                 weight:2,
-    //             }
-    //         },
-    //         onEachFeature: function(feature,layer){
-
-    //         }
-    //     }
-    // },
     "Interstate":{
         path:"../finalGeoJson/Interstate.json",
         options:{
@@ -80,28 +63,5 @@ module.exports = {
                 }                
             }
         }
-    },    
-    // "NYS Primary Freight Network":{
-    //     path:"../finalGeoJson/Primary_Freight_Network.json",
-    //     options:{
-    //         zoomOnLoad:true,
-    //         visible:false,
-    //         loaded:false,
-    //         style:function(feat){
-    //             return{
-    //                 color:colorScale("Primary_Freight_Network"),
-    //                 weight:2,
-    //                 opacity:0.55,
-    //             }
-    //         },
-    //         onEachFeature: function(feature,layer){
-    //             var popupContent;
-
-    //             popupContent = "NY Frieght Network <br/> Route: " + feature.properties.SIGN1
-    //             layer.bindPopup(popupContent);                                
-    //         }
-    //     }
-    // }
-
-
+    }
 }
