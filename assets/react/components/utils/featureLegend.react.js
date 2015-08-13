@@ -106,7 +106,6 @@ var FeatureLayer = React.createClass({
 			                </span>
 			                <div style={style} />
 		                </div>
-		                //List of Features (FeatureItems)
 						{allFeatures}	            
 		            </div>      
 	        )        	
