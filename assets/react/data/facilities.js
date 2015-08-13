@@ -33,7 +33,7 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "Border Crossing/Port of Entry <br/>Name: " + feature.properties.CP_Name;
+                popupContent = "<b>Border Crossing/Port of Entry</b> <br/><b>Name:</b> " + feature.properties.CP_Name;
                 layer.bindPopup(popupContent);
 
                 var legendContent;
@@ -68,11 +68,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "Intermodal Facilities of NY <br/>City: " + feature.properties.CITY + "<br/> Name: " + feature.properties.NAME + "<br/> Type of Facility: " + feature.properties.MODE_TYPE;
+                popupContent = "<b>Intermodal Facilities of NY</b> <br/><b>City:</b> " + feature.properties.CITY + "<br/> <b>Name:</b> " + feature.properties.NAME + "<br/> <b>Type of Facility:</b> " + feature.properties.MODE_TYPE;
                 layer.bindPopup(popupContent);
 
                 var legendContent;
-                legendContent = "State: " + feature.properties.STATE + "<br/> City: " + feature.properties.CITY + "<br/> Name: " + feature.properties.NAME + "<br/> Type of Facility: " + feature.properties.MODE_TYPE;
+                legendContent = "<b>State:</b> " + feature.properties.STATE + "<br/> <b>City:</b> " + feature.properties.CITY + "<br/> <b>Name:</b> " + feature.properties.NAME + "<br/> <b>Type of Facility:</b> " + feature.properties.MODE_TYPE;
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
                 }                                        
@@ -102,11 +102,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "Major Airports <br/>" + feature.properties.FULLNAME;
+                popupContent = "<b>Major Airports</b> <br/><b>Name: </b>" + feature.properties.FULLNAME;
                 layer.bindPopup(popupContent);
-
+                console.log(feature)
                 var legendContent;
-                legendContent = feature.properties.FULLNAME
+                legendContent = "<b>Name: </b>" + feature.properties.FULLNAME
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
                 }                                  
@@ -138,11 +138,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "Major Ports <br/> Port Name: "+feature.properties.PORT_NAME;
+                popupContent = "<b>Major Ports</b> <br/> <b>Port Name:</b> "+feature.properties.PORT_NAME;
                 layer.bindPopup(popupContent);
 
                 var legendContent;
-                legendContent = "Port Name: "+feature.properties.PORT_NAME;
+                legendContent = "<b>Port Name:</b> "+feature.properties.PORT_NAME;
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
                 }                                       
@@ -165,7 +165,7 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "NYS Canal System <br/>" + feature.properties.Canal_Name +" Canal";
+                popupContent = "<b>NYS Canal System</b> <br/>" + feature.properties.Canal_Name +" Canal";
                 layer.bindPopup(popupContent);
 
                 var legendContent;

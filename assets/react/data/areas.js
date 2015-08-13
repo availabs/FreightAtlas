@@ -52,11 +52,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "NY Cities with Population over 20k <br/> City: " + feature.properties.NAME + "<br/> Population in 2010: " + comma(feature.properties.POP2010);
+                popupContent = "<b>NY Cities with Population over 20k</b> <br/> <b>City:</b> " + feature.properties.NAME + "<br/> <b>Population in 2010:</b> " + comma(feature.properties.POP2010);
                 layer.bindPopup(popupContent);    
 
                 var legendContent;
-                legendContent = "City: " + feature.properties.NAME + "<br/> Population in 2010: " + comma(feature.properties.POP2010)
+                legendContent = "<b>City:</b> " + feature.properties.NAME + "<br/> <b>Population in 2010:</b> " + comma(feature.properties.POP2010)
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
@@ -81,12 +81,12 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-
-                popupContent = "NY Counties <br/> County Name: " + feature.properties.NAME
+                console.log(feature)
+                popupContent = "<b>Counties</b> <br/> <b>County Name:</b> " + feature.properties.NAME
                 layer.bindPopup(popupContent);  
 
                 var legendContent;
-                legendContent = "County Name: " + feature.properties.NAME
+                legendContent = "<b>Name:</b> " + feature.properties.NAME
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
                 }             
@@ -111,11 +111,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "Non-MPO Cities over 20K Population <br/> City: " + feature.properties.NAME + "<br/> Population in 2010: " + comma(feature.properties.POP2010);
+                popupContent = "<b>Non-MPO Cities over 20K Population</b> <br/> <b>City:</b> " + feature.properties.NAME + "<br/> <b>Population in 2010:</b> " + comma(feature.properties.POP2010);
                 layer.bindPopup(popupContent);   
 
                 var legendContent;
-                legendContent = "City: " + feature.properties.NAME + "<br/> Population in 2010: " + comma(feature.properties.POP2010);
+                legendContent = "<b>City:</b> " + feature.properties.NAME + "<br/> <b>Population in 2010:</b> " + comma(feature.properties.POP2010);
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
                 }             
@@ -146,11 +146,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "MPO Citites <br/>" + feature.properties.AREANAME + "<br/> Population in 2000: " + comma(feature.properties.POP2000);
+                popupContent = "<b>MPO Citites</b> <br/>" + feature.properties.AREANAME + "<br/> <b>Population in 2000:</b> " + comma(feature.properties.POP2000);
                 layer.bindPopup(popupContent);    
 
                 var legendContent;
-                legendContent = feature.properties.AREANAME + "<br/> Population in 2000: " + comma(feature.properties.POP2000);
+                legendContent = feature.properties.AREANAME + "<br/> <b>Population in 2000:</b> " + comma(feature.properties.POP2000);
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
                 }            
@@ -174,12 +174,12 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-
-                popupContent = "MPO Boundaries <br/>" + feature.properties.MPO_NAME;
+                console.log(feature)
+                popupContent = "<b>MPO Boundaries</b> <br/> <b>Name:</b>" + feature.properties.MPO_NAME;
                 layer.bindPopup(popupContent);     
 
                 var legendContent;
-                legendContent = feature.properties.MPO_NAME;
+                legendContent = "<b>Name: </b>" + feature.properties.MPO_NAME;
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
                 }           
@@ -204,11 +204,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "NYSDOT Regions and Counties <br/> Region: " + feature.properties.Region + "<br/> County Name: " + feature.properties.NAME
+                popupContent = "<b>NYSDOT Regions and Counties</b> <br/> <b>Region:</b> " + feature.properties.Region + "<br/> <b>County Name:</b> " + feature.properties.NAME
                 layer.bindPopup(popupContent);      
 
                 var legendContent;
-                legendContent = "Region: " + feature.properties.Region + "<br/> County Name: " + feature.properties.NAME
+                legendContent = "<b>Region:</b>" + feature.properties.Region + "<br/> <b>County Name:</b> " + feature.properties.NAME
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
                 }          
@@ -231,7 +231,7 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "Canadian Provinces <br/>" + feature.properties.NAME_1;
+                popupContent = "<b>Canadian Provinces</b> <br/>" + feature.properties.NAME_1;
                 layer.bindPopup(popupContent);     
 
                 var legendContent;

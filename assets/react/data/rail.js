@@ -28,11 +28,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "Class 1 Rail<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
+                popupContent = "<b>Class 1 Rail</b><br/><b>Rail Owner:</b> " + feature.properties.OWNER_NAME +"<br/><b>Rail Subdivision:</b> " + feature.properties.Subdivisio;
                 layer.bindPopup(popupContent);
 
                 var legendContent;
-                legendContent = "Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
+                legendContent = "<b>Rail Owner:</b> " + feature.properties.OWNER_NAME +"<br/><b>Rail Subdivision:</b> " + feature.properties.Subdivisio;
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
                 }                    
@@ -57,11 +57,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "Class 1 Track Rights<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
+                popupContent = "<b>Class 1 Track Rights</b><br/><b>Rail Owner:</b> " + feature.properties.OWNER_NAME +"<br/><b>Rail Subdivision:</b> " + feature.properties.Subdivisio;
                 layer.bindPopup(popupContent);
 
                 var legendContent;
-                legendContent = "Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
+                legendContent = "<b>Rail Owner:</b> " + feature.properties.OWNER_NAME +"<br/><b>Rail Subdivision:</b> " + feature.properties.Subdivisio;
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
                 }                 
@@ -86,11 +86,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "NYS Short Line<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
+                popupContent = "<b>NYS Short Line</b><br/><b>Rail Owner:</b> " + feature.properties.OWNER_NAME +"<br/><b>Rail Subdivision:</b> " + feature.properties.Subdivisio;
                 layer.bindPopup(popupContent);
 
                 var legendContent;
-                legendContent = "Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
+                legendContent = "<b>Rail Owner:</b> " + feature.properties.OWNER_NAME +"<br/><b>Rail Subdivision:</b> " + feature.properties.Subdivisio;
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
                 }                  
@@ -115,11 +115,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "NYS Short Line Track Rights<br/>Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
+                popupContent = "<b>NYS Short Line Track Rights</b><br/><b>Rail Owner: </b> " + feature.properties.OWNER_NAME +"<br/><b>Rail Subdivision: </b> " + feature.properties.Subdivisio;
                 layer.bindPopup(popupContent);
 
                 var legendContent;
-                legendContent = "Rail Owner: " + feature.properties.OWNER_NAME +"<br/>Rail Subdivision: " + feature.properties.Subdivisio;
+                legendContent = "<b>Rail Owner:<b/> " + feature.properties.OWNER_NAME +"<br/><b>Rail Subdivision: </b>" + feature.properties.Subdivisio;
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
                 }              
