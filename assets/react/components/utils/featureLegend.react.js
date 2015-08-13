@@ -3,14 +3,12 @@
 var React = require('react'),    
 	d3 = require('d3');
 
-
-
 //featureItem is ONE feature from a layer
 //It simply contains the desired details
 
 //featureLayer is ALL features from a layer 
 //featureLayer is made up of many featureItems
-//It contains a header row for the name of the layer
+//It contains a header/button for the name of the layer
 //And a row for each feature
 
 //featureLegend is ALL active layers
@@ -24,12 +22,9 @@ var FeatureItem = React.createClass({
 		}
 
     },
-
     render: function(){
-    	//console.log("please",this)
-    	var scope = this;
-    	var style;
-		style = {
+    	var scope = this,
+			style = {
 			textAlign:'left',
 			paddingLeft:"20px",
 			paddingTop:"5px",
@@ -38,13 +33,11 @@ var FeatureItem = React.createClass({
 
         return (
         		<div>
-	        		<div style={style} dangerouslySetInnerHTML={{__html: scope.props.details}}>
-	            	</div>
+	        		<div style={style} dangerouslySetInnerHTML={{__html: scope.props.details}} />
 	            	<br/>
             	</div>
         )
     }
-
 })
 
 var FeatureLayer = React.createClass({
@@ -58,39 +51,37 @@ var FeatureLayer = React.createClass({
 
     },
     handleClick:function () {
-    	//console.log("handled")
         this.setState({display: !this.state.display})
     },
     render: function(){
-
     	//Populate featureList
-    	var scope = this;
-    	var style;
-    	var allFeatures = Object.keys(scope.props.featureList.featDetails).map(function(key,index){
-    		//console.log(key);
-			style = {
-				float:"left",
-				height:32,
-				width:10,
-				backgroundColor:scope.props.featureList.style().color
-			}
-
-    		return(
-	    		<FeatureItem details={scope.props.featureList.featDetails[key]}>
-	    		</FeatureItem>
-    		)
-    	})
-
-        var curStyle = this.state.display ? 'layListActive' : 'layListInactive',
+    	var scope = this,
+			style,
+        	curStyle = this.state.display ? 'layListActive' : 'layListInactive',
             btnStyle = {
                 width:'95%',
                 textAlign:'left',
 				paddingLeft:"15px",
 				fontSize:"20px",
                 border:'none'
-            }
+            },
 
+    		allFeatures = Object.keys(scope.props.featureList.featDetails).map(function(key,index){
+				style = {
+					float:"left",
+					height:32,
+					width:10,
+					backgroundColor:scope.props.featureList.style().color
+				}
 
+	    		return(
+		    		<FeatureItem details={scope.props.featureList.featDetails[key]}>
+		    		</FeatureItem>
+	    		)
+    		})
+
+    	//Display defaults to false
+    	//If False, want to only show header/button
         if(this.state.display === false){
 	        return (
 		            <div >
@@ -103,24 +94,25 @@ var FeatureLayer = React.createClass({
 		            </div> 
 	        )
         }
+        //If display is true, want to display the header/button AND the list of features
         else{
 	        return (
 		            <div >
 		            	<div>
-			                <span><button className={curStyle} onClick={this.handleClick} style={btnStyle}>
-			                        {this.props.layerName}
-			                </button></span>
-			                <div style={style}></div>
+			                <span>
+				                <button className={curStyle} onClick={this.handleClick} style={btnStyle}>
+				                        {this.props.layerName}
+				                </button>
+			                </span>
+			                <div style={style} />
 		                </div>
+		                //List of Features (FeatureItems)
 						{allFeatures}	            
 		            </div>      
 	        )        	
         }
     }
-
 })
-
-
 
 var featureLegend = React.createClass({
     getDefaultProps:function(){
@@ -128,26 +120,21 @@ var featureLegend = React.createClass({
         return {
         	activeLayers : {}
         }
-    
+  
     },
-
-
 	render: function() {
-
 		var scope = this;
-		//console.log("'this' in featureLegend",scope)
-
 
 		//Create a featureLayer for each activeLayer
+		//FeatureLayer is made up of FeatureItems
 		var list = Object.keys(this.props.activeLayers).map(function(key,index){
-			//console.log(scope.props.activeLayers[key].options.featDetails)
 
+			//Only create a FeatureLayer if it is visible
 			if(scope.props.activeLayers[key].options.visible === true){
 	            return (
-	            	//Return a list of featureLayers.
-	            	//Each has a name and a raw list of features
-	                <FeatureLayer layerName={key} featureList={scope.props.activeLayers[key].options}>
-	                </FeatureLayer>
+		            	//Return a list of featureLayers.
+		            	//Each has a name and a raw list of features
+		                <FeatureLayer layerName={key} featureList={scope.props.activeLayers[key].options} />
 	                )
         	}
         })
@@ -155,14 +142,12 @@ var featureLegend = React.createClass({
 		return (
 				<div className={"featureLegend"} >
 					<h1>Layers </h1>
-
+					//List of FeatureLayers
+					//Each FeatureLayer is a list of FeatureItems
 					{list}
-
 				</div>
 			)
-
 	}
-
 })
 
 module.exports = featureLegend;

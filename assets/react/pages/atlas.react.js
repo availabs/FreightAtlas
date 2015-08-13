@@ -25,10 +25,7 @@ var React = require('react'),
 
 
 var WalkerDashboard = React.createClass({
-
     getInitialState:function(){
-
-
 
         return {
             mapLayers:{},
@@ -36,40 +33,34 @@ var WalkerDashboard = React.createClass({
             facilities:Facilities,
             rail:Rail,
             road:Road
-
         }
 
     },
-
     loadLayer:function(layName,url,datasetName){
-        //console.log(url);
-
         var scope = this,
             newState = scope.state;
+
         if(!this.state[datasetName][layName].options.loaded){
             var urlBase = "/data/geoJson/";
 
             var urlFull = urlBase + url;
         
             d3.json(urlFull,function(err,data){
-
-
                 newState.mapLayers[layName] = {id:layName,geo:data,options:scope.state[datasetName][layName].options};
                 newState[datasetName][layName].options.loaded = true;
                 newState[datasetName][layName].options.visible = true;
 
-                scope.setState(newState)
-                
+                scope.setState(newState);  
             }) 
-        }else{
+        }
+        else{
             newState.mapLayers[layName].options.visible = !newState.mapLayers[layName].options.visible;
             newState.mapLayers[layName].id += 1;
-            scope.setState(newState)
+            scope.setState(newState);
         }
 
 
     },
-    
     getPanes:function(){
         return [
             {
@@ -135,35 +126,33 @@ var WalkerDashboard = React.createClass({
             }                                      
         ]
     },
-
     componentDidMount:function(){
-
+        //Loads NYS if no other layers have ever been added
+        //Essentially only adds if on initial render
+        //Had to place here instead of initial state or render due to synchronicity issues
         if(Object.keys(this.state.mapLayers).length === 0){
             this.loadLayer("New York State", "../finalGeoJson/State.geojson","areas");
         }
-
-
     },
     handleClick: function (childComponent) {
-
+        //Child is passed back to parent
+        //Comes from layerList
         var curLayerName = childComponent.props.layerName;
         var datasetName = childComponent.props.dataset;
         var curLayerPath = this.state[datasetName][childComponent.props.layerName].path;
 
-        this.loadLayer(curLayerName,curLayerPath,datasetName)
+        this.loadLayer(curLayerName,curLayerPath,datasetName);
     },
-
     render: function() {
         var scope = this;
         
-        var nextCoords = this.props.currentHouse ? this.props.currentHouse.geometry.coordinates : null;
-        var button = <span />;
-        var imgStyle = {
+        var nextCoords = this.props.currentHouse ? this.props.currentHouse.geometry.coordinates : null,
+            imgStyle = {
                 position: 'absolute',
                 left: '10px',
                 height: '41px',
                 top: '5px'
-        }
+            };
 
         return (
                 <div style={{width:'100%',height:'100%'}} >
@@ -172,7 +161,6 @@ var WalkerDashboard = React.createClass({
                     <MapSidebar panes={this.getPanes()} /> 
                 </div>
         )
-    
     }
 });
 
