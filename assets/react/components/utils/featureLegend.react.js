@@ -28,9 +28,17 @@ var FeatureItem = React.createClass({
     render: function(){
     	//console.log("please",this)
     	var scope = this;
+    	var style;
+		style = {
+			textAlign:'left',
+			paddingLeft:"20px",
+			paddingTop:"5px",
+			fontSize:"12px"
+		}
+
         return (
         		<div>
-	        		<div dangerouslySetInnerHTML={{__html: scope.props.details}}>
+	        		<div style={style} dangerouslySetInnerHTML={{__html: scope.props.details}}>
 	            	</div>
 	            	<br/>
             	</div>
@@ -44,9 +52,14 @@ var FeatureLayer = React.createClass({
 
 		return{
 			layerName:"",
-			featureList:{}
+			featureList:{},
+			display:false
 		}
 
+    },
+    handleClick:function () {
+    	console.log("handled")
+        this.setState({display: !this.state.display})
     },
     render: function(){
 
@@ -55,7 +68,12 @@ var FeatureLayer = React.createClass({
     	var style;
     	var allFeatures = Object.keys(scope.props.featureList.featDetails).map(function(key,index){
     		//console.log(key);
-			style = {float:"left",height:30,width:10,backgroundColor:scope.props.featureList.style().color}
+			style = {
+				float:"left",
+				height:32,
+				width:10,
+				backgroundColor:scope.props.featureList.style().color
+			}
 
     		return(
 	    		<FeatureItem details={scope.props.featureList.featDetails[key]}>
@@ -63,17 +81,41 @@ var FeatureLayer = React.createClass({
     		)
     	})
 
-        return (
-        		<div>
-        			<div>
-	        			<div style={style}></div>
+        var curStyle = this.state.display ? 'layListActive' : 'layListInactive',
+            btnStyle = {
+                width:'95%',
+                textAlign:'left',
+				paddingLeft:"15px",
+				fontSize:"20px",
+                border:'none'
+            }
+
+
+        if(this.state.display === false){
+	        return (
+		            <div >
 		            	<div>
-		            		<span><h2 style={{paddingLeft:"15px",paddingTop:"2px"}}>{this.props.layerName}</h2></span>
-		            	</div>
-	            	</div>
-	            	{allFeatures}
-				</div>        
-        )
+			                <span><button className={curStyle} onClick={this.handleClick} style={btnStyle}>
+			                        {this.props.layerName}
+			                </button></span>
+			                <div style={style}></div>
+		                </div>            
+		            </div> 
+	        )
+        }
+        else{
+	        return (
+		            <div >
+		            	<div>
+			                <span><button className={curStyle} onClick={this.handleClick} style={btnStyle}>
+			                        {this.props.layerName}
+			                </button></span>
+			                <div style={style}></div>
+		                </div>
+						{allFeatures}	            
+		            </div>      
+	        )        	
+        }
     }
 
 })
