@@ -104,7 +104,7 @@ module.exports = {
 
                 popupContent = "<b>Major Airports</b> <br/><b>Name: </b>" + feature.properties.FULLNAME;
                 layer.bindPopup(popupContent);
-                console.log(feature)
+
                 var legendContent;
                 legendContent = "<b>Name: </b>" + feature.properties.FULLNAME
                 if(this.featDetails.indexOf(legendContent) === -1){
