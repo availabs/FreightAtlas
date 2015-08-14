@@ -114,16 +114,17 @@ var WalkerDashboard = React.createClass({
                 content:<LayerList title="Road Network" dataset='road' layers={this.state.road} onClick = {this.handleClick} />
             },
             {
+                name:'home7',
+                icon:'/images/list-icon',
+                title:'featureLegend',
+                content: <FeatureLegend activeLayers={this.state.mapLayers} />
+            },  
+            {
                 name:'home6',
                 icon:'/images/comments',
                 title:'Comment',
                 content: <Comments />
-            },
-            {
-                name:'home7',
-                title:'featureLegend',
-                content: <FeatureLegend activeLayers={this.state.mapLayers} />
-            }                                      
+            }                                    
         ]
     },
     componentDidMount:function(){

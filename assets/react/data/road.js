@@ -4,7 +4,7 @@ var d3 = require('d3'),
 
 var colorScale = d3.scale.ordinal()
                  .domain(["Highways","Primary_Freight_Network"])
-                 .range(colorbrewer.RdYlBu[3]);  
+                 .range(colorbrewer.BrBG[3]);  
   
 
 module.exports = {
@@ -18,8 +18,8 @@ module.exports = {
             style:function(feat){
                 return{
                     color:colorScale("Interstate"),
-                    weight:2,
-                    opacity:0.55,
+                    weight:2.5,
+                    opacity:0.65,
                 }
             },
             onEachFeature: function(feature,layer){
