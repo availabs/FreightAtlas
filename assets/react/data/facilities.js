@@ -45,7 +45,7 @@ module.exports = {
         }
     },
     "Intermodal Facilities of NY":{
-        path:"../finalGeoJson/Intermodal_Facility.geojson",
+        path:"../finalGeoJson/Intermodal_Facility2.geojson",
         options:{
             featDetails:[],
             zoomOnLoad:true,
