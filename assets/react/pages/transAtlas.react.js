@@ -98,6 +98,7 @@ var TransDashboard = React.createClass({
         return (
                 <span style={{width:'100%',height:'100%'}} >
                     <h4>Transearch API </h4>
+                    <h5>Now Testing Git </h5>
                     <DbList onClick={this.handleChildClick} />
                     <AttributeList />
                 </span>
