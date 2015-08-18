@@ -1,22 +1,71 @@
 'use strict';
 
-var React = require('react'),
-    
-    // -- componetnts
-    Map = require('../components/utils/transMap.react'),
-  
-    //    -- sidebar components
-    MapSidebar = require('../components/utils/MapSidebar.react'),
+var React = require('react');
 
 
-    // -- actions
+// Will be a list of attributes passed as a property
+// If called by select portion, will be checkboxes
+// If called by where portion, will be radio button
+var AttributeList = React.createClass({
+
+
+    render: function(){
+
+//Will eventually pass a list of attributes
+
+            
+            //Will either be select or where
+            if(this.props.version == "select"){
+
+                return(
+                    <div>
+                        <input type="radio" name="column" value="id"/>
+                        <br/>
+                        <input type="radio" name="column" value="name"/>
+                    </div>
+                    )
+            }
+            else{
+
+                return(
+                    <div>
+                        <input type="checkbox" name="column" value="id">id</input>
+                        <br/>
+                        <input type="checkbox" name="column" value="name">name</input>
+                    </div>
+                    )
+
+            }
+
     
-    // -- utils;
-    d3 = require('d3'),
-    Areas = require('../data/areas'),
-    Facilities = require('../data/facilities'),
-    Rail = require('../data/rail'),
-    Road = require('../data/road');
+    }
+})
+
+var DbList = React.createClass({
+
+    getInitialState:function(){
+        return {
+            db:""
+        }
+    },
+    onChange:function(e){
+        console.log("changing");
+        this.setState({
+            db: e.currentTarget.value
+        });
+
+    },
+    render: function(){
+        return(
+            <div>
+                <input type="radio" name="dbYear" value="2004" onClick={this.props.onClick.bind(null,"2004")}>2004</input>
+                <br/>
+                <input type="radio" name="dbYear" value="2012" onClick={this.props.onClick.bind(null,"2012")}>2012</input>
+            </div>
+            )
+    }
+
+})
 
 
 var TransDashboard = React.createClass({
@@ -25,76 +74,37 @@ var TransDashboard = React.createClass({
 
 
         return {            
-            mapLayers:{},
-            areas:Areas,
-            facilities:Facilities,
-            rail:Rail,
-            road:Road
+            queryData:{},
+            db:""
         }
 
     },
-    
-    getPanes:function(){
-        return [
+
+    handleChildClick: function(name,event) {
+         // You can access the prop you pass to the children because you already have it! Here you have it in state but it could also be in props, coming from another parent.
+
+        this.setState(
             {
-                name:'home',
-                icon:'fa fa-home',
-                content:  <h3>Hello from Ryan</h3>
-            } 
-        ]
-    },    
-    loadLayer:function(layName,url,datasetName){
-        console.log(url);
-
-        var scope = this,
-            newState = scope.state;
-        if(!this.state[datasetName][layName].options.loaded){
-            var urlBase = "/data/geoJson/";
-
-            var urlFull = urlBase + url;
-        
-            d3.json(urlFull,function(err,data){
-
-
-                newState.mapLayers[layName] = {id:layName,geo:data,options:scope.state[datasetName][layName].options};
-                newState[datasetName][layName].options.loaded = true;
-                newState[datasetName][layName].options.visible = true;
-
-                scope.setState(newState)
-                
-            }) 
-        }else{
-            newState.mapLayers[layName].options.visible = !newState.mapLayers[layName].options.visible;
-            newState.mapLayers[layName].id += 1;
-            scope.setState(newState)
-        }
-
-
-    },
-
-    componentDidMount:function(){
-
-        console.log("hello");
-        if(Object.keys(this.state.mapLayers).length === 0){
-            this.loadLayer("County", "../finalGeoJson/County.geojson","areas");
-            console.log("Add NYS");
-        }
-
-
-    },
-
+                queryData:{},
+                db:name
+            })
+      },
+    
 
     render: function() {
 
+        console.log(this.state);
+//Want a checkbox button list of attributes that can be selected.
+//Want Where clause which, when checked opens up radio buttons for attributes, a radio for <,>,=
+//Some way to finish the where clause
 
-                var button = <span />
-
-
+//For now, just display the data
         return (
-                <div style={{width:'100%',height:'100%'}} >
-                    <MapSidebar panes={this.getPanes()} /> 
-                    <Map layers={this.state.mapLayers}  />
-                </div>
+                <span style={{width:'100%',height:'100%'}} >
+                    <h4>Transearch API </h4>
+                    <DbList onClick={this.handleChildClick} />
+                    <AttributeList />
+                </span>
         )
     
     }
