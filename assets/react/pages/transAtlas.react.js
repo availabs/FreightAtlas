@@ -79,26 +79,22 @@ var TransDashboard = React.createClass({
         }
 
     },
-
     handleChildClick: function(name,event) {
-         // You can access the prop you pass to the children because you already have it! Here you have it in state but it could also be in props, coming from another parent.
-
         this.setState(
             {
                 queryData:{},
                 db:name
             })
       },
-    
-
     render: function() {
-
         console.log(this.state);
 //Want a checkbox button list of attributes that can be selected.
 //Want Where clause which, when checked opens up radio buttons for attributes, a radio for <,>,=
 //Some way to finish the where clause
 
-//For now, just display the data
+//Display the Data
+//Prob need to limit displayed rows, essentially forces user to choose "order by"
+//Want to make the data sortable by column
         return (
                 <span style={{width:'100%',height:'100%'}} >
                     <h4>Transearch API </h4>
