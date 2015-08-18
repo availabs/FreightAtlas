@@ -22,7 +22,7 @@ var AttributeButton = React.createClass({
             if(this.props.version == "select"){
                 return(
                         <div>
-                            <input type="radio" name="column" value={this.props.value} onChange={this.handleChange}/>
+                            <input type="checkbox" name="column" value={this.props.value} onChange={this.handleChange}/>
                             {this.props.value}
                         </div>
                     )
@@ -30,7 +30,7 @@ var AttributeButton = React.createClass({
             else{
                 return(
                         <div>
-                            <input type="checkbox" name="column" value={this.props.value} onChange={this.handleChange}/>
+                            <input type="radio" name="column" value={this.props.value} onChange={this.handleChange}/>
                             {this.props.value}
                         </div>
                     )                
@@ -43,9 +43,7 @@ var AttributeButton = React.createClass({
 // If called by select portion, will be checkboxes
 // If called by where portion, will be radio button
 var AttributeList = React.createClass({
-    shouldComponentUpdate: function(nextProps, nextState) {
-      return this.props.db !== nextProps.db;
-    },
+
     render: function(){
 
 //Will eventually pass a list of attributes
@@ -112,7 +110,8 @@ var TransDashboard = React.createClass({
 
         return {            
             queryData:{},
-            db:""
+            db:"",
+            where:false
         }
 
     },
@@ -120,15 +119,17 @@ var TransDashboard = React.createClass({
         this.setState(
             {
                 queryData:{},
-                db:name
+                db:name,
+                where:this.state["where"]
             })
       },
-    onWhereClick: function(event){
-        this.getDOMNode.checked = !this.getDOMNode.checked
+    executeQuery:function(){
+        console.log("Executing Query")
     },
     render: function() {
 
         var scope = this;
+
 //Want a checkbox button list of attributes that can be selected.
 //Want Where clause which, when checked opens up radio buttons for attributes, a radio for <,>,=
 //Some way to finish the where clause
@@ -139,16 +140,27 @@ var TransDashboard = React.createClass({
         return (
                 <span style={{width:'100%',height:'100%'}} >
                     <h2>Transearch API </h2>
+                    <h3>Underlined Headers indicate a mandetory selection </h3>
+                    <button onClick={this.executeQuery}>Execute Query </button>
                     <table style={{borderSpacing:"30px"}}>
                         <tr>
                             <td>
-                                <h5> Choose a database to query </h5>
+                                <h5 style={{textDecoration:"underline"}}> Choose a database to query </h5>
                             </td>
                             <td>
-                                <h5> Choose 1 attribute for SELECT portion of query </h5>
+                                <h5 style={{textDecoration:"underline"}}> Choose attributes for SELECT portion of query </h5>
                             </td>
                             <td>
                                 <h5>Toggle WHERE clause</h5>
+                            </td>
+                            <td>
+                                <h5> Choose 1 attribute for left side of WHERE portion of query </h5>
+                            </td>
+                            <td>
+                                <h5> Choose a conditional </h5>
+                            </td>
+                            <td>
+                                <h5> Choose 1 attribute for right side of WHERE portion or input your own value </h5>
                             </td>
                         </tr>
                         <tr style={{verticalAlign: "top"}}>
@@ -161,6 +173,26 @@ var TransDashboard = React.createClass({
                             <td style={{verticalAlign: "top"}}>
                                 <input type="checkbox" name="whereClause" defaultChecked={false} onChange={this.onWhereClick}/>
                                 <h7>WHERE</h7>
+                            </td>
+                            <td>
+                                <AttributeList db={scope.state.db} version="where"/>
+                            </td>
+                            <td>
+                                <input type="radio" name="conditional" value=">" ></input>
+                                Greater Than
+                                <br/>
+                                <input type="radio" name="conditional" value="<" ></input>
+                                Less Than
+                                <br/>
+                                <input type="checkbox" name="equalTo" value="=" > </input>
+                                (Or) Equals To
+                            </td>
+                            <td>
+                                <p style={{fontSize:"12px"}}>Manual Input</p>
+                                <input type="text" name="rightWhere" />
+                                <br/>
+                                <br/>
+                                <AttributeList db={scope.state.db} version="where"/>
                             </td>                 
                         </tr>                         
                                                                               
