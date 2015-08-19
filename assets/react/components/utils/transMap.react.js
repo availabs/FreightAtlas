@@ -14,14 +14,13 @@ var React = require('react'),
     topojson = require('topojson');
     
 
-var map = null,
+var mapVar = null,
     layers = {},
     markers = {},
     sidebar;
 
-
-
 var colorScale = d3.scale.category20();   
+
 
 
 
@@ -37,15 +36,14 @@ var Map = React.createClass({
     },
 
     componentDidMount: function() {
-
-
+       
         L.Icon.Default.imagePath = '/img/icons';
         this.renderMap();
 
-        map.invalidateSize()
+        mapVar.invalidateSize()
         setTimeout(function () {
             //onsole.log('invalideate')
-            map.invalidateSize()
+            mapVar.invalidateSize()
         }, 50);
 
     },
@@ -58,7 +56,6 @@ var Map = React.createClass({
             Object.keys(nextProps.layers).forEach(function(key){
 
                 var currLayer = nextProps.layers[key];
-                //console.log(currLayer);
                 
                 if(currLayer.geo.type == "Topology"){
                     for(var key in currLayer.geo.objects){
@@ -120,7 +117,7 @@ var Map = React.createClass({
                         id: curMarker.id,
                         marker:L.marker([curMarker.latlng[1],curMarker.latlng[0]], { icon: icon })
                     }
-                    markers[key].marker.addTo(map);
+                    markers[key].marker.addTo(mapVar);
                 }
 
                 
@@ -131,9 +128,8 @@ var Map = React.createClass({
     },
     
     _updateLayer : function(key,layer){
-
-        if(layers[key] && map.hasLayer(layers[key].layer)){
-            map.removeLayer(layers[key].layer)
+        if(layers[key] && mapVar.hasLayer(layers[key].layer)){
+            mapVar.removeLayer(layers[key].layer)
         }
         if(layer.options.visible){
             layers[key] = {
@@ -144,35 +140,35 @@ var Map = React.createClass({
 
                 if(layer.geo.type == "Topology"){
                     layers[key].layer.addData(layer.geojson); // to get layerAdd event
-                    map.addLayer(layers[key].layer);
+                    mapVar.addLayer(layers[key].layer);
                     if(layer.options.centerOnLoad){
-                            map.setView(L.latLng(layer.geo.features[0].geometry.coordinates.reverse()),15)
+                            mapVar.setView(L.latLng(layer.geo.features[0].geometry.coordinates.reverse()),15)
                     }
                     if(layer.options.zoomOnLoad){
                         
                         
                             var ezBounds = d3.geo.bounds(layer.geo);
 
-                            map.invalidateSize();
+                            mapVar.invalidateSize();
 
-                            map.fitBounds(layers[key].layer.getBounds());
+                            mapVar.fitBounds(layers[key].layer.getBounds());
                         
                     }
                 }
                 else{
                     layers[key].layer.addData(layer.geo); // to get layerAdd event
-                    map.addLayer(layers[key].layer);
+                    mapVar.addLayer(layers[key].layer);
                     if(layer.options.centerOnLoad){
-                            map.setView(L.latLng(layer.geo.features[0].geometry.coordinates.reverse()),15)
+                            mapVar.setView(L.latLng(layer.geo.features[0].geometry.coordinates.reverse()),15)
                     }
                     if(layer.options.zoomOnLoad){
                         
                         
                             var ezBounds = d3.geo.bounds(layer.geo);
 
-                            map.invalidateSize();
+                            mapVar.invalidateSize();
 
-                            map.fitBounds(layers[key].layer.getBounds());
+                            mapVar.fitBounds(layers[key].layer.getBounds());
                         
                     }
                 }
@@ -182,7 +178,6 @@ var Map = React.createClass({
 
     renderMap:function(){
         var scope = this;
-
         var mapDiv = document.getElementById('map');
         if(this.props.height === '100%'){
             mapDiv.setAttribute("style",window.innerHeight);
@@ -194,33 +189,36 @@ var Map = React.createClass({
             aImagery = L.tileLayer('http://{s}.tiles.mapbox.com/v3/am3081.h0pml9h7/{z}/{x}/{y}.png'),
             aImageStreets = L.tileLayer('http://oatile2.mqcdn.com/tiles/1.0.0/hyb/{z}/{x}/{y}.png'),   //+ http://{s}.tiles.mapbox.com/v3/am3081.h0pml9h7/{z}/{x}/{y}.png              
             aImageTerr = L.tileLayer('https://a.tiles.mapbox.com/v3/matt.hd0b27jd/{z}/{x}/{y}.png'),
-            greyScale = L.tileLayer("http://{s}.tiles.mapbox.com/v3/am3081.kml65fk1/{z}/{x}/{y}.png");                    
+            greyScale = L.tileLayer("http://{s}.tiles.mapbox.com/v3/erickrans.4f9126ad/{z}/{x}/{y}.png");                    
                                     
                                     
                                     
-        map = L.map(this.getDOMNode(), {
+        mapVar = L.map(this.getDOMNode(), {
             center: [42.8282, -78.5795],
             zoom: 7,
-            layers: [tContours],
+            layers: [greyScale],
             zoomControl: this.props.zoomControl,
             attributionControl: false
         });
 
+        new L.Control.Zoom({ position: 'topright' }).addTo(mapVar); 
+
         var baseMaps = {
+            "Greyscale" : greyScale,
             "Terrain Countours": tContours,
             "Street Map": streetMap,
             "Aerial Imagery" : aImagery,
             "Aerial Imagery with Terrain" : aImageTerr,
-            "Greyscale" : greyScale
+            
         },
         overlayMaps = {
             "Street Overlay" : aImageStreets
         };
 
-        L.control.layers(baseMaps, overlayMaps).addTo(map);
-        //map.invalidateSize();
+        L.control.layers(baseMaps, overlayMaps).addTo(mapVar);
+        //mapVar.invalidateSize();
         if(this.props.sidebar){
-            sidebar = L.control.sidebar('sidebar').addTo(map);
+            sidebar = L.control.sidebar('sidebar').addTo(mapVar);
         }
 
         if(this.props.layers){
@@ -231,11 +229,11 @@ var Map = React.createClass({
                     id:currLayer.id,
                     layer: L.geoJson(currLayer.geo,layer.options)
                 };  
-                map.addLayer(layers[key].layer);
+                mapVar.addLayer(layers[key].layer);
                 if(currLayer.geo && currLayer.options.zoomOnLoad && currLayer.geo.features.length > 0){
                     var ezBounds = d3.geo.bounds(currLayer.geo);
 
-                    map.fitBounds(layers[key].layer.getBounds());
+                    mapVar.fitBounds(layers[key].layer.getBounds());
                 }
             
             });
@@ -253,27 +251,45 @@ var Map = React.createClass({
                         id: curMarker.id,
                         marker:L.marker([curMarker.latlng[1],curMarker.latlng[0]], { icon: icon })
                     }
-                    markers[key].marker.addTo(map);
+                    markers[key].marker.addTo(mapVar);
                 }
             });
         }
 
 
+    d3.json("data/finalGeoJson/usCounties.geojson",function(err,data){
+        var curLayer = {id:"usCounties",geo:data,options:{
+                zoomOnLoad:false,
+                centerOnLoad:false,
+                visible:true,
+                loaded:true,
+                style:function(feat){
+                    return{
+                        color:colorScale("usCounties")
+                    }
+                },
+                onEachFeature: function(feature,layer){
+                    console.log(feature)
+                }
+            } 
+        }
 
-
+        scope._updateLayer("usCounties",curLayer);
+    
+    })
 
     },
 
     render: function() {
 
-        if(map){    
-            map.invalidateSize();
+        if(mapVar){    
+            mapVar.invalidateSize();
         }
         return (
             <div style={{height:'100%'}}>
                 <LayerLegend activeLayers={this.props.layers} />
                 <div className="sidebar-map" id="map" >
-
+                    <ToolTip/>
                 </div>
 
 

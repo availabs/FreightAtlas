@@ -46,7 +46,7 @@ module.exports = {
         }
     },
     "National Highway Planning Network":{
-        path:"../finalGeoJson/NHPN.json",
+        path:"../finalGeoJson/NHS.json",
         options:{
             featDetails:[],
             zoomOnLoad:true,
