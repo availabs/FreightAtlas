@@ -74,14 +74,14 @@ module.exports.connections = {
   *                                                                          *
   *                                                                          *
   ***************************************************************************/
-  somePostgresqlServer: {
-    adapter: 'sails-postgresql',
-    host: 'YOUR_POSTGRES_SERVER_HOSTNAME_OR_IP_ADDRESS',
-    user: 'YOUR_POSTGRES_USER',
-    password: 'YOUR_POSTGRES_PASSWORD',
-    database: 'YOUR_POSTGRES_DB'
-  }
 
+  marsPostgres: {
+    adapter: 'sails-postgresql',
+    host: 'mars.availabs.org',
+    user: 'postgres',
+    password: 'Jedi21funk',
+    database: 'transearch_2012'
+  }
 
   /***************************************************************************
   *                                                                          *

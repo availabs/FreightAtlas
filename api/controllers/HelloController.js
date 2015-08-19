@@ -53,5 +53,18 @@ module.exports = {
 		});
 
 
+    },
+    transQuery: function(req,res){
+    	console.log("hello");
+
+    
+    	var finalQuery = 'Select "YEAR" from "2012_Transearch" LIMIT 100';
+
+		Transearch_2012.query(finalQuery,function(err,data){
+
+				res.json({'success' : data});
+			})
+
+
     }
 };

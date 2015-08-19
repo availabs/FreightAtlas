@@ -36,6 +36,7 @@
     "react-tappable": "^0.5.2",
     "sails": "~0.11.0",
     "sails-disk": "~0.10.0",
+    "sails-postgresql": "^0.10.16",
     "topojson": "^1.6.19",
     "webpack": "^1.10.1"
   },
