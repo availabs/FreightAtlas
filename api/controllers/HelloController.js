@@ -57,10 +57,53 @@ module.exports = {
     transQuery: function(req,res){
     	console.log("hello");
 
-    
-    	var finalQuery = 'Select "YEAR" from "2012_Transearch" LIMIT 100';
+		var source = req.param('source'),
+			STCC2 = req.param('STCC2'),
+			STCC3 = req.param('STCC3');
 
-		Transearch_2012.query(finalQuery,function(err,data){
+			console.log(source, STCC2, STCC3);
+    
+
+
+		var query= 'SELECT ';
+
+		if(source === "origin"){
+			query += '"Origin_County_FIPS_Code",';
+		}
+		else{
+			query += '"Destination_County_FIPS_Code",';
+		}
+
+		query += 'sum("Total_Annual_tons") as total_tons FROM "2012_Transearch" ';
+
+
+
+
+		if(STCC2 === 'all'){
+
+		}
+		else{
+			query += 'WHERE "STCC2" = "' + STCC2 + '"'
+		}
+
+		if(STCC3 === 'all'){
+
+		}
+		else{
+			query += 'AND "STCC3" = "' + STCC3 + '"'
+		}
+
+		if(source === "origin"){
+			query+= 'group by "Origin_County_FIPS_Code"'
+		}
+		else{
+			query+= 'group by "Destination_County_FIPS_Code"'
+		}
+
+
+    	//var finalQuery = 'SELECT  "Origin_County_FIPS_Code",sum("Total_Annual_tons") as total_tons FROM "2012_Transearch" group by "Origin_County_FIPS_Code" ';
+    	console.log(query)
+		Transearch_2012.query(query,function(err,data){
 
 				res.json({'success' : data});
 			})
