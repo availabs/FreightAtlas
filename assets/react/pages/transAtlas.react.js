@@ -37,24 +37,25 @@ var TransDashboard = React.createClass({
     getInitialState:function(){
 
         return {
-            mapLayers:{},
-            source:"origin",
-            STCC2:"all",
-            STCC3:"all"
+            layer:{},
+            params:{
+                source:"destination",
+                STCC2:"all",
+                STCC3:"all"
+            }
         }
 
-    },    
+    },
     loadLayer:function(layName,url,countyData){
-        var scope = this,
-            newState = scope.state,
+        var scopeDash = this,
+            newState = scopeDash.state,
 
 
             urlFull = url;
-
         
             d3.json(urlFull,function(err,data){
-                console.log(countyData);
-                    newState.mapLayers[layName] = {id:layName,geo:data,options:{
+                //console.log(countyData);
+                    newState.layer[layName] = {id:layName,geo:data,options:{
                         zoomOnLoad:false,
                         tons:0,
                         centerOnLoad:false,
@@ -77,48 +78,46 @@ var TransDashboard = React.createClass({
                                     }
                             }
                             //console.log(this)
-                            // var popupContent = feature.tons;
-                            // layer.bindPopup(feature);  
+                             var popupContent = "" + this.tons;
+                             layer.bindPopup(popupContent);  
                         }
                     }
                 }
-
-                scope.setState(newState);  
+                console.log("setting new state/layer")
+                scopeDash.setState(newState)
             }) 
 
 
 
     },
-    componentDidMount:function(){
-        var data = {
-            source:this.state.source,
-            STCC2:this.state.STCC2,
-            STCC3:this.state.STCC3
-        }
 
-        this.getLayer(data);
-    },
     getLayer:function(params){
         var scope = this;
         var countyObject = {}
+        var newLayer ={}
+
         d3.json('/transquery')
         .post(JSON.stringify(params),function(err,dataReturned){
-            console.log('data sent',err,dataReturned.success.rows)
+            //console.log('data sent',err,dataReturned.success.rows)
 
             dataReturned.success.rows.forEach(function(curCounty){
 
-                if(scope.state.source === "origin"){
+                if(scope.state.params["source"] === "origin"){
                     countyObject[curCounty.Origin_County_FIPS_Code] = curCounty.total_tons;
                 }
                 else{
                     countyObject[curCounty.Destination_County_FIPS_Code] = curCounty.total_tons;
                 }
-            })
-
-            scope.loadLayer("usCounties","/data/finalGeoJson/usCounties.geojson",countyObject);
-
-
+            }) 
+                var name = "usCounties" + params["source"] + params["STCC2"] + params["STTC3"]
+                scope.loadLayer(name,"/data/finalGeoJson/usCounties.geojson",countyObject);   
         })       
+
+    },
+    componentWillMount:function(){
+
+           this.getLayer(this.state.params)
+        
     },
     getPanes:function(){
         return [
@@ -132,7 +131,7 @@ var TransDashboard = React.createClass({
                 name:'home2',
                 icon:'/images/nyslogo',
                 title:'Origin/Destination',
-                content:<div><br/><div>Origin</div><br/><div>Destination</div></div>
+                content:<div><br/><div onClick={this.sourceChange.bind(null,"origin")}>Origin</div><br/><div onClick={this.sourceChange.bind(null,"destination")}>Destination</div></div>
             }, 
             {
                 name:'home3',
@@ -142,15 +141,21 @@ var TransDashboard = React.createClass({
             }                                  
         ]
     },
-
+    sourceChange:function(param){
+        console.log(param)
+        var scope = this;
+        var newState = scope.state;
+        newState.params={source:param,STCC2:newState.params.STCC2,STCC3:newState.params.STCC3}
+        scope.setState(newState);
+        scope.getLayer(scope.state.params);
+    },
     render: function() {
         var scope = this;
         console.log("This in atlas render",this);
 
-
         return (
                 <div style={{width:'100%',height:'100%'}} >
-                    <Map layers={this.state.mapLayers} />
+                    <Map layers={this.state.layer} />
                     <MapSidebar panes={this.getPanes()} /> 
                 </div>
         )
