@@ -45,7 +45,7 @@ module.exports = {
             }
         }
     },
-    "National Highway Planning Network":{
+    "National Highway System":{
         path:"../finalGeoJson/NHS.json",
         options:{
             featDetails:[],
@@ -55,8 +55,8 @@ module.exports = {
             style:function(feat){
                 return{
                     color:colorScale("NTAD_2014_NYArea"),
-                    weight:2,
-                    opacity:0.55,
+                    weight:2.5,
+                    opacity:0.65,
                 }
             },
             onEachFeature: function(feature,layer){
@@ -77,7 +77,7 @@ module.exports = {
                     this.featDetails.push(legendContent);                   
                 }
 
-                popupContent = "<b>National Highway Planning Network</b><br/> Federally-identified network for principal roadways<br/>" + legendContent;
+                popupContent = "<b>National Highway System</b><br/> Federally-identified network for principal roadways<br/>" + legendContent;
                 layer.bindPopup(popupContent);
             }
         }
