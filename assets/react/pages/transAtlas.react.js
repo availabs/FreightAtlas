@@ -11,7 +11,8 @@ var React = require('react'),
 
 
     // -- data
-
+    STCC2 = require('../data/stcc2'),
+    STCC3 = require('../data/stcc3'),
     
     // -- utils;
     d3 = require('d3'),
@@ -31,6 +32,114 @@ return d > 100000000000 ? '#800026' :
 var colorScale = d3.scale.ordinal()
                  .domain(["CAN_adm1","Western_Region"])
                  .range(colorbrewer.Paired[9]);
+
+var STCCItem = React.createClass({
+    getInitialState:function(){
+        return{selected:false}
+    },
+    handleClick:function(){
+       this.setState({selected:!this.state.selected})
+       console.log("hello")
+       this.props.onClick(this.props.value)
+    },
+    componentWillMount:function(){
+        if(this.props.type === "3"){
+            this.setState({selected:true});
+        }
+    },
+    render:function(){
+        if(this.props.type === "2"){
+            var btnStyle = {
+                width:'95%',
+                textAlign:'left',
+                padding:'10px',
+                border:'none'
+            }
+        }
+        if(this.props.type === "3"){
+            var btnStyle = {
+                width:'70%',
+                textAlign:'left',
+                paddingLeft:'50px',
+                border:'none'
+            }            
+        }
+        var curStyle = this.state.selected ? 'layListActive' : 'layListInactive'
+
+        return(
+            <div>
+                <button className={curStyle} style = {btnStyle} value={this.props.value} onClick={this.handleClick}>{this.props.name}</button>
+            </div>
+            )
+    }
+})
+
+
+var STCCList = React.createClass({
+    getInitialState:function(){
+        return{selected:[]}
+    },
+    onClick:function(value){
+        var scope = this;
+        var newState = scope.state;
+        
+        console.log("Selected STCC Value",value)
+        if(newState.selected.indexOf(value) != -1){
+            newState.selected.splice(newState.selected.indexOf(value),1)
+        }
+        else{
+            newState.selected.push(value);
+        }
+        scope.setState(newState);
+    },
+    render:function(){
+        var scope = this;
+        //Loop through items
+        //Make an STCC2 Item for each one
+        var list = Object.keys(STCC2).map(function(key,index){
+            //Loop through selected STCC
+            //For every one, make another set of STCC items 
+
+            //If it doesn't equal -1, it is selected.
+            //Need to make sub-buttons
+            
+            if(scope.state.selected.indexOf(key) !== -1){
+
+                //subList is a list of sub-codes
+                var subList = Object.keys(STCC3).map(function(subKey,subIndex){
+                    //Find STCC3 codes with same first numbers
+                    if(subKey.substring(0,2) === key){
+                        //for every matching subkey, make an item
+                        console.log(subKey);
+                        return(<STCCItem type="3" name={STCC3[subKey]} onClick={scope.onClick} value ={subKey} />)
+                    }
+                })
+
+                //Return the header button, plus the list of subkeys
+                return(
+                    <div>
+                        <STCCItem type="2" name={STCC2[key]} onClick={scope.onClick} value ={key} />
+                        {subList}
+                    </div>
+                    )
+
+            }
+            //Otherwise, make normal one
+            else{
+                return(<STCCItem type="2" name={STCC2[key]} onClick={scope.onClick} value ={key} />)
+            }
+
+
+
+        })
+        console.log("in STCCList",scope);
+        return (
+            <div>
+            {list}
+            </div>
+            )
+    }
+})
 
 
 var TransDashboard = React.createClass({
@@ -84,7 +193,7 @@ var TransDashboard = React.createClass({
                     }
                 }
 
-                
+
 
                 Object.keys(newState.layer).forEach(function(curLayer){
                     console.log("loop",curLayer,"LayerName", layName)
@@ -164,13 +273,21 @@ var TransDashboard = React.createClass({
                 name:'home2',
                 icon:'/images/nyslogo',
                 title:'Origin/Destination',
-                content:<div><br/><div onClick={this.sourceChange.bind(null,"origin")}>Origin</div><br/><div onClick={this.sourceChange.bind(null,"destination")}>Destination</div></div>
+                content:<div>
+                            <br/>
+                            <div onClick={this.sourceChange.bind(null,"origin")}>Origin</div>
+                            <br/>
+                            <div onClick={this.sourceChange.bind(null,"destination")}>Destination</div>
+                        </div>
             }, 
             {
                 name:'home3',
                 icon:'/images/nyslogo',
-                title:'STCC Codes',
-                content:<h3>Filter by STCC Code</h3>
+                title:'STCC2 Codes',
+                content:<div>
+                            <h3>Filter by STCC2 Code</h3>
+                            <STCCList />
+                        </div>
             }                                  
         ]
     },
