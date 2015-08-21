@@ -254,27 +254,6 @@ var Map = React.createClass({
                 }
             });
         }
-    // d3.json("data/finalGeoJson/usCounties.geojson",function(err,data){
-    //     var curLayer = {id:"usCounties",geo:data,options:{
-    //             zoomOnLoad:false,
-    //             centerOnLoad:false,
-    //             visible:true,
-    //             loaded:true,
-    //             style:function(feat){
-    //                 return{
-    //                     color:colorScale("usCounties")
-    //                 }
-    //             },
-    //             onEachFeature: function(feature,layer){
-
-    //             }
-    //         } 
-    //     }
-
-    //     scope._updateLayer("usCounties",curLayer);
-    
-    // })
-
     },
 
     render: function() {

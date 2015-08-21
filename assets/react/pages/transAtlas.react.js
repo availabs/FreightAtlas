@@ -39,7 +39,7 @@ var TransDashboard = React.createClass({
         return {
             layer:{},
             params:{
-                source:"destination",
+                source:"origin",
                 STCC2:"all",
                 STCC3:"all"
             }
@@ -52,10 +52,10 @@ var TransDashboard = React.createClass({
 
 
             urlFull = url;
-        
+
+        if(!this.state.layer[layName]){        
             d3.json(urlFull,function(err,data){
-                //console.log(countyData);
-                    newState.layer[layName] = {id:layName,geo:data,options:{
+                newState.layer[layName] = {id:layName,geo:data,options:{
                         zoomOnLoad:false,
                         tons:0,
                         centerOnLoad:false,
@@ -78,16 +78,49 @@ var TransDashboard = React.createClass({
                                     }
                             }
                             //console.log(this)
-                             var popupContent = "" + this.tons;
-                             layer.bindPopup(popupContent);  
+                            var popupContent = "" + this.tons;
+                            layer.bindPopup(popupContent);  
                         }
                     }
                 }
-                console.log("setting new state/layer")
-                scopeDash.setState(newState)
+
+                
+
+                Object.keys(newState.layer).forEach(function(curLayer){
+                    console.log("loop",curLayer,"LayerName", layName)
+                    if(curLayer != layName){
+                    console.log("setting to false",curLayer)    
+                        newState.layer[curLayer].options.visible = false
+                        newState.layer[curLayer].id += 1;
+                    }
+                })
+                console.log(newState);
+                scopeDash.setState(newState);  
             }) 
+        }
+        else{
 
+            //layName is clicked layer
+            //If layName.visable = true, set to false
+            //If layName.visible = false, set to true
+            //AKA toggle layName
 
+            //if(curLayer != layName)
+            //Set to False
+
+                Object.keys(newState.layer).forEach(function(curLayer){
+                    console.log("loop",curLayer,"LayerName", layName)
+                    if(curLayer != layName){
+                        console.log("setting to false",curLayer)    
+                        newState.layer[curLayer].options.visible = false
+                        newState.layer[curLayer].id += 1;
+                    }
+                })
+
+            newState.layer[layName].options.visible = !newState.layer[layName].options.visible;
+            newState.layer[layName].id += 1;
+            scopeDash.setState(newState);
+        }
 
     },
 
@@ -109,7 +142,7 @@ var TransDashboard = React.createClass({
                     countyObject[curCounty.Destination_County_FIPS_Code] = curCounty.total_tons;
                 }
             }) 
-                var name = "usCounties" + params["source"] + params["STCC2"] + params["STTC3"]
+                var name = "usCounties" + params["source"] + params["STCC2"] + params["STCC3"]
                 scope.loadLayer(name,"/data/finalGeoJson/usCounties.geojson",countyObject);   
         })       
 
