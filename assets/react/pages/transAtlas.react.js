@@ -20,13 +20,13 @@ var React = require('react'),
 
 //Function for opacity of choropleth map
 function getColor(d) {
-    return d > 100000000000 ? '#800026' :
-           d > 50000000000  ? '#BD0026' :
-           d > 2000000000  ? '#E31A1C' :
-           d > 100000000  ? '#FC4E2A' :
-           d > 50000000   ? '#FD8D3C' :
-           d > 2000000   ? '#FEB24C' :
-           d > 100000   ? '#FED976' :
+    return d > 10000000000 ? '#800026' :
+           d > 5000000000  ? '#BD0026' :
+           d > 200000000  ? '#E31A1C' :
+           d > 10000000  ? '#FC4E2A' :
+           d > 5000000   ? '#FD8D3C' :
+           d > 200000   ? '#FEB24C' :
+           d > 10000   ? '#FED976' :
                       '#FFEDA0';
 }
 
