@@ -39,7 +39,6 @@ var STCCItem = React.createClass({
     },
     handleClick:function(){
        this.setState({selected:!this.state.selected})
-       console.log("hello")
        this.props.onClick(this.props.value)
     },
     componentWillMount:function(){
@@ -110,7 +109,6 @@ var STCCList = React.createClass({
                     //Find STCC3 codes with same first numbers
                     if(subKey.substring(0,2) === key){
                         //for every matching subkey, make an item
-                        console.log(subKey);
                         return(<STCCItem type="3" name={STCC3[subKey]} onClick={scope.onClick} value ={subKey} />)
                     }
                 })
@@ -132,7 +130,6 @@ var STCCList = React.createClass({
 
 
         })
-        console.log("in STCCList",scope);
         return (
             <div>
             {list}
@@ -171,9 +168,7 @@ var TransDashboard = React.createClass({
                         visible:true,
                         loaded:true,
                         onEachFeature: function(feature,layer){
-                            //console.log(feature.properties.GEO_ID.substring(9,14))
                             var geoID = feature.properties.GEO_ID.substring(9,14)
-                            //console.log(geoID)
                             this.tons = countyData[geoID]
                             var scope = this
                             this.style = function(feature){
@@ -186,7 +181,6 @@ var TransDashboard = React.createClass({
                                         fillOpacity: 0.7
                                     }
                             }
-                            //console.log(this)
                             var popupContent = "" + this.tons;
                             layer.bindPopup(popupContent);  
                         }
@@ -196,14 +190,13 @@ var TransDashboard = React.createClass({
 
 
                 Object.keys(newState.layer).forEach(function(curLayer){
-                    console.log("loop",curLayer,"LayerName", layName)
-                    if(curLayer != layName){
-                    console.log("setting to false",curLayer)    
+
+                    if(curLayer != layName){    
                         newState.layer[curLayer].options.visible = false
                         newState.layer[curLayer].id += 1;
                     }
                 })
-                console.log(newState);
+
                 scopeDash.setState(newState);  
             }) 
         }
@@ -218,9 +211,9 @@ var TransDashboard = React.createClass({
             //Set to False
 
                 Object.keys(newState.layer).forEach(function(curLayer){
-                    console.log("loop",curLayer,"LayerName", layName)
+
                     if(curLayer != layName){
-                        console.log("setting to false",curLayer)    
+   
                         newState.layer[curLayer].options.visible = false
                         newState.layer[curLayer].id += 1;
                     }
@@ -262,7 +255,7 @@ var TransDashboard = React.createClass({
         
     },
     getPanes:function(){
-        return [
+        return [ 
             {
                 name:'home',
                 icon:'/images/nyslogo',
@@ -275,9 +268,33 @@ var TransDashboard = React.createClass({
                 title:'Origin/Destination',
                 content:<div>
                             <br/>
-                            <div onClick={this.sourceChange.bind(null,"origin")}>Origin</div>
+                            <button 
+                                ref="origin"
+                                id="origin"
+                                className={"layListActive"} 
+                                style={{
+                                    width:'95%',
+                                    textAlign:'left',
+                                    padding:'10px',
+                                    border:'none'
+                                }} 
+                                onClick={this.sourceChange}>
+                                Origin
+                            </button>
                             <br/>
-                            <div onClick={this.sourceChange.bind(null,"destination")}>Destination</div>
+                            <button 
+                                ref="destination"
+                                id="destination"
+                                className={"layListInactive"}
+                                    style={{
+                                        width:'95%',
+                                        textAlign:'left',
+                                        padding:'10px',
+                                        border:'none'
+                                    }} 
+                                onClick={this.sourceChange}>
+                                Destination
+                            </button>
                         </div>
             }, 
             {
@@ -291,17 +308,31 @@ var TransDashboard = React.createClass({
             }                                  
         ]
     },
-    sourceChange:function(param){
-        console.log(param)
+    sourceChange:function(e){
+
         var scope = this;
         var newState = scope.state;
-        newState.params={source:param,STCC2:newState.params.STCC2,STCC3:newState.params.STCC3}
+
+        if(e.target.className === "layListActive"){
+            e.target.className = "layListInactive";
+        }
+        else{
+            e.target.className = "layListActive"
+
+            Object.keys(scope.refs).forEach(function(button){
+                if(button != e.target.id){
+                    scope.refs[button].getDOMNode().className = "layListInactive";                    
+                }
+            })
+        }
+
+        newState.params={source:e.target.id,STCC2:newState.params.STCC2,STCC3:newState.params.STCC3}
         scope.setState(newState);
         scope.getLayer(scope.state.params);
     },
     render: function() {
         var scope = this;
-        console.log("This in atlas render",this);
+        console.log("Scope in atlas render",scope);
 
         return (
                 <div style={{width:'100%',height:'100%'}} >
