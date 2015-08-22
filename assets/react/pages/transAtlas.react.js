@@ -20,13 +20,13 @@ var React = require('react'),
 
 //Function for opacity of choropleth map
 function getColor(d) {
-    return d > 10000000000 ? '#800026' :
-           d > 5000000000  ? '#BD0026' :
-           d > 200000000  ? '#E31A1C' :
-           d > 10000000  ? '#FC4E2A' :
-           d > 5000000   ? '#FD8D3C' :
-           d > 200000   ? '#FEB24C' :
-           d > 10000   ? '#FED976' :
+    return d > 5000000 ? '#800026' : //5 mil
+           d > 1000000 ? '#BD0026' : //1 mil
+           d > 500000  ? '#E31A1C' : //500k
+           d > 100000  ? '#FC4E2A' : //100k
+           d > 50000   ? '#FD8D3C' : //50k
+           d > 10000   ? '#FEB24C' : //10k
+           d > 5000   ? '#FED976' :  //5k
                       '#FFEDA0';
 }
 
@@ -185,8 +185,10 @@ var TransDashboard = React.createClass({
                                 geoID = feature.properties.GEO_ID.substring(9,14);
 
                             this.tons = countyData[geoID]
-
-                            var popupContent = "" + comma(this.tons);
+                            // if(this.tons){
+                            //     console.log(feature.properties.NAME,this.tons)
+                            // }
+                            var popupContent = "<b>" + feature.properties.NAME + " county</b> <br/>" + comma(d3.round(this.tons)) + " Tons";
                             layer.bindPopup(popupContent);  
 
                             this.style = function(feature){
@@ -254,6 +256,7 @@ var TransDashboard = React.createClass({
                     countyObject[curCounty.Destination_County_FIPS_Code] = curCounty.total_tons;
                 }
             }) 
+            console.log(countyObject)
             var name = "usCounties" + params["source"] + params["STCC2"] + params["STCC3"]
             scope.loadLayer(name,"usCounties.geojson",countyObject);   
         })       
