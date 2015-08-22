@@ -16,22 +16,20 @@ var React = require('react'),
     
     // -- utils;
     d3 = require('d3'),
-        colorbrewer = require('colorbrewer');
+    comma = d3.format(",");
 
+//Function for opacity of choropleth map
 function getColor(d) {
-return d > 100000000000 ? '#800026' :
-       d > 50000000000  ? '#BD0026' :
-       d > 2000000000  ? '#E31A1C' :
-       d > 100000000  ? '#FC4E2A' :
-       d > 50000000   ? '#FD8D3C' :
-       d > 2000000   ? '#FEB24C' :
-       d > 100000   ? '#FED976' :
-                  '#FFEDA0';
+    return d > 100000000000 ? '#800026' :
+           d > 50000000000  ? '#BD0026' :
+           d > 2000000000  ? '#E31A1C' :
+           d > 100000000  ? '#FC4E2A' :
+           d > 50000000   ? '#FD8D3C' :
+           d > 2000000   ? '#FEB24C' :
+           d > 100000   ? '#FED976' :
+                      '#FFEDA0';
 }
 
-var colorScale = d3.scale.ordinal()
-                 .domain(["CAN_adm1","Western_Region"])
-                 .range(colorbrewer.Paired[9]);
 
 var STCCItem = React.createClass({
     getInitialState:function(){
@@ -67,12 +65,17 @@ var STCCItem = React.createClass({
 
         return(
             <div>
-                <button className={curStyle} style = {btnStyle} value={this.props.value} onClick={this.handleClick}>{this.props.name}</button>
+                <button 
+                    className={curStyle} 
+                    style = {btnStyle} 
+                    value={this.props.value} 
+                    onClick={this.handleClick}>
+                    {this.props.name}
+                </button>
             </div>
-            )
+        )
     }
 })
-
 
 var STCCList = React.createClass({
     getInitialState:function(){
@@ -95,53 +98,61 @@ var STCCList = React.createClass({
         var scope = this;
         //Loop through items
         //Make an STCC2 Item for each one
-        var list = Object.keys(STCC2).map(function(key,index){
+        var stcc2List = Object.keys(STCC2).map(function(key,index){
             //Loop through selected STCC
             //For every one, make another set of STCC items 
 
             //If it doesn't equal -1, it is selected.
             //Need to make sub-buttons
-            
             if(scope.state.selected.indexOf(key) !== -1){
-
                 //subList is a list of sub-codes
-                var subList = Object.keys(STCC3).map(function(subKey,subIndex){
+                var stcc3List = Object.keys(STCC3).map(function(subKey,subIndex){
                     //Find STCC3 codes with same first numbers
                     if(subKey.substring(0,2) === key){
                         //for every matching subkey, make an item
-                        return(<STCCItem type="3" name={STCC3[subKey]} onClick={scope.onClick} value ={subKey} />)
+                        return(
+                            <STCCItem 
+                                type="3" 
+                                name={STCC3[subKey]} 
+                                onClick={scope.onClick} 
+                                value ={subKey} />
+                        )
                     }
                 })
-
                 //Return the header button, plus the list of subkeys
                 return(
                     <div>
-                        <STCCItem type="2" name={STCC2[key]} onClick={scope.onClick} value ={key} />
-                        {subList}
+                        <STCCItem 
+                            type="2" 
+                            name={STCC2[key]} 
+                            onClick={scope.onClick} 
+                            value={key} />
+                        {stcc3List}
                     </div>
-                    )
-
+                )
             }
             //Otherwise, make normal one
             else{
-                return(<STCCItem type="2" name={STCC2[key]} onClick={scope.onClick} value ={key} />)
+                return(
+                    <STCCItem 
+                        type="2" 
+                        name={STCC2[key]} 
+                        onClick={scope.onClick} 
+                        value ={key} />
+                )
             }
-
-
-
         })
         return (
             <div>
-            {list}
+                {stcc2List}
             </div>
-            )
+        )
     }
 })
 
 
 var TransDashboard = React.createClass({
     getInitialState:function(){
-
         return {
             layer:{},
             params:{
@@ -150,93 +161,92 @@ var TransDashboard = React.createClass({
                 STCC3:"all"
             }
         }
-
     },
-    loadLayer:function(layName,url,countyData){
+    loadLayer:function(newLayName,url,countyData){
         var scopeDash = this,
             newState = scopeDash.state,
 
+            urlBase = "/data/finalGeoJson/",
+            urlFull = urlBase + url;
 
-            urlFull = url;
-
-        if(!this.state.layer[layName]){        
+        if(!this.state.layer[newLayName]){        
             d3.json(urlFull,function(err,data){
-                newState.layer[layName] = {id:layName,geo:data,options:{
+                newState.layer[newLayName] = {
+                    id:newLayName,
+                    geo:data,
+                    options:{
                         zoomOnLoad:false,
                         tons:0,
                         centerOnLoad:false,
                         visible:true,
                         loaded:true,
                         onEachFeature: function(feature,layer){
-                            var geoID = feature.properties.GEO_ID.substring(9,14)
+                            var featureScope = this,
+                                geoID = feature.properties.GEO_ID.substring(9,14);
+
                             this.tons = countyData[geoID]
-                            var scope = this
+
+                            var popupContent = "" + comma(this.tons);
+                            layer.bindPopup(popupContent);  
+
                             this.style = function(feature){
                                 return {
-                                        fillColor: getColor(scope.tons),
-                                        weight: 2,
-                                        opacity: 1,
-                                        color: 'white',
-                                        dashArray: '3',
-                                        fillOpacity: 0.7
-                                    }
+                                    fillColor: getColor(featureScope.tons),
+                                    weight: 2,
+                                    opacity: 1,
+                                    color: 'white',
+                                    dashArray: '3',
+                                    fillOpacity: 0.7
+                                }
                             }
-                            var popupContent = "" + this.tons;
-                            layer.bindPopup(popupContent);  
                         }
                     }
                 }
-
-
-
+                //Only 1 layer can be visible at a time
                 Object.keys(newState.layer).forEach(function(curLayer){
-
-                    if(curLayer != layName){    
+                    if(curLayer != newLayName){    
                         newState.layer[curLayer].options.visible = false
                         newState.layer[curLayer].id += 1;
                     }
                 })
-
                 scopeDash.setState(newState);  
             }) 
         }
         else{
+            //Only 1 layer can be visible at a time
 
-            //layName is clicked layer
+            //layName is the name of the clicked layer
             //If layName.visable = true, set to false
             //If layName.visible = false, set to true
             //AKA toggle layName
 
+            //curLayer is name of current layer in loop
             //if(curLayer != layName)
             //Set to False
+            Object.keys(newState.layer).forEach(function(curLayer){
+                if(curLayer != newLayName){
+                    newState.layer[curLayer].options.visible = false
+                    newState.layer[curLayer].id += 1;
+                }
+            })
 
-                Object.keys(newState.layer).forEach(function(curLayer){
-
-                    if(curLayer != layName){
-   
-                        newState.layer[curLayer].options.visible = false
-                        newState.layer[curLayer].id += 1;
-                    }
-                })
-
-            newState.layer[layName].options.visible = !newState.layer[layName].options.visible;
-            newState.layer[layName].id += 1;
+            newState.layer[newLayName].options.visible = !newState.layer[newLayName].options.visible;
+            newState.layer[newLayName].id += 1;
             scopeDash.setState(newState);
         }
 
     },
 
     getLayer:function(params){
-        var scope = this;
-        var countyObject = {}
-        var newLayer ={}
+        var scope = this,
+
+            countyObject = {},
+            newLayer ={};
 
         d3.json('/transquery')
         .post(JSON.stringify(params),function(err,dataReturned){
-            //console.log('data sent',err,dataReturned.success.rows)
 
             dataReturned.success.rows.forEach(function(curCounty){
-
                 if(scope.state.params["source"] === "origin"){
                     countyObject[curCounty.Origin_County_FIPS_Code] = curCounty.total_tons;
                 }
@@ -244,15 +254,13 @@ var TransDashboard = React.createClass({
                     countyObject[curCounty.Destination_County_FIPS_Code] = curCounty.total_tons;
                 }
             }) 
-                var name = "usCounties" + params["source"] + params["STCC2"] + params["STCC3"]
-                scope.loadLayer(name,"/data/finalGeoJson/usCounties.geojson",countyObject);   
+            var name = "usCounties" + params["source"] + params["STCC2"] + params["STCC3"]
+            scope.loadLayer(name,"usCounties.geojson",countyObject);   
         })       
 
     },
     componentWillMount:function(){
-
            this.getLayer(this.state.params)
-        
     },
     getPanes:function(){
         return [ 
@@ -262,7 +270,7 @@ var TransDashboard = React.createClass({
                 title:'About',
                 content:<h3>hello</h3>
             },
-                        {
+            {
                 name:'home2',
                 icon:'/images/nyslogo',
                 title:'Origin/Destination',
@@ -309,9 +317,8 @@ var TransDashboard = React.createClass({
         ]
     },
     sourceChange:function(e){
-
-        var scope = this;
-        var newState = scope.state;
+        var scope = this,
+            newState = scope.state;
 
         if(e.target.className === "layListActive"){
             e.target.className = "layListInactive";
@@ -326,7 +333,11 @@ var TransDashboard = React.createClass({
             })
         }
 
-        newState.params={source:e.target.id,STCC2:newState.params.STCC2,STCC3:newState.params.STCC3}
+        newState.params={
+            source:e.target.id,
+            STCC2:newState.params.STCC2,
+            STCC3:newState.params.STCC3
+        }
         scope.setState(newState);
         scope.getLayer(scope.state.params);
     },
