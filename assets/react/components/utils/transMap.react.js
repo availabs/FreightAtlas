@@ -208,6 +208,8 @@ var Map = React.createClass({
             this._div.id='info';
             this._div.style.backgroundColor='white';
             this._div.style.position='relative';
+            this._div.style.right='10px';
+            this._div.style.bottom='10px';
             this._div.style.width='100%';
             this._div.innerHTML = 'origin of exports<br/><br/>Hover over a county';
             return this._div;
