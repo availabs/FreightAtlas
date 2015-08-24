@@ -162,8 +162,15 @@ var TransDashboard = React.createClass({
             }
         }
     },
+    updateInfo:function(props){
+        var scope = this,
+            infoPanel = document.getElementById('info');
+
+        infoPanel.innerHTML = '<h4>' + scope.state.params["source"] + ' of exports</h4>' + '<b>' + props["name"] + ' county'+'</b><br />' + comma(props.tons) + ' Tons';
+    },
     highlightFeature:function (e) {
-        var layer = e.target;
+        var layer = e.target,
+            props = {name:"",tons:0};
 
         layer.setStyle({
             weight: 5,
@@ -172,10 +179,15 @@ var TransDashboard = React.createClass({
             fillOpacity: 0.7
         });
 
+
+        props["name"] = layer.feature.properties.NAME;
+        props["tons"] = layer.options.tons
+
+        this.updateInfo(props)
         if (!L.Browser.ie && !L.Browser.opera) {
             layer.bringToFront();
         }
-
+        
         //info.update(layer.feature.properties);
     },
     resetHighlight:function (e) {
@@ -183,7 +195,8 @@ var TransDashboard = React.createClass({
         if (!L.Browser.ie && !L.Browser.opera) {
             layer.bringToBack();
         }
-        //console.log(e);
+
+
         layer.setStyle({
             weight: 2,
             color: 'white',
@@ -231,6 +244,8 @@ var TransDashboard = React.createClass({
                                     fillOpacity: 0.7
                                 }
                             }
+
+                            
                             layer.on({
                                 mouseover: scopeDash.highlightFeature,
                                 mouseout: scopeDash.resetHighlight,

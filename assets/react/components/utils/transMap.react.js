@@ -22,7 +22,6 @@ var colorScale = d3.scale.category20();
 
 
 
-
 var Map = React.createClass({
     
     getDefaultProps:function(){
@@ -201,6 +200,20 @@ var Map = React.createClass({
         });
 
         new L.Control.Zoom({ position: 'topright' }).addTo(mapVar); 
+
+        var info = L.control();
+
+        info.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'mapsidebar'); // create a div with a class "info"
+            this._div.id='info';
+            this._div.style.backgroundColor='white';
+            this._div.style.position='relative';
+            this._div.style.width='100%';
+            this._div.innerHTML = '<h4>origin of exports</h4><br/>Hover over a county';
+            return this._div;
+        };
+
+        info.addTo(mapVar);
 
         var baseMaps = {
             "Greyscale" : greyScale,
