@@ -20,14 +20,14 @@ var React = require('react'),
 
 //Function for opacity of choropleth map
 function getColor(d) {
-    return d > 5000000 ? '#800026' : //5 mil
-           d > 1000000 ? '#BD0026' : //1 mil
-           d > 500000  ? '#E31A1C' : //500k
-           d > 100000  ? '#FC4E2A' : //100k
-           d > 50000   ? '#FD8D3C' : //50k
-           d > 10000   ? '#FEB24C' : //10k
-           d > 5000   ? '#FED976' :  //5k
-                      '#FFEDA0';
+    return d > 7000000 ? '#b10026' : //7 mil
+           d > 1000000 ? '#e31a1c' : //1 mil
+           d > 500000 ? '#fc4e2a' : //500k
+           d > 100000 ? '#fd8d3c' : //100k
+           d > 50000 ? '#feb24c' : //50k
+           d > 10000 ? '#fed976' : //10k
+           d > 5000 ? '#ffeda0' :  //5k
+                    '#ffffcc';
 }
 
 
@@ -85,7 +85,7 @@ var STCCList = React.createClass({
         var scope = this;
         var newState = scope.state;
         
-        console.log("Selected STCC Value",value)
+
         if(newState.selected.indexOf(value) != -1){
             newState.selected.splice(newState.selected.indexOf(value),1)
         }
@@ -182,16 +182,17 @@ var TransDashboard = React.createClass({
                         loaded:true,
                         onEachFeature: function(feature,layer){
                             var featureScope = this,
-                                geoID = feature.properties.GEO_ID.substring(9,14);
+                                geoID = feature.properties.GEO_ID.substring(9,14),
+                                curFeature = feature
 
-                            this.tons = countyData[geoID]
-                            // if(this.tons){
-                            //     console.log(feature.properties.NAME,this.tons)
-                            // }
-                            var popupContent = "<b>" + feature.properties.NAME + " county</b> <br/>" + comma(d3.round(this.tons)) + " Tons";
+                            this.tons = d3.round(countyData[geoID])
+
+
+                            var popupContent = "<b>" + feature.properties.NAME + " county</b> <br/>" + comma(this.tons) + " Tons";
                             layer.bindPopup(popupContent);  
 
                             this.style = function(feature){
+                                
                                 return {
                                     fillColor: getColor(featureScope.tons),
                                     weight: 2,
@@ -255,8 +256,7 @@ var TransDashboard = React.createClass({
                 else{
                     countyObject[curCounty.Destination_County_FIPS_Code] = curCounty.total_tons;
                 }
-            }) 
-            console.log(countyObject)
+            })
             var name = "usCounties" + params["source"] + params["STCC2"] + params["STCC3"]
             scope.loadLayer(name,"usCounties.geojson",countyObject);   
         })       
