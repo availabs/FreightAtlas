@@ -166,7 +166,7 @@ var TransDashboard = React.createClass({
         var scope = this,
             infoPanel = document.getElementById('info');
 
-        infoPanel.innerHTML = '<h4>' + scope.state.params["source"] + ' of exports</h4>' + '<b>' + props["name"] + ' county'+'</b><br />' + comma(props.tons) + ' Tons';
+        infoPanel.innerHTML = scope.state.params["source"] + ' of exports <br/><br/>' + '<b>' + props["name"] + ' county'+'</b><br />' + comma(props.tons) + ' Tons';
     },
     highlightFeature:function (e) {
         var layer = e.target,

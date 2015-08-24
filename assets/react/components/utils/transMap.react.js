@@ -201,7 +201,7 @@ var Map = React.createClass({
 
         new L.Control.Zoom({ position: 'topright' }).addTo(mapVar); 
 
-        var info = L.control();
+        var info = L.control.attribution();
 
         info.onAdd = function (map) {
             this._div = L.DomUtil.create('div', 'mapsidebar'); // create a div with a class "info"
@@ -209,7 +209,7 @@ var Map = React.createClass({
             this._div.style.backgroundColor='white';
             this._div.style.position='relative';
             this._div.style.width='100%';
-            this._div.innerHTML = '<h4>origin of exports</h4><br/>Hover over a county';
+            this._div.innerHTML = 'origin of exports<br/><br/>Hover over a county';
             return this._div;
         };
 
