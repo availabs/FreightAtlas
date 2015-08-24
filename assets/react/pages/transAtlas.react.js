@@ -162,6 +162,35 @@ var TransDashboard = React.createClass({
             }
         }
     },
+    highlightFeature:function (e) {
+        var layer = e.target;
+
+        layer.setStyle({
+            weight: 5,
+            color: '#666',
+            dashArray: '',
+            fillOpacity: 0.7
+        });
+
+        if (!L.Browser.ie && !L.Browser.opera) {
+            layer.bringToFront();
+        }
+
+        //info.update(layer.feature.properties);
+    },
+    resetHighlight:function (e) {
+        var layer = e.target;
+        if (!L.Browser.ie && !L.Browser.opera) {
+            layer.bringToBack();
+        }
+        //console.log(e);
+        layer.setStyle({
+            weight: 2,
+            color: 'white',
+            dashArray: '3'
+        })
+        //info.update();
+    },
     loadLayer:function(newLayName,url,countyData){
         var scopeDash = this,
             newState = scopeDash.state,
@@ -202,6 +231,11 @@ var TransDashboard = React.createClass({
                                     fillOpacity: 0.7
                                 }
                             }
+                            layer.on({
+                                mouseover: scopeDash.highlightFeature,
+                                mouseout: scopeDash.resetHighlight,
+                                // click: zoomToFeature
+                            });
                         }
                     }
                 }
