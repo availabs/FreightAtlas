@@ -202,7 +202,9 @@ var TransDashboard = React.createClass({
             color: 'white',
             dashArray: '3'
         })
-        //info.update();
+    },
+    zoomToFeature: function(e) {
+        e.target._map.fitBounds(e.target.getBounds());
     },
     loadLayer:function(newLayName,url,countyData){
         var scopeDash = this,
@@ -229,10 +231,6 @@ var TransDashboard = React.createClass({
 
                             this.tons = d3.round(countyData[geoID])
 
-
-                            var popupContent = "<b>" + feature.properties.NAME + " county</b> <br/>" + comma(this.tons) + " Tons";
-                            layer.bindPopup(popupContent);  
-
                             this.style = function(feature){
                                 
                                 return {
@@ -249,7 +247,7 @@ var TransDashboard = React.createClass({
                             layer.on({
                                 mouseover: scopeDash.highlightFeature,
                                 mouseout: scopeDash.resetHighlight,
-                                // click: zoomToFeature
+                                click: scopeDash.zoomToFeature
                             });
                         }
                     }
