@@ -2,7 +2,7 @@
 
 var nodemailer = require('nodemailer'),
 	mg = require('nodemailer-mailgun-transport'),
-
+	fs = require('fs'),
 	auth = {
 	  auth: {
 	    api_key: 'key-9390c0dd227468f4612c121cf175e131',
@@ -63,51 +63,118 @@ module.exports = {
 
 			console.log(source, STCC2, STCC3);
     
+		fileCache.checkCache({source:source,STCC2:STCC2,STCC3:STCC3},function(data){
+
+			if(data){
+ 				console.log('cache sucess');
+ 				console.time('send cache');
+ 				res.send(data)
+ 				console.timeEnd('send cache');
+			}
+			else{
+				var query= 'SELECT ';
+
+				if(source === "origin"){
+					query += '"Origin_County_FIPS_Code",';
+				}
+				else{
+					query += '"Destination_County_FIPS_Code",';
+				}
+
+				query += 'sum("Total_Annual_tons") as total_tons FROM "2012_Transearch" ';
+
+				if(STCC2 === 'all'){
+
+				}
+				else{
+					query += 'WHERE "STCC2" = "' + STCC2 + '"'
+				}
+
+				if(STCC3 === 'all'){
+
+				}
+				else{
+					query += 'AND "STCC3" = "' + STCC3 + '"'
+				}
+
+				if(source === "origin"){
+					query+= 'group by "Origin_County_FIPS_Code"'
+				}
+				else{
+					query+= 'group by "Destination_County_FIPS_Code"'
+				}
 
 
-		var query= 'SELECT ';
-
-		if(source === "origin"){
-			query += '"Origin_County_FIPS_Code",';
-		}
-		else{
-			query += '"Destination_County_FIPS_Code",';
-		}
-
-		query += 'sum("Total_Annual_tons") as total_tons FROM "2012_Transearch" ';
-
-
-
-
-		if(STCC2 === 'all'){
-
-		}
-		else{
-			query += 'WHERE "STCC2" = "' + STCC2 + '"'
-		}
-
-		if(STCC3 === 'all'){
-
-		}
-		else{
-			query += 'AND "STCC3" = "' + STCC3 + '"'
-		}
-
-		if(source === "origin"){
-			query+= 'group by "Origin_County_FIPS_Code"'
-		}
-		else{
-			query+= 'group by "Destination_County_FIPS_Code"'
-		}
-
-
-    	//var finalQuery = 'SELECT  "Origin_County_FIPS_Code",sum("Total_Annual_tons") as total_tons FROM "2012_Transearch" group by "Origin_County_FIPS_Code" ';
-    	console.log(query)
-		Transearch_2012.query(query,function(err,data){
-
-				res.json({'success' : data});
-			})
-
-
-    }
+		    	//var finalQuery = 'SELECT  "Origin_County_FIPS_Code",sum("Total_Annual_tons") as total_tons FROM "2012_Transearch" group by "Origin_County_FIPS_Code" ';
+		    	console.log(query)
+				Transearch_2012.query(query,function(err,data){
+					console.time('send Data');
+					res.json({'success' : data});
+					console.timeEnd('send Data');
+					console.log('caching');
+					fileCache.addData({source:source,STCC2:STCC2,STCC3:STCC3},data);
+				})
+			}
+		})
+	}
 };
+
+var fileCache = {
+	
+	cache : {},
+
+	checkCache : function(request,callback){
+		console.log('------------checkCache----'+request.source+'---'+request.STCC2+request.STCC3+'----------------')
+		var file = __dirname.substring(0,__dirname.length-15) + 'assets/cache/'+request.source+'/'+request.STCC2+request.STCC3+'.json';
+		
+		//console.log(file,callback);
+		console.time('file Read')
+		fs.readFile(file, 'utf8', function (err, data) {
+		  if (err) {
+		    console.log('Error: ' + err);
+		    return callback(false);
+		  }
+		 		 
+		  console.timeEnd('file Read');
+		  data = JSON.parse(data);
+		  return callback(data);
+		
+		});
+
+	},
+
+	addData : function(request,data){
+		var dir = __dirname.substring(0,__dirname.length-15) + 'assets/cache/'+request.source+'/';
+
+		ensureExists(dir, '0744', function(err) {
+		    if (err){
+		    	console.log('ensure exists error')
+		    } // handle folder creation error
+		    var file = dir+request.STCC2+request.STCC3+'.json';
+		    
+		    fs.writeFile(file,JSON.stringify(data), function(err) {
+			    if(err) {
+			        console.log('file write error',err);
+			    } else {
+			        console.log("The file was saved!",file);
+			    }
+			});
+		
+		});
+
+	}
+
+}
+
+function ensureExists(path, mask, cb) {
+    if (typeof mask == 'function') { // allow the `mask` parameter to be optional
+        cb = mask;
+        mask = '0777';
+    }
+    fs.mkdir(path, mask, function(err) {
+        if (err) {
+            if (err.code == 'EEXIST') cb(null); // ignore the error if the folder already exists
+            else cb(err); // something else went wrong
+        } else cb(null); // successfully created folder
+    });
+}

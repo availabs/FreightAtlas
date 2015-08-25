@@ -196,7 +196,7 @@ var TransDashboard = React.createClass({
             layer.bringToBack();
         }
 
-
+        
         layer.setStyle({
             weight: 2,
             color: 'white',
