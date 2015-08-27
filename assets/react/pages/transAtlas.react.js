@@ -33,19 +33,14 @@ function getColor(d) {
 
 var STCCItem = React.createClass({
     getInitialState:function(){
-        return{selected:false}
+        return{selected:true}
     },
     handleClick:function(){
        this.setState({selected:!this.state.selected})
        this.props.onClick(this.props.value)
     },
-    componentWillMount:function(){
-        if(this.props.type === "3"){
-            this.setState({selected:true});
-        }
-    },
     render:function(){
-        if(this.props.type === "2"){
+        if(this.props.type === "2" ){
             var btnStyle = {
                 width:'95%',
                 textAlign:'left',
@@ -61,6 +56,7 @@ var STCCItem = React.createClass({
                 border:'none'
             }            
         }
+
         var curStyle = this.state.selected ? 'layListActive' : 'layListInactive'
 
         return(
@@ -68,6 +64,7 @@ var STCCItem = React.createClass({
                 <button 
                     className={curStyle} 
                     style = {btnStyle} 
+                    id={this.props.value}
                     value={this.props.value} 
                     onClick={this.handleClick}>
                     {this.props.name}
@@ -79,7 +76,7 @@ var STCCItem = React.createClass({
 
 var STCCList = React.createClass({
     getInitialState:function(){
-        return{selected:[]}
+        return{selected:[Object.keys(STCC2)]}
     },
     onClick:function(value){
         var scope = this;
@@ -93,6 +90,42 @@ var STCCList = React.createClass({
             newState.selected.push(value);
         }
         scope.setState(newState);
+    },
+    selectAll:function(){
+        console.log("Select All")
+
+        console.log(React.findDOMNode(this).children)
+        var scope = this;
+        Object.keys(React.findDOMNode(this).children).forEach(function(index){
+            if(React.findDOMNode(scope).children[index].children[0]){
+                console.log(React.findDOMNode(scope).children[index].children[0]);
+                React.findDOMNode(scope).children[index].children[0].className = "layListActive"
+            }
+            //React.findDOMNode(scope).children[index].className="layListActive"
+        })
+        this.setState({selected:[Object.keys(STCC2)]})
+    },
+    deselectAll:function(){
+        console.log("Deselect All")
+
+        console.log(React.findDOMNode(this).children)
+        var scope = this;
+        Object.keys(React.findDOMNode(this).children).forEach(function(index){
+            if(React.findDOMNode(scope).children[index].children[0]){
+                console.log(React.findDOMNode(scope).children[index].children[0]);
+                React.findDOMNode(scope).children[index].children[0].className = "layListInactive"
+            }
+            if(React.findDOMNode(scope).children[index].children[0]){
+                if(React.findDOMNode(scope).children[index].children[0].children[0]){
+                    console.log("This used to be selected");
+                    React.findDOMNode(scope).children[index].children[0].children[0].className = "layListInactive"
+                }
+
+            }
+            //React.findDOMNode(scope).children[index].className="layListActive"
+        })
+
+        this.setState({selected:[]})
     },
     render:function(){
         var scope = this;
@@ -142,8 +175,31 @@ var STCCList = React.createClass({
                 )
             }
         })
+
         return (
             <div>
+                <button
+                    className={"layListInactive"}
+                        style={{
+                            width:'45%',
+                            float:'left',
+                            fontSize:'15px',
+                            border:'1px'
+                        }}
+                        onClick={this.selectAll}>
+                    Select All
+                </button>
+                <button
+                    className={"layListInactive"}
+                    style={{
+                        width:'45%',
+                        float:'right',
+                        fontSize:'15px',
+                        border:'1px'
+                    }}
+                    onClick={this.deselectAll}>
+                    Deselect All
+                </button>
                 {stcc2List}
             </div>
         )
@@ -196,7 +252,7 @@ var TransDashboard = React.createClass({
             layer.bringToBack();
         }
 
-        
+
         layer.setStyle({
             weight: 2,
             color: 'white',
@@ -295,8 +351,9 @@ var TransDashboard = React.createClass({
 
         d3.json('/transquery')
         .post(JSON.stringify(params),function(err,dataReturned){
+            
+            dataReturned.rows.forEach(function(curCounty){
 
-            dataReturned.success.rows.forEach(function(curCounty){
                 if(scope.state.params["source"] === "origin"){
                     countyObject[curCounty.Origin_County_FIPS_Code] = curCounty.total_tons;
                 }
@@ -360,11 +417,60 @@ var TransDashboard = React.createClass({
                 icon:'/images/nyslogo',
                 title:'STCC2 Codes',
                 content:<div>
-                            <h3>Filter by STCC2 Code</h3>
-                            <STCCList />
+                            <span>
+                                <button
+                                    ref="executeFilter"
+                                    id="executeFilter"
+                                    className={"layListInactive"}
+                                        style={{
+                                            width:'45%',
+                                            float:'right',
+                                            fontSize:'15px',
+                                            border:'1px'
+                                        }}
+                                    onClick={this.executeFilter}> 
+                                        Filter
+                                </button>
+                                <h4 style={{width:'45%'}}>Filter by STCC Code</h4>
+                            </span>
+                            <STCCList ref="list"/>
                         </div>
             }                                  
         ]
+    },
+    executeFilter:function(e){
+        var exclude =[];
+        var scope = this;
+        var newState = scope.state;
+
+        var curStcc2 = this.state.params["STCC2"]
+        console.log("Before change STCC2",curStcc2)
+
+        if(this.refs["list"].state["selected"].length === 1){
+            console.log("All are Selected");
+            newState.params.STCC2 = "all";
+
+            if(curStcc2 != "all"){
+                console.log("New Layer")
+                scope.setState(newState)
+                scope.getLayer(scope.state.params);               
+            }
+        }
+        else{
+            console.log("All but the following are selected")
+            for(var i=1; i<this.refs["list"].state["selected"].length;i++){
+                console.log(this.refs["list"].state["selected"][i]);
+                exclude.push(this.refs["list"].state["selected"][i]);
+            }
+            console.log("All STCC2 except: ", exclude);
+            newState.params.STCC2=exclude;
+
+            if(exclude != curStcc2){
+                console.log("New Layer")
+                scope.setState(newState)
+                scope.getLayer(scope.state.params)
+            }
+        }
     },
     sourceChange:function(e){
         var scope = this,

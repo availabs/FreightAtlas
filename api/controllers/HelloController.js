@@ -87,14 +87,22 @@ module.exports = {
 
 				}
 				else{
-					query += 'WHERE "STCC2" = "' + STCC2 + '"'
+					query += 'WHERE '
+						for(var i=0;i<STCC2.length;i++){
+							if(i != STCC2.length-1){
+								query += '"STCC2" != \'' + STCC2[i] + '\' AND '
+							}
+							else{
+								query += '"STCC2" != \'' + STCC2[i] + '\' '
+							}
+						}
 				}
 
 				if(STCC3 === 'all'){
 
 				}
 				else{
-					query += 'AND "STCC3" = "' + STCC3 + '"'
+					query += 'AND "STCC3" != "' + STCC3 + '"'
 				}
 
 				if(source === "origin"){
@@ -109,7 +117,7 @@ module.exports = {
 		    	console.log(query)
 				Transearch_2012.query(query,function(err,data){
 					console.time('send Data');
-					res.json({'success' : data});
+					res.json(data);
 					console.timeEnd('send Data');
 					console.log('caching');
 					fileCache.addData({source:source,STCC2:STCC2,STCC3:STCC3},data);
