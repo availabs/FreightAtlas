@@ -48,7 +48,7 @@ module.exports = {
         path:"../finalGeoJson/Intermodal_Facility2.geojson",
         options:{
             featDetails:[],
-            zoomOnLoad:true,
+            zoomOnLoad:false,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -83,7 +83,7 @@ module.exports = {
         path:"../finalGeoJson/Major_Airport.geojson",
         options:{
             featDetails:[],
-            zoomOnLoad:true,
+            zoomOnLoad:false,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -118,7 +118,7 @@ module.exports = {
         path:"../finalGeoJson/Major_Ports2.geojson",
         options:{
             featDetails:[],
-            zoomOnLoad:true,
+            zoomOnLoad:false,
             visible:false,
             loaded:false,
             style:function(feat){

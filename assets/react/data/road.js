@@ -12,7 +12,7 @@ module.exports = {
         path:"../finalGeoJson/Interstate.json",
         options:{
             featDetails:[],
-            zoomOnLoad:true,
+            zoomOnLoad:false,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -49,7 +49,7 @@ module.exports = {
         path:"../finalGeoJson/NHS.json",
         options:{
             featDetails:[],
-            zoomOnLoad:true,
+            zoomOnLoad:false,
             visible:false,
             loaded:false,
             style:function(feat){

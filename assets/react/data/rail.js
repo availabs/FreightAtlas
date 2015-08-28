@@ -13,7 +13,7 @@ module.exports = {
         path:"../finalGeoJson/Class1Rail.json",
         options:{
             featDetails:[],
-            zoomOnLoad:true,
+            zoomOnLoad:false,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -43,7 +43,7 @@ module.exports = {
         path:"../finalGeoJson/Class1TrackRights.json",
         options:{
             featDetails:[],
-            zoomOnLoad:true,
+            zoomOnLoad:false,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -72,7 +72,7 @@ module.exports = {
         path:"../finalGeoJson/ShortLine.json",
         options:{
             featDetails:[],
-            zoomOnLoad:true,
+            zoomOnLoad:false,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -101,7 +101,7 @@ module.exports = {
         path:"../finalGeoJson/ShortLineTrackRights.json",
         options:{
             featDetails:[],
-            zoomOnLoad:true,
+            zoomOnLoad:false,
             visible:false,
             loaded:false,
             style:function(feat){

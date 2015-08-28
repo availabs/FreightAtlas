@@ -13,7 +13,7 @@ module.exports = {
         path:"../finalGeoJson/State.geojson",
         options:{
             featDetails:[],
-            zoomOnLoad:true,
+            zoomOnLoad:false,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -38,7 +38,7 @@ module.exports = {
         path:"../finalGeoJson/City_Town.json",
         options:{
             featDetails:[],
-            zoomOnLoad:true,
+            zoomOnLoad:false,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -68,7 +68,7 @@ module.exports = {
         path:"../finalGeoJson/County.geojson",
         options:{
             featDetails:[],
-            zoomOnLoad:true,
+            zoomOnLoad:false,
             visible:false,
             loaded:false,
             style:function(feat){
@@ -190,7 +190,7 @@ module.exports = {
         path:"../finalGeoJson/NYSDOT_Regions.geojson",
         options:{
             featDetails:[],
-            zoomOnLoad:true,
+            zoomOnLoad:false,
             visible:false,
             loaded:false,
             style:function(feat){
