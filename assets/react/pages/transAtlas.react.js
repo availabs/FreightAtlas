@@ -155,7 +155,7 @@ var STCCItem = React.createClass({
 
 var STCCList = React.createClass({
     getInitialState:function(){
-        return{selected:[Object.keys(STCC2)]}
+        return{selected:[]}
     },
     onClick:function(value){
         var scope = this;
@@ -177,7 +177,7 @@ var STCCList = React.createClass({
         Object.keys(this.refs).forEach(function(key){
             scope.refs[key].setState({
                                 selected:true,
-                                expanded:true
+                                expanded:scope.refs[key].expanded
                                 });
         })
 
@@ -186,12 +186,14 @@ var STCCList = React.createClass({
                 React.findDOMNode(scope).children[index].children[0].className = "layListActive"
             }
         })
-        this.setState({selected:[Object.keys(STCC2)]})
+        this.setState({selected:[]})
     },
     deselectAll:function(){
         console.log("Deselect All")
         var scope = this;
+        var items = []
         Object.keys(this.refs).forEach(function(key){
+            items.push(key)
             scope.refs[key].setState({
                                 selected:false,
                                 expanded:false
@@ -204,7 +206,7 @@ var STCCList = React.createClass({
             }
         })
 
-        this.setState({selected:[]})
+        this.setState({selected:items})
     },
     render:function(){
         var scope = this;
@@ -491,7 +493,7 @@ var TransDashboard = React.createClass({
         var curStcc2 = this.state.params["STCC2"]
         console.log("Before change STCC2",curStcc2)
 
-        if(this.refs["list"].state["selected"].length === 1){
+        if(this.refs["list"].state["selected"].length === 0){
             console.log("All are Selected");
             newState.params.STCC2 = "all";
 
@@ -503,7 +505,7 @@ var TransDashboard = React.createClass({
         }
         else{
             console.log("All but the following are selected")
-            for(var i=1; i<this.refs["list"].state["selected"].length;i++){
+            for(var i=0; i<this.refs["list"].state["selected"].length;i++){
                 console.log(this.refs["list"].state["selected"][i]);
                 exclude.push(this.refs["list"].state["selected"][i]);
             }
