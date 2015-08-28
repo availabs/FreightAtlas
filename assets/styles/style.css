@@ -70,6 +70,12 @@ body{
 	font:12px/1.5 "gotham_mediumregular", Arial, Helvetica, sans-serif;
 }
 
+.trans3{
+  background:#777777;
+  color:#fff;
+  font:12px/1.5 "gotham_mediumregular", Arial, Helvetica, sans-serif;  
+}
+
 .layListInactive:hover{
 	background-color: #ddd;
 }

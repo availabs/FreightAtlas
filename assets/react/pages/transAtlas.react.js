@@ -33,44 +33,123 @@ function getColor(d) {
 
 var STCCItem = React.createClass({
     getInitialState:function(){
-        return{selected:true}
+        return{
+            selected:true,
+            expanded:false
+        }
     },
-    handleClick:function(){
+    handle3Click:function(){
+        //Toggles Item on or off
        this.setState({selected:!this.state.selected})
        this.props.onClick(this.props.value)
     },
+    handle2Click:function(){
+        //Adds a list of STTCItems representing STCC3 Codes
+        //It is placed under the appropriate STCC2 code
+        this.setState({
+            selected:this.state.selected,
+            expanded:!this.state.expanded
+        })
+
+    },
     render:function(){
+        var scope = this;
         if(this.props.type === "2" ){
             var btnStyle = {
-                width:'95%',
+                width:'75%',
                 textAlign:'left',
                 padding:'10px',
                 border:'none'
             }
+            var style = {
+                width:'25%',
+                float:'right',
+                fontSize:'15px',
+                padding:'5px',
+                border:'1px'  
+            }
+            var curStyle = this.state.selected ? 'layListActive' : 'layListInactive'
         }
         if(this.props.type === "3"){
             var btnStyle = {
-                width:'70%',
+                width:'60%',
                 textAlign:'left',
-                paddingLeft:'50px',
+                padding:'10px',
                 border:'none'
-            }            
+            }
+            var style = {
+                width:'40%',
+                float:'right',
+                fontSize:'10px',
+                padding:'10px',
+                border:'1px'                
+            }
+            var curStyle = this.state.selected ? 'trans3' : 'layListInactive'           
         }
 
-        var curStyle = this.state.selected ? 'layListActive' : 'layListInactive'
 
-        return(
-            <div>
-                <button 
-                    className={curStyle} 
-                    style = {btnStyle} 
-                    id={this.props.value}
-                    value={this.props.value} 
-                    onClick={this.handleClick}>
-                    {this.props.name}
-                </button>
-            </div>
-        )
+
+        //In this render, if EXPANDED, draw STCC3 items
+
+        if(this.state.expanded){
+            //subList is a list of sub-codes
+            var stcc3List = Object.keys(STCC3).map(function(key,index){
+                //Find STCC3 codes with same first numbers
+                if(key.substring(0,2) === scope.props.value){
+                    //for every matching subkey, make an item
+                    return(
+                        <STCCItem 
+                            type="3" 
+                            name={STCC3[key]} 
+                            onClick={scope.props.onClick} 
+                            value ={key} />
+                    )
+                }
+            })
+
+            //Return the header button, plus the list of subkeys
+            return(
+                <div>
+                    <button 
+                        className={curStyle} 
+                        style = {btnStyle} 
+                        id={this.props.value}
+                        value={this.props.value} 
+                        onClick={this.handle2Click}>
+                        {this.props.name}
+                    </button>
+                    <button
+                        className={"layListInactive"}
+                        style={style}
+                        onClick={this.handle3Click}>
+                        On/Off                    
+                    </button>
+                    {stcc3List}
+                </div>
+            )
+        }
+        else{
+            return(
+                <div>
+                    <button 
+                        className={curStyle} 
+                        style = {btnStyle} 
+                        id={this.props.value}
+                        value={this.props.value} 
+                        onClick={this.handle2Click}>
+                        {this.props.name}
+                    </button>
+                    <button
+                        className={"layListInactive"}
+                        style={style}
+                        onClick={this.handle3Click}>
+                        On/Off                    
+                    </button>
+                </div>
+            )
+        }        
+
+
     }
 })
 
@@ -93,36 +172,36 @@ var STCCList = React.createClass({
     },
     selectAll:function(){
         console.log("Select All")
-
-        console.log(React.findDOMNode(this).children)
         var scope = this;
+
+        Object.keys(this.refs).forEach(function(key){
+            scope.refs[key].setState({
+                                selected:true,
+                                expanded:true
+                                });
+        })
+
         Object.keys(React.findDOMNode(this).children).forEach(function(index){
             if(React.findDOMNode(scope).children[index].children[0]){
-                console.log(React.findDOMNode(scope).children[index].children[0]);
                 React.findDOMNode(scope).children[index].children[0].className = "layListActive"
             }
-            //React.findDOMNode(scope).children[index].className="layListActive"
         })
         this.setState({selected:[Object.keys(STCC2)]})
     },
     deselectAll:function(){
         console.log("Deselect All")
-
-        console.log(React.findDOMNode(this).children)
         var scope = this;
+        Object.keys(this.refs).forEach(function(key){
+            scope.refs[key].setState({
+                                selected:false,
+                                expanded:false
+                                });
+        })
+
         Object.keys(React.findDOMNode(this).children).forEach(function(index){
             if(React.findDOMNode(scope).children[index].children[0]){
-                console.log(React.findDOMNode(scope).children[index].children[0]);
                 React.findDOMNode(scope).children[index].children[0].className = "layListInactive"
             }
-            if(React.findDOMNode(scope).children[index].children[0]){
-                if(React.findDOMNode(scope).children[index].children[0].children[0]){
-                    console.log("This used to be selected");
-                    React.findDOMNode(scope).children[index].children[0].children[0].className = "layListInactive"
-                }
-
-            }
-            //React.findDOMNode(scope).children[index].className="layListActive"
         })
 
         this.setState({selected:[]})
@@ -132,48 +211,14 @@ var STCCList = React.createClass({
         //Loop through items
         //Make an STCC2 Item for each one
         var stcc2List = Object.keys(STCC2).map(function(key,index){
-            //Loop through selected STCC
-            //For every one, make another set of STCC items 
-
-            //If it doesn't equal -1, it is selected.
-            //Need to make sub-buttons
-            if(scope.state.selected.indexOf(key) !== -1){
-                //subList is a list of sub-codes
-                var stcc3List = Object.keys(STCC3).map(function(subKey,subIndex){
-                    //Find STCC3 codes with same first numbers
-                    if(subKey.substring(0,2) === key){
-                        //for every matching subkey, make an item
-                        return(
-                            <STCCItem 
-                                type="3" 
-                                name={STCC3[subKey]} 
-                                onClick={scope.onClick} 
-                                value ={subKey} />
-                        )
-                    }
-                })
-                //Return the header button, plus the list of subkeys
-                return(
-                    <div>
-                        <STCCItem 
-                            type="2" 
-                            name={STCC2[key]} 
-                            onClick={scope.onClick} 
-                            value={key} />
-                        {stcc3List}
-                    </div>
-                )
-            }
-            //Otherwise, make normal one
-            else{
                 return(
                     <STCCItem 
+                        ref={key}
                         type="2" 
                         name={STCC2[key]} 
                         onClick={scope.onClick} 
                         value ={key} />
                 )
-            }
         })
 
         return (
