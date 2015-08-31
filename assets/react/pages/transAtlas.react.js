@@ -462,7 +462,7 @@ var TransDashboard = React.createClass({
             {
                 name:'home3',
                 icon:'/images/nyslogo',
-                title:'STCC2 Codes',
+                title:'STCC Codes',
                 content:<div>
                             <span>
                                 <button
