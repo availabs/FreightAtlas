@@ -99,10 +99,25 @@ module.exports = {
 				}
 
 				if(STCC3 === 'all'){
-
 				}
 				else{
-					query += 'AND "STCC3" != "' + STCC3 + '"'
+
+					if(STCC2==="all"){
+						query += 'WHERE '
+					}
+					else{
+						query += 'AND '
+					}
+
+					for(var i=0;i<STCC3.length;i++){
+
+						if(i != STCC3.length-1){
+							query += '"STCC3" != \'' + STCC3[i].replace(" ", "") + '\' AND '
+						}
+						else{
+							query += '"STCC3" != \'' + STCC3[i].replace(" ", "") + '\' '
+						}
+					}
 				}
 
 				if(source === "origin"){

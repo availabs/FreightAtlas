@@ -486,7 +486,8 @@ var TransDashboard = React.createClass({
         ]
     },
     executeFilter:function(e){
-        var exclude =[];
+        var exclude2 =[];
+        var exclude3=[];
         var scope = this;
         var newState = scope.state;
 
@@ -506,13 +507,23 @@ var TransDashboard = React.createClass({
         else{
             console.log("All but the following are selected")
             for(var i=0; i<this.refs["list"].state["selected"].length;i++){
-                console.log(this.refs["list"].state["selected"][i]);
-                exclude.push(this.refs["list"].state["selected"][i]);
-            }
-            console.log("All STCC2 except: ", exclude);
-            newState.params.STCC2=exclude;
 
-            if(exclude != curStcc2){
+                if(this.refs["list"].state["selected"][i].length === 2){
+                    console.log("This is an 2",this.refs["list"].state["selected"][i]);
+                    exclude2.push(this.refs["list"].state["selected"][i]);
+                }
+                else{
+                    console.log("This is an 3",this.refs["list"].state["selected"][i]);
+                    exclude3.push(this.refs["list"].state["selected"][i]);
+                }
+
+            }
+            console.log("All STCC2 except: ", exclude2);
+            console.log("All STCC3 except: ", exclude3);            
+            newState.params.STCC2=exclude2;
+            newState.params.STCC3=exclude3;
+
+            if(exclude2 != curStcc2){
                 console.log("New Layer")
                 scope.setState(newState)
                 scope.getLayer(scope.state.params)

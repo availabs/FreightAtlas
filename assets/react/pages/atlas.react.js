@@ -146,7 +146,7 @@ var WalkerDashboard = React.createClass({
     },
     render: function() {
         var scope = this;
-        
+        console.log(scope)
         var nextCoords = this.props.currentHouse ? this.props.currentHouse.geometry.coordinates : null,
             imgStyle = {
                 position: 'absolute',
