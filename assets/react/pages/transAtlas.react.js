@@ -269,7 +269,9 @@ var TransDashboard = React.createClass({
         var scope = this,
             infoPanel = document.getElementById('info');
 
-        infoPanel.innerHTML = scope.state.params["source"] + ' of exports <br/><br/>' + '<b>' + props["name"] + ' county'+'</b><br />' + comma(props.tons) + ' Tons';
+        if(props.tons && props["name"]){
+            infoPanel.innerHTML = scope.state.params["source"] + ' of exports <br/><br/>' + '<b>' + props["name"] + ' county'+'</b><br />' + comma(props.tons) + ' Tons';
+        }
     },
     highlightFeature:function (e) {
         var layer = e.target,
@@ -282,9 +284,15 @@ var TransDashboard = React.createClass({
             fillOpacity: 0.7
         });
 
+        if(layer.feature.properties.NAME){
+            props["name"] = layer.feature.properties.NAME;
+            if(layer.options){
+                props["tons"] = layer.options.tons
+            }           
+        }
 
-        props["name"] = layer.feature.properties.NAME;
-        props["tons"] = layer.options.tons
+
+
 
         this.updateInfo(props)
         if (!L.Browser.ie && !L.Browser.opera) {
@@ -521,7 +529,7 @@ var TransDashboard = React.createClass({
             if(exclude3.length === 0){
                 exclude3="all";
             }
-            
+
             console.log("All STCC2 except: ", exclude2);
             console.log("All STCC3 except: ", exclude3);
             newState.params.STCC2=exclude2;
