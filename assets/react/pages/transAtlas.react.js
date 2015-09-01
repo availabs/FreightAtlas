@@ -518,8 +518,12 @@ var TransDashboard = React.createClass({
                 }
 
             }
+            if(exclude3.length === 0){
+                exclude3="all";
+            }
+            
             console.log("All STCC2 except: ", exclude2);
-            console.log("All STCC3 except: ", exclude3);            
+            console.log("All STCC3 except: ", exclude3);
             newState.params.STCC2=exclude2;
             newState.params.STCC3=exclude3;
 
