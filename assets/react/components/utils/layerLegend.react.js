@@ -33,38 +33,15 @@ var layerLegend = React.createClass({
 				backgroundColor:scope.props.activeLayers[key].options.style().color
 			}
 
-			var lineStyle={}
+			if(scope.props.activeLayers[key].options.visible == true)
 
-			if(scope.props.activeLayers[key].options.style().dashArray){
-				console.log(scope.props.activeLayers[key].options.style().dashArray)
-				lineStyle={
-					height:10,
-					width:1,
-					stroke:scope.props.activeLayers[key].options.style().color,
-					strokeDashArray:scope.props.activeLayers[key].options.style().dashArray
-				}	
-			}
-
-			if(scope.props.activeLayers[key].options.visible == true){
-				if(lineStyle.height){
-		            return (
-	        		   		<tr id={key}> 
-		            		<td style={style}> </td>
-		            		<td style={{padding:"5px"}}> {key} </td>
-		            		<td><svg height="30px" width="1px"><line x1='0' y1='0' x2='0' y2='30' strokeDasharray={lineStyle.strokeDashArray} style={{stroke:lineStyle.stroke, strokeWidth:20}}></line></svg></td>
-			           		</tr>
-		                )
-				}
-				else{
 		            return (
 	        		   		<tr id={key}> 
 		            		<td style={style}> </td>
 		            		<td style={{padding:"5px"}}> {key} </td>
 			           		</tr>
 		                )					
-				}
-
-        	}
+				        	
         })
 
 		var legendStyle = {display: Object.keys(this.props.activeLayers).filter(function(d){ return scope.props.activeLayers[d].options.visible === true }).length > 0 ? "block" : 'none'};

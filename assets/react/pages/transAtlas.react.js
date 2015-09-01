@@ -13,7 +13,8 @@ var React = require('react'),
     // -- data
     STCC2 = require('../data/stcc2'),
     STCC3 = require('../data/stcc3'),
-    
+    //StateFips = require('../../data/finalGeoJson/stateFips'),
+
     // -- utils;
     d3 = require('d3'),
     comma = d3.format(",");
@@ -272,6 +273,9 @@ var TransDashboard = React.createClass({
         if(props.tons && props["name"]){
             infoPanel.innerHTML = scope.state.params["source"] + ' of exports <br/><br/>' + '<b>' + props["name"] + ' county'+'</b><br />' + comma(props.tons) + ' Tons';
         }
+        else{
+            infoPanel.innerHTML = scope.state.params["source"] + ' of exports <br/><br/>' + '<b>' + props["name"] + ' county'+'</b><br />' + 'No data for this county';
+        }
     },
     highlightFeature:function (e) {
         var layer = e.target,
@@ -283,7 +287,7 @@ var TransDashboard = React.createClass({
             dashArray: '',
             fillOpacity: 0.7
         });
-
+        console.log(layer)
         if(layer.feature.properties.NAME){
             props["name"] = layer.feature.properties.NAME;
             if(layer.options){
