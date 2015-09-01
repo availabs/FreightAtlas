@@ -46,17 +46,21 @@ var layerLegend = React.createClass({
 
 		var legendStyle = {display: Object.keys(this.props.activeLayers).filter(function(d){ return scope.props.activeLayers[d].options.visible === true }).length > 0 ? "block" : 'none'};
 		var btnStyle = {
-                width:'5%',
-                textAlign:'center',
-				padding:"10px",
-                border:'none',
-                float:"right"
+                textAlign:'left',
+                fontSize: '12px',
+				padding:"3px",
+                border:'4px',
+                position:'absolute',
+                top:'4px',
+                right:'4px',
+                boxShadow: '0px 1px 3px rgba(0, 0, 0, 0.55)',
+				borderRadius:'3px'
             }
 
         if(scope.state.display){
 			return (
 					<div className={"layerLegend"} style={legendStyle}>
-						<button onClick={this.toggleTable} className={"layListInactive"} style={btnStyle}>x</button>
+						<button onClick={this.toggleTable} className={"layListInactive"} style={btnStyle}>X</button>
 						<span>
 						<h4 >Layers </h4> 
 						</span>
@@ -71,7 +75,7 @@ var layerLegend = React.createClass({
         else{
 			return (
 					<div className={"layerLegend"} style={legendStyle}>
-						<button onClick={this.toggleTable }className={"layListInactive"} style={btnStyle}>x</button>
+						<button onClick={this.toggleTable }className={"layListInactive"} style={btnStyle}>+</button>
 											<span>
 						<h4 >Layers </h4> 
 						</span>

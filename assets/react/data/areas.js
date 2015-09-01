@@ -102,7 +102,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("SelectCities_PopOver20k"),
+                    color:"#d75842",
                     fillOpacity:0.35,
                     weight:2,
                     opacity:0.85,
@@ -131,7 +131,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("MPO_Cities"),
+                    color:'#750b15',
                     fillOpacity:0.2,
                     opacity:0.85,
                 }

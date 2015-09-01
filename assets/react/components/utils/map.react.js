@@ -184,19 +184,19 @@ var Map = React.createClass({
         }else{
         }
         //pencil am3081.kml65fk1
-        var tContours = L.tileLayer("https://c.tiles.mapbox.com/v3/aj.um7z9lus/{z}/{x}/{y}.png"),
-            streetMap = L.tileLayer("http://a.tiles.mapbox.com/v3/am3081.h0po4e8k/{z}/{x}/{y}.png"),
+        var greyScale = L.tileLayer("https://{s}.tiles.mapbox.com/v3/am3081.nb38hhb7/{z}/{x}/{y}.png"),
+            tContours = L.tileLayer("https://{s}.tiles.mapbox.com/v3/aj.um7z9lus/{z}/{x}/{y}.png"),
+            streetMap = L.tileLayer('https://{s}.tiles.mapbox.com/v3/am3081.nb3amb93/{z}/{x}/{y}.png'),
             aImagery = L.tileLayer('http://{s}.tiles.mapbox.com/v3/am3081.h0pml9h7/{z}/{x}/{y}.png'),
             aImageStreets = L.tileLayer('http://oatile2.mqcdn.com/tiles/1.0.0/hyb/{z}/{x}/{y}.png'),   //+ http://{s}.tiles.mapbox.com/v3/am3081.h0pml9h7/{z}/{x}/{y}.png              
-            aImageTerr = L.tileLayer('https://a.tiles.mapbox.com/v3/matt.hd0b27jd/{z}/{x}/{y}.png'),
-            greyScale = L.tileLayer("http://{s}.tiles.mapbox.com/v3/erickrans.4f9126ad/{z}/{x}/{y}.png");                    
+            aImageTerr = L.tileLayer('https://{s}.tiles.mapbox.com/v3/matt.hd0b27jd/{z}/{x}/{y}.png');                    
                                     
                                     
                                     
         mapVar = L.map(this.getDOMNode(), {
             center: [42.8282, -78.5795],
             zoom: 7,
-            layers: [greyScale],
+            layers: [streetMap],
             zoomControl: this.props.zoomControl,
             attributionControl: false
         });
@@ -204,9 +204,9 @@ var Map = React.createClass({
         new L.Control.Zoom({ position: 'topright' }).addTo(mapVar); 
 
         var baseMaps = {
-            "Greyscale" : greyScale,
+            "Light Map": streetMap,
+            "Dark Map" : greyScale,
             "Terrain Countours": tContours,
-            "Street Map": streetMap,
             "Aerial Imagery" : aImagery,
             "Aerial Imagery with Terrain" : aImageTerr,
             
