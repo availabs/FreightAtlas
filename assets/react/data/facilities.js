@@ -88,7 +88,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Major_Airport"),
+                    color:'#347fb2',
                     fillOpacity:0.55,
                     opacity:0.9,
                 }
@@ -123,7 +123,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Major_Ports"),
+                    color:'#89caf5',
                     fillOpacity:0.55,
                     opacity:0.9,
                 }
