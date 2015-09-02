@@ -13,7 +13,7 @@ var React = require('react'),
     // -- data
     STCC2 = require('../data/stcc2'),
     STCC3 = require('../data/stcc3'),
-    //StateFips = require('../../data/finalGeoJson/stateFips'),
+    StateFips = require('../data/stateFips'),
 
     // -- utils;
     d3 = require('d3'),
@@ -271,15 +271,15 @@ var TransDashboard = React.createClass({
             infoPanel = document.getElementById('info');
 
         if(props.tons && props["name"]){
-            infoPanel.innerHTML = scope.state.params["source"] + ' of exports <br/><br/>' + '<b>' + props["name"] + ' county'+'</b><br />' + comma(props.tons) + ' Tons';
+            infoPanel.innerHTML = scope.state.params["source"] + ' of exports <br/><br/>' + '<b>' + props["name"] + ' county<br />'+props["state"]+' </b><br />' + comma(props.tons) + ' Tons';
         }
         else{
-            infoPanel.innerHTML = scope.state.params["source"] + ' of exports <br/><br/>' + '<b>' + props["name"] + ' county'+'</b><br />' + 'No data for this county';
+            infoPanel.innerHTML = scope.state.params["source"] + ' of exports <br/><br/>' + '<b>' + props["name"] + ' county<br />'+props["state"]+'</b><br />' + 'No data for this county';
         }
     },
     highlightFeature:function (e) {
         var layer = e.target,
-            props = {name:"",tons:0};
+            props = {name:"",state:"",tons:0};
 
         layer.setStyle({
             weight: 5,
@@ -287,9 +287,10 @@ var TransDashboard = React.createClass({
             dashArray: '',
             fillOpacity: 0.7
         });
-        console.log(layer)
+
         if(layer.feature.properties.NAME){
             props["name"] = layer.feature.properties.NAME;
+            props["state"] = StateFips[layer.feature.properties.STATE];
             if(layer.options){
                 props["tons"] = layer.options.tons
             }           
