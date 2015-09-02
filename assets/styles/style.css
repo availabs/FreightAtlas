@@ -90,6 +90,16 @@ body{
   padding:10px;
   border-radius:4px;
 }
+
+.legendBtnStyle{
+  position: absolute;
+  background-color: white;
+  right: 10px;
+  bottom:100px;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.65);
+  padding:10px;
+  border-radius:4px;
+}
 .header{
   background-color: #fff;
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.65);

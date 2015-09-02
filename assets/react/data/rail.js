@@ -4,7 +4,7 @@ var d3 = require('d3'),
 
 var colorScale = d3.scale.ordinal()
                  .domain(["Class1Rail","ShortLineTrackRights"])
-                 .range(colorbrewer.PRGn[4]),
+                 .range(colorbrewer.BrBG[4]),
                  
     comma = d3.format(",");  
 
@@ -18,7 +18,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Class1Rail"),
+                    color:'#754210',
                     dashArray: '2,5',
                     opacity:1,
                     weight:2.5,
@@ -48,10 +48,10 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("Class1TrackRights"),
+                    color:"#15537a",
                     dashArray: '2,5',
                     opacity:1,
-                    weight:2.5,
+                    weight:3.5,
                 }
             },
             onEachFeature: function(feature,layer){
@@ -77,7 +77,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("ShortLine"),
+                    color:'#a02208',
                     dashArray: '2,5',
                     opacity:1,
                     weight:2.5,
@@ -106,7 +106,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("ShortLineTrackRights"),
+                    color:'#da8b0b',
                     dashArray: '2,5',
                     opacity:1,
                     weight:2.5,
