@@ -44,7 +44,7 @@ module.exports = {
             }
         }
     },
-    "Intermodal Facilities of NY":{
+    "Intermodal Facilities (Excluding Airports/Ports)":{
         path:"../finalGeoJson/Intermodal_Facility2.geojson",
         options:{
             featDetails:[],
@@ -79,7 +79,7 @@ module.exports = {
             }
         }
     },
-    "Major Airports":{
+    "Major Freight Airports":{
         path:"../finalGeoJson/Major_Airport.geojson",
         options:{
             featDetails:[],

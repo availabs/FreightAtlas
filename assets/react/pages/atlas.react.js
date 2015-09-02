@@ -49,7 +49,7 @@ var WalkerDashboard = React.createClass({
                 newState.mapLayers[layName] = {id:layName,geo:data,options:scope.state[datasetName][layName].options};
                 newState[datasetName][layName].options.loaded = true;
                 newState[datasetName][layName].options.visible = true;
-
+                
                 scope.setState(newState);  
             }) 
         }
