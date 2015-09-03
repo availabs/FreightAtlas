@@ -115,7 +115,7 @@ module.exports = {
         }
     },
     "Major Ports":{
-        path:"../finalGeoJson/Major_Ports2.geojson",
+        path:"../finalGeoJson/Major_Ports.geojson",
         options:{
             featDetails:[],
             zoomOnLoad:false,

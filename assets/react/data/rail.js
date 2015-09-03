@@ -28,11 +28,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "<b>Class 1 Rail</b><br/><b>Owner: </b> " + feature.properties.OWNER_NAME +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
+                popupContent = "<b>Class 1 Rail</b><br/><b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
                 layer.bindPopup(popupContent);
 
                 var legendContent;
-                legendContent = "<b>Owner: </b> " + feature.properties.OWNER_NAME +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
+                legendContent = "<b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
                 }                    
@@ -58,11 +58,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "<b>Class 2 Rail</b><br/><b>Owner: </b> " + feature.properties.OWNER_NAME +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
+                popupContent = "<b>Class 2 Rail</b><br/><b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
                 layer.bindPopup(popupContent);
 
                 var legendContent;
-                legendContent = "<b>Owner: </b> " + feature.properties.OWNER_NAME +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
+                legendContent = "<b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
                 }                    
@@ -88,11 +88,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "<b>Class 3/Short Line Rail</b><br/><b>Owner: </b> " + feature.properties.OWNER_NAME +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
+                popupContent = "<b>Class 3/Short Line Rail</b><br/><b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
                 layer.bindPopup(popupContent);
 
                 var legendContent;
-                legendContent = "<b>Owner: </b> " + feature.properties.OWNER_NAME +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
+                legendContent = "<b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
                 }                    
