@@ -19,7 +19,6 @@ module.exports = {
             style:function(feat){
                 return{
                     color:'#754210',
-                    dashArray: '2,5',
                     opacity:1,
                     weight:2.5,
 
@@ -49,9 +48,6 @@ module.exports = {
             style:function(feat){
                 return{
                     color:'#15537a',
-                    fillColor:'#000000',
-                    fill:true,
-                    dashArray: '2,5',
                     opacity:1,
                     weight:2.5,
 
@@ -81,7 +77,6 @@ module.exports = {
             style:function(feat){
                 return{
                     color:'#da8b0b',
-                    dashArray: '2,5',
                     opacity:1,
                     weight:2.5,
                 }
@@ -100,7 +95,7 @@ module.exports = {
             }
         }
     },
-    "Commuter Rail":{
+    "Commuter/Shared Line":{
         path:"../finalGeoJson/CommuterRail.geojson",
         options:{
             featDetails:[],
@@ -110,7 +105,6 @@ module.exports = {
             style:function(feat){
                 return{
                     color:'#a02208',
-                    dashArray: '2,5',
                     opacity:1,
                     weight:2.5,
                 }
