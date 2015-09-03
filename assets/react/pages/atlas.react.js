@@ -116,7 +116,7 @@ var WalkerDashboard = React.createClass({
             {
                 name:'home7',
                 icon:'/images/list-icon',
-                title:'featureLegend',
+                title:'Feature Legend',
                 content: <FeatureLegend activeLayers={this.state.mapLayers} />
             },  
             {

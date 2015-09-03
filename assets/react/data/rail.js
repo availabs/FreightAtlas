@@ -49,6 +49,8 @@ module.exports = {
             style:function(feat){
                 return{
                     color:'#15537a',
+                    fillColor:'#000000',
+                    fill:true,
                     dashArray: '2,5',
                     opacity:1,
                     weight:2.5,
@@ -82,13 +84,41 @@ module.exports = {
                     dashArray: '2,5',
                     opacity:1,
                     weight:2.5,
-
                 }
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
 
                 popupContent = "<b>Class 3/Short Line Rail</b><br/><b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
+                layer.bindPopup(popupContent);
+
+                var legendContent;
+                legendContent = "<b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
+                if(this.featDetails.indexOf(legendContent) === -1){
+                    this.featDetails.push(legendContent);                   
+                }                    
+            }
+        }
+    },
+    "Commuter Rail":{
+        path:"../finalGeoJson/CommuterRail.geojson",
+        options:{
+            featDetails:[],
+            zoomOnLoad:false,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:'#a02208',
+                    dashArray: '2,5',
+                    opacity:1,
+                    weight:2.5,
+                }
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+
+                popupContent = "<b>Commuter Rail</b><br/><b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
                 layer.bindPopup(popupContent);
 
                 var legendContent;
