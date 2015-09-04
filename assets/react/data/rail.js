@@ -95,7 +95,7 @@ module.exports = {
             }
         }
     },
-    "Commuter/Shared Line":{
+    "Intercity Passenger/Commuter/Shared Line":{
         path:"../finalGeoJson/CommuterRail.geojson",
         options:{
             featDetails:[],
@@ -112,7 +112,35 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "<b>Commuter Rail</b><br/><b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
+                popupContent = "<b>Intercity Passenger/Commuter/Shared Line</b><br/><b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
+                layer.bindPopup(popupContent);
+
+                var legendContent;
+                legendContent = "<b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
+                if(this.featDetails.indexOf(legendContent) === -1){
+                    this.featDetails.push(legendContent);                   
+                }                    
+            }
+        }
+    },
+    "Terminal Rail":{
+        path:"../finalGeoJson/Terminals.geojson",
+        options:{
+            featDetails:[],
+            zoomOnLoad:false,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:'#0d280b',
+                    opacity:1,
+                    weight:2.5,
+                }
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+
+                popupContent = "<b>Terminal Rail</b><br/><b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
                 layer.bindPopup(popupContent);
 
                 var legendContent;
