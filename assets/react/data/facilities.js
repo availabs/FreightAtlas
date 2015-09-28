@@ -175,5 +175,67 @@ module.exports = {
                 }                                      
             }
         }
+    },
+    "Pipelines":{
+        path:"../finalGeoJson/Pipelines.geojson",
+        options:{
+            featDetails:[],
+            zoomOnLoad:false,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:'#006d2c',
+                    opacity:0.65,
+                }
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+
+                popupContent = "<b>Pipelines <br/>Type: </b>" + feature.properties.Type +" <br/><b>Operator: </b>" + feature.properties.Operator;
+                layer.bindPopup(popupContent);
+
+                var legendContent;
+                legendContent = "<b>Type: </b>" + feature.properties.Type + " <br/><b>Operator: </b>" + feature.properties.Operator;
+                if(this.featDetails.indexOf(legendContent) === -1){
+                    this.featDetails.push(legendContent);                   
+                }                                      
+            }
+        }
+    },
+    "Pipeline Terminals":{
+        path:"../finalGeoJson/PipelineTerminals.geojson",
+        options:{
+            featDetails:[],
+            zoomOnLoad:false,
+            visible:false,
+            loaded:false,
+            style:function(feat){
+                return{
+                    color:'#66c2a4',
+                    opacity:0.65,
+                }
+            },
+            pointToLayer: function (d, latlng) {
+                var options = {
+
+                }
+                var obj = L.circleMarker(latlng, {});
+
+                return obj;
+            },
+            onEachFeature: function(feature,layer){
+                var popupContent;
+
+                popupContent = "<b>Pipeline Terminals <br/>Type: </b>" + feature.properties.Type +"<br/><b>Site Name: </b>"+feature.properties.Site_Name+" <br/><b>Operator: </b>" + feature.properties.Operator;
+                layer.bindPopup(popupContent);
+                console.log(feature)
+                var legendContent;
+                legendContent = "<b>Type: </b>" + feature.properties.Type +"<br/><b>Site Name: </b>"+feature.properties.Site_Name+" <br/><b>Operator: </b>" + feature.properties.Operator;
+                if(this.featDetails.indexOf(legendContent) === -1){
+                    this.featDetails.push(legendContent);                   
+                }                                      
+            }
+        }
     }
 }
