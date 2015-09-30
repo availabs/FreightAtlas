@@ -85,7 +85,8 @@ var WalkerDashboard = React.createClass({
                 <li>To hide the menu content, click on the active menu tab.</li>
                 <li>To report missing or incorrectly located facilities, or to submit a comment or question, 
                 please click on the Comments icon at the bottom of the menu on the left side.</li>
-                </ul>
+                <a style={{color:'#5d5d5d'}} href="https://www.dot.ny.gov/portal/page/portal/content/delivery/Main-Projects/projects/P11618881-Home/P11618881-repository/Freight%20Atlas%20User%20Guide_Final.pdf" target="blank">
+                <li>View or Download Web Atlas User Guide</li></a></ul>
                 <h5>Thank you for visiting the New York State Freight Atlas. We appreciate your interest and input.</h5>
                 </span>
             },
