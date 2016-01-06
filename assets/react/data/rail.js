@@ -27,11 +27,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "<b>Class 1 Rail</b><br/><b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
+                popupContent = "<b>Class 1 Rail</b><br/><b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR + "<br/><b>Use: </b> " + feature.properties.USE + "<br/><b>Weight Limit (in 1000s): </b> " + feature.properties.WEIGHT_LIMIT + "<br/><b>Clearance: </b> " + feature.properties.CLEARANCE;
                 layer.bindPopup(popupContent);
 
                 var legendContent;
-                legendContent = "<b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
+                legendContent = "<b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR + "<br/><b>Use: </b> " + feature.properties.USE + "<br/><b>Weight Limit (in 1000s): </b> " + feature.properties.WEIGHT_LIMIT + "<br/><b>Clearance: </b> " + feature.properties.CLEARANCE;
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
                 }                    
@@ -56,11 +56,12 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "<b>Class 2 Rail</b><br/><b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
+
+                popupContent = "<b>Class 2 Rail</b><br/><b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR + "<br/><b>Use: </b> " + feature.properties.USE + "<br/><b>Weight Limit (in 1000s): </b> " + feature.properties.WEIGHT_LIMIT + "<br/><b>Clearance: </b> " + feature.properties.CLEARANCE;
                 layer.bindPopup(popupContent);
 
                 var legendContent;
-                legendContent = "<b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
+                legendContent = "<b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR + "<br/><b>Use: </b> " + feature.properties.USE + "<br/><b>Weight Limit (in 1000s): </b> " + feature.properties.WEIGHT_LIMIT + "<br/><b>Clearance: </b> " + feature.properties.CLEARANCE;
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
                 }                    
@@ -84,11 +85,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "<b>Class 3/Short Line Rail</b><br/><b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
+                popupContent = "<b>Class 3/Shortline Rail</b><br/><b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR + "<br/><b>Use: </b> " + feature.properties.USE + "<br/><b>Weight Limit (in 1000s): </b> " + feature.properties.WEIGHT_LIMIT + "<br/><b>Clearance: </b> " + feature.properties.CLEARANCE;
                 layer.bindPopup(popupContent);
 
                 var legendContent;
-                legendContent = "<b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
+                legendContent = "<b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR + "<br/><b>Use: </b> " + feature.properties.USE + "<br/><b>Weight Limit (in 1000s): </b> " + feature.properties.WEIGHT_LIMIT + "<br/><b>Clearance: </b> " + feature.properties.CLEARANCE;
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
                 }                    
@@ -112,11 +113,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "<b>Intercity Passenger/Commuter/Shared Line</b><br/><b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
+                popupContent = "<b>Intercity Passenger/Commuter/Shared Line</b><br/><b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR + "<br/><b>Use: </b> " + feature.properties.USE + "<br/><b>Weight Limit (in 1000s): </b> " + feature.properties.WEIGHT_LIMIT + "<br/><b>Clearance: </b> " + feature.properties.CLEARANCE;
                 layer.bindPopup(popupContent);
 
                 var legendContent;
-                legendContent = "<b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
+                legendContent = "<b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR + "<br/><b>Use: </b> " + feature.properties.USE + "<br/><b>Weight Limit (in 1000s): </b> " + feature.properties.WEIGHT_LIMIT + "<br/><b>Clearance: </b> " + feature.properties.CLEARANCE;
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
                 }                    
@@ -140,11 +141,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "<b>Terminal Rail</b><br/><b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
+                popupContent = "<b>Terminal Rail</b><br/><b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR + "<br/><b>Use: </b> " + feature.properties.USE + "<br/><b>Weight Limit (in 1000s): </b> " + feature.properties.WEIGHT_LIMIT + "<br/><b>Clearance: </b> " + feature.properties.CLEARANCE;
                 layer.bindPopup(popupContent);
 
                 var legendContent;
-                legendContent = "<b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR;
+                legendContent = "<b>Owner: </b> " + feature.properties.OWNER +"<br/><b>Operator: </b> " + feature.properties.OPERATOR + "<br/><b>Use: </b> " + feature.properties.USE + "<br/><b>Weight Limit (in 1000s): </b> " + feature.properties.WEIGHT_LIMIT + "<br/><b>Clearance: </b> " + feature.properties.CLEARANCE;
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
                 }                    
