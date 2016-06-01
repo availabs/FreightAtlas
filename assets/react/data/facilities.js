@@ -9,7 +9,7 @@ var colorScale = d3.scale.ordinal()
     comma = d3.format(",");
 
 module.exports = {
-    "Border Crossing/Port of Entry":{
+    "Border Crossings":{
         path:"../finalGeoJson/Border_Crossing_Port.geojson",
         options:{
             featDetails:[],
@@ -32,7 +32,6 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-
                 popupContent = "<b>Border Crossing/Port of Entry</b> <br/><b>Name:</b> " + feature.properties.CP_Name;
                 layer.bindPopup(popupContent);
 
@@ -111,68 +110,6 @@ module.exports = {
                     this.featDetails.push(legendContent);                   
                 }                                  
                   
-            }
-        }
-    },
-    "Major Ports":{
-        path:"../finalGeoJson/Major_Ports.geojson",
-        options:{
-            featDetails:[],
-            zoomOnLoad:false,
-            visible:false,
-            loaded:false,
-            style:function(feat){
-                return{
-                    color:'#89caf5',
-                    fillOpacity:0.55,
-                    opacity:0.9,
-                }
-            },pointToLayer: function (d, latlng) {
-                var options = {
-
-                }
-                var obj = L.circleMarker(latlng, {});
-
-                return obj;
-            },
-            onEachFeature: function(feature,layer){
-                var popupContent;
-
-                popupContent = "<b>Major Ports</b> <br/> <b>Port Name:</b> "+feature.properties.PORT_NAME;
-                layer.bindPopup(popupContent);
-
-                var legendContent;
-                legendContent = "<b>Port Name:</b> "+feature.properties.PORT_NAME;
-                if(this.featDetails.indexOf(legendContent) === -1){
-                    this.featDetails.push(legendContent);                   
-                }                                       
-            }
-        }
-    },
-    "NYS Canal System":{
-        path:"../finalGeoJson/NYS_Canal_System.json",
-        options:{
-            featDetails:[],
-            zoomOnLoad:false,
-            visible:false,
-            loaded:false,
-            style:function(feat){
-                return{
-                    color:colorScale("NYS_Canal_System"),
-                    opacity:0.65,
-                }
-            },
-            onEachFeature: function(feature,layer){
-                var popupContent;
-
-                popupContent = "<b>NYS Canal System</b> <br/>" + feature.properties.Canal_Name +" Canal";
-                layer.bindPopup(popupContent);
-
-                var legendContent;
-                legendContent = feature.properties.Canal_Name +" Canal";
-                if(this.featDetails.indexOf(legendContent) === -1){
-                    this.featDetails.push(legendContent);                   
-                }                                      
             }
         }
     },

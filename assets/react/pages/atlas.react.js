@@ -17,6 +17,7 @@ var React = require('react'),
     Facilities = require('../data/facilities'),
     Rail = require('../data/rail'),
     Road = require('../data/road'),
+    Marine = require('../data/maritime'),
     // -- actions
     
     // -- utils;
@@ -32,7 +33,8 @@ var WalkerDashboard = React.createClass({
             areas:Areas,
             facilities:Facilities,
             rail:Rail,
-            road:Road
+            road:Road,
+            maritime:Marine
         }
 
     },
@@ -101,15 +103,21 @@ var WalkerDashboard = React.createClass({
                 icon:'/images/facilities',
                 title:'Freight Facilities',
                 content:<LayerList title="Freight Facilities" dataset='facilities' layers={this.state.facilities} onClick = {this.handleClick} />
-            },            
+            },  
             {
                 name:'home4',
+                icon:'/images/maritime',
+                title:'Maritime Network',
+                content:<LayerList title="Maritime Network" dataset='maritime' layers={this.state.maritime} onClick = {this.handleClick} />
+            },            
+            {
+                name:'home5',
                 icon:'/images/rail1',
                 title:'Rail Network',
                 content:<LayerList title="Rail Network" dataset='rail' layers={this.state.rail} onClick = {this.handleClick} />
             },            
             {
-                name:'home5',
+                name:'home6',
                 icon:'/images/truck1',
                 title:'Road Network',
                 content:<LayerList title="Road Network" dataset='road' layers={this.state.road} onClick = {this.handleClick} />
@@ -121,7 +129,7 @@ var WalkerDashboard = React.createClass({
                 content: <FeatureLegend activeLayers={this.state.mapLayers} />
             },  
             {
-                name:'home6',
+                name:'home8',
                 icon:'/images/comments',
                 title:'Comment',
                 content: <Comments />
