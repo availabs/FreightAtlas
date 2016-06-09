@@ -32,11 +32,11 @@ module.exports = {
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                popupContent = "<b>Border Crossing/Port of Entry</b> <br/><b>Name:</b> " + feature.properties.CP_Name;
+                popupContent = "<b>Border Crossing</b> <br/><b>Name:</b> " + feature.properties.PortName;
                 layer.bindPopup(popupContent);
 
                 var legendContent;
-                legendContent = feature.properties.CP_Name;
+                legendContent = feature.properties.PortName;
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
                 }                    
