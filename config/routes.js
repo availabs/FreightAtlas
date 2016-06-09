@@ -24,10 +24,6 @@ module.exports.routes = {
 
   '/': 'HelloController.index',
 
-  '/transearch': 'HelloController.transearch',
-
   '/sendmail' : 'HelloController.sendmail',
   
-  '/transQuery' : 'HelloController.transQuery'
-
   };
