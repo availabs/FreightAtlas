@@ -18,6 +18,7 @@ var React = require('react'),
     Rail = require('../data/rail'),
     Road = require('../data/road'),
     Marine = require('../data/maritime'),
+    Data = require('../data/data')
     // -- actions
     
     // -- utils;
@@ -34,7 +35,8 @@ var WalkerDashboard = React.createClass({
             facilities:Facilities,
             rail:Rail,
             road:Road,
-            maritime:Marine
+            maritime:Marine,
+            data:Data
         }
 
     },
@@ -124,12 +126,18 @@ var WalkerDashboard = React.createClass({
             },
             {
                 name:'home7',
+                icon:'/images/data',
+                title:'Road Network',
+                content:<LayerList title="Data" dataset='data' layers={this.state.data} onClick = {this.handleClick} />
+            },
+            {
+                name:'home8',
                 icon:'/images/list-icon',
                 title:'Feature Legend',
                 content: <FeatureLegend activeLayers={this.state.mapLayers} />
             },  
             {
-                name:'home8',
+                name:'home9',
                 icon:'/images/comments',
                 title:'Comment',
                 content: <Comments />

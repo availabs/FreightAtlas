@@ -14,6 +14,7 @@ var LayerItem = React.createClass({
 
     },
     render: function(){
+        var scope = this;
         //curStyle is whether the layer is toggled on or off
         //Changes with the handleclick function
         var curStyle = this.state.selected ? 'layListActive' : 'layListInactive',
@@ -23,6 +24,7 @@ var LayerItem = React.createClass({
                 padding:'10px',
                 border:'none'
             }
+
         return (
             <div >
                 <button className={curStyle} ref={this.props.key} onClick={this.handleClick} style={btnStyle}>
@@ -34,21 +36,37 @@ var LayerItem = React.createClass({
     handleClick:function () {
         this.setState({selected: !this.state.selected})
         this.props.onClick(this)
+        if(this.props.subClick){
+            this.props.subClick(this.props.layerName)            
+        }
     }
 })
   
     
 
 var layerList = React.createClass({
+    getInitialState: function() {
+        return {subDisplay: {}};            
+    },
     getDefaultProps:function(){
-
         return {
             layers:{}
         }
-
     },
     handleClick:function (childComponent) {
         this.props.onClick(childComponent)
+    },
+    subClick:function(layerName){
+        var newState = Object.assign({},this.state)
+        if(this.state.subDisplay[layerName] == true){
+            newState["subDisplay"][layerName] = false;
+            this.setState(newState)            
+        }
+        else{
+            newState["subDisplay"][layerName] = true;
+            this.setState(newState)
+        }
+
     },
     render: function() {
         var scope = this;
@@ -61,15 +79,38 @@ var layerList = React.createClass({
                 width:10,
                 backgroundColor:scope.props.layers[key].options.style().color
             }
+            if(scope.props.layers[key]["subLevels"]){ 
 
-            return (
-                <div>
-                    <div style={style}></div>  
-                    <span>
-                        <LayerItem dataset={scope.props.dataset} layerName={key} onClick={scope.handleClick} />
-                    </span>              
-                </div>
-                )
+                var subLevels = scope.props.layers[key]["subLevels"].map(levelName => {
+                    return(
+                            <li>
+                                <LayerItem dataset={scope.props.dataset} layerName={key+"_"+levelName} onClick={scope.handleClick} />
+                            </li>
+                        )
+                })
+
+                return (
+                    <div>
+                        <div style={style}></div>  
+                        <span>
+                            <LayerItem dataset={scope.props.dataset} layerName={key} onClick={scope.handleClick} subClick={scope.subClick}/>
+                            <ul style={(scope.state.subDisplay[key]) ? {display:"block"} : {display:"none"}}>
+                                {subLevels}
+                            </ul>
+                        </span>              
+                    </div>
+                    )
+            }
+            else{
+                return (
+                    <div>
+                        <div style={style}></div>  
+                        <span>
+                            <LayerItem dataset={scope.props.dataset} layerName={key} onClick={scope.handleClick} />
+                        </span>              
+                    </div>
+                    )                
+            }
         })
 
         return (

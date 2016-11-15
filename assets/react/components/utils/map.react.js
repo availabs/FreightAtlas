@@ -52,7 +52,6 @@ var Map = React.createClass({
         var scope = this;
 
         if(nextProps.layers){
-      
             Object.keys(nextProps.layers).forEach(function(key){
 
                 var currLayer = nextProps.layers[key];
