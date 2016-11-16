@@ -10,17 +10,17 @@ var colorScale = d3.scale.ordinal()
                  .domain([0,15])
                  .range(colorbrewer.Paired[9]),
 
-    trkTonsScale = d3.scale.ordinal()
-                 .domain([15000,30000,60000,12000])
-                 .range(["green","#2ca25f","yellow","orange","red"]),
+    trkTonsScale = d3.scale.linear()
+                 .domain([0,120000])
+                 .range(["blue","red"]),
 
     trkValueScale = d3.scale.ordinal()
-                 .domain([10000000,50000000,100000000,250000000])
-                 .range(["green","#2ca25f","yellow","orange","red"]),
+                 .domain([0,250000000])
+                 .range(["blue","red"]),
 
     trkVolumeScale = d3.scale.ordinal()
-                 .domain([500,2500,5000,10000])
-                 .range(["green","#2ca25f","yellow","orange","red"]),
+                 .domain([0,10000])
+                 .range(["blue","red"]),
 
     comma = d3.format(",");
 
@@ -49,17 +49,17 @@ module.exports = {
 
             },
             onEachFeature: function(feature,layer){
+                var popupContent;
+
+                popupContent = "<b>Highway Analysis Corridors</b></br> <b>Corridor:</b> " + feature.properties["Corridor"]
+                layer.bindPopup(popupContent);    
+
                 var legendContent;
-                
-                legendContent = "New York State"
-                var popupContent = "<b>Properies</b></br>"
+                legendContent = "<b>Corridor:</b> " + feature.properties["Corridor"]
 
-                    popupContent += "</br> Corridor: " + feature.properties["Corridor"]
-
-                layer.bindPopup(popupContent);
-                if(this.featDetails.indexOf(popupContent) === -1){
-                    this.featDetails.push(popupContent);                   
-                }
+                if(this.featDetails.indexOf(legendContent) === -1){
+                    this.featDetails.push(legendContent);                   
+                }  
             }
         }
     },
@@ -87,32 +87,35 @@ module.exports = {
 
             },
             onEachFeature: function(feature,layer){
+                var popupContent;
+
+                popupContent = "<b>Rail Analysis Corridors</b></br> <b>Corridor:</b> " + feature.properties["Corridor"]
+                layer.bindPopup(popupContent);    
+
                 var legendContent;
-                
-                legendContent = "New York State"
-                var popupContent = "<b>Properies</b></br>"
+                legendContent = "<b>Corridor:</b> " + feature.properties["Corridor"]
 
-                    popupContent += "</br> Corridor: " + feature.properties["Corridor"]
-
-                layer.bindPopup(popupContent);
-                if(this.featDetails.indexOf(popupContent) === -1){
-                    this.featDetails.push(popupContent);                   
-                }
+                if(this.featDetails.indexOf(legendContent) === -1){
+                    this.featDetails.push(legendContent);                   
+                }  
             }
         }
     },
     "Highway Tonnage, 2012 (TRANSEARCH)":{
         path:"../novUpdateJson/HighwayTrans2012.geojson",
-        subLevels:["ns","ew"],
         options:{
             featDetails:[],
+            directional:{n:"N_TrkTons",s:"S_TrkTons",e:"E_TrkTons",w:"W_TrkTons"},
             zoomOnLoad:false,
             visible:false,
             loaded:false,
-            style:function(feat){
+            style:function(feat,direction){
                 if(feat){
+                    var colorValue;
+                    colorValue = feat.properties[direction]
+
                     return{
-                        color:trkTonsScale(feat.properties.TrkTons),
+                        color:trkTonsScale(colorValue),
                         fillOpacity:0.075,
                         opacity:0.85,
                     }
@@ -123,39 +126,37 @@ module.exports = {
                         opacity:0.85,
                     }                    
                 }
-
             },
             onEachFeature: function(feature,layer){
-                var legendContent;
-                
-                legendContent = "New York State"
-
                 var popupContent;
 
-                popupContent = "<b>Properies</b></br>"
-                Object.keys(feature.properties).forEach(element => {
-                    popupContent += "</br>" + element + ": " + feature.properties[element]
-                })
-                layer.bindPopup(popupContent);
-                
-                if(this.featDetails.indexOf(popupContent) === -1){
-                    this.featDetails.push(popupContent);                   
-                }
+                popupContent = "<b>Highway Tonnage, 2012 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/><b>N_TrkTons:</b> " +  comma(feature.properties.N_TrkTons) + "<br/><b>S_TrkTons:</b> " +  comma(feature.properties.S_TrkTons) + "<br/><b>E_TrkTons:</b> " +  comma(feature.properties.E_TrkTons) +  "<br/><b>W_TrkTons:</b> " +  comma(feature.properties.W_TrkTons)
+                layer.bindPopup(popupContent);    
+
+                var legendContent;
+                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Tonnage:</b> " + "<br/><b>N_TrkTons:</b> " +  comma(feature.properties.N_TrkTons) + "<br/><b>S_TrkTons:</b> " +  comma(feature.properties.S_TrkTons) + "<br/><b>E_TrkTons:</b> " +  comma(feature.properties.E_TrkTons) +  "<br/><b>W_TrkTons:</b> " +  comma(feature.properties.W_TrkTons)
+
+                if(this.featDetails.indexOf(legendContent) === -1){
+                    this.featDetails.push(legendContent);                   
+                }   
             }
         }
     }, 
     "Highway Tonnage, 2040 (TRANSEARCH)":{
         path:"../novUpdateJson/HighwayTrans2040.geojson",
-        subLevels:["ns","ew"],
         options:{
             featDetails:[],
             zoomOnLoad:false,
+            directional:{n:"N_40_TT",s:"S_40_TT",e:"E_40_TT",w:"W_40_TT"},
             visible:false,
             loaded:false,
-            style:function(feat){
+            style:function(feat,direction){
                 if(feat){
+                    var colorValue;
+                    colorValue = feat.properties[direction]
+
                     return{
-                        color:trkTonsScale(feat.properties.TrkTons),
+                        color:trkTonsScale(colorValue),
                         fillOpacity:0.075,
                         opacity:0.85,
                     }
@@ -166,22 +167,24 @@ module.exports = {
                         opacity:0.85,
                     }                    
                 }
-
             },
             onEachFeature: function(feature,layer){
+                var popupContent;
+
+                popupContent = "<b>Highway Tonnage, 2040 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Tonnage:</b> " + comma(feature.properties.TrkTons)
+                layer.bindPopup(popupContent);    
+
                 var legendContent;
-                
-                legendContent = "New York State"
+                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Tonnage:</b> " + comma(feature.properties.TrkTons)
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
-                }
+                }   
             }
         }
     }, 
     "Highway Value, 2012 (TRANSEARCH)":{
         path:"../novUpdateJson/HighwayTrans2012.geojson",
-        subLevels:["ns","ew"],
         options:{
             featDetails:[],
             zoomOnLoad:false,
@@ -204,19 +207,22 @@ module.exports = {
 
             },
             onEachFeature: function(feature,layer){
+                var popupContent;
+
+                popupContent = "<b>Highway Value, 2012 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Value:</b> $" + comma(feature.properties.TruckValue)
+                layer.bindPopup(popupContent);    
+
                 var legendContent;
-                
-                legendContent = "New York State"
+                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Value:</b> $" + comma(feature.properties.TruckValue)
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
-                }
+                }    
             }
         }
     }, 
     "Highway Value, 2040 (TRANSEARCH)":{
         path:"../novUpdateJson/HighwayTrans2040.geojson",
-        subLevels:["ns","ew"],
         options:{
             featDetails:[],
             zoomOnLoad:false,
@@ -225,7 +231,7 @@ module.exports = {
             style:function(feat){
                 if(feat){
                     return{
-                        color:trkValueScale(feat.properties.TruckValue),
+                        color:trkValueScale(feat.properties.TruckVl),
                         fillOpacity:0.075,
                         opacity:0.85,
                     }
@@ -239,19 +245,21 @@ module.exports = {
 
             },
             onEachFeature: function(feature,layer){
+                var popupContent;
+                popupContent = "<b>Highway Value, 2040 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Value:</b> $" + comma(feature.properties.TruckVl)
+                layer.bindPopup(popupContent);    
+
                 var legendContent;
-                
-                legendContent = "New York State"
+                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Value:</b> $" + comma(feature.properties.TruckVl)
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
-                }
+                } 
             }
         }
     }, 
     "Highway Truck Volumes, 2012 (TRANSEARCH)":{
         path:"../novUpdateJson/HighwayTrans2012.geojson",
-        subLevels:["ns","ew"],
         options:{
             featDetails:[],
             zoomOnLoad:false,
@@ -273,19 +281,22 @@ module.exports = {
                 }
             },
             onEachFeature: function(feature,layer){
+                var popupContent;
+
+                popupContent = "<b>Highway Truck Volumes, 2012 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Volume:</b> " + comma(feature.properties.Trucks)
+                layer.bindPopup(popupContent);    
+
                 var legendContent;
-                
-                legendContent = "New York State"
+                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Volume:</b> " + comma(feature.properties.Trucks)
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
-                }
+                }   
             }
         }
     }, 
     "Highway Truck Volumes, 2040 (TRANSEARCH)":{
         path:"../novUpdateJson/HighwayTrans2040.geojson",
-        subLevels:["ns","ew"],
         options:{
             featDetails:[],
             zoomOnLoad:false,
@@ -307,19 +318,22 @@ module.exports = {
                 }
             },
             onEachFeature: function(feature,layer){
+                var popupContent;
+
+                popupContent = "<b>Highway Truck Volumes, 2040 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Volume:</b> " + comma(feature.properties.Trucks)
+                layer.bindPopup(popupContent);    
+
                 var legendContent;
-                
-                legendContent = "New York State"
+                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Volume:</b> " + comma(feature.properties.Trucks)
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
-                }
+                }  
             }
         }
     }, 
     "Highway Average Vehicle Tonnage, 2011-2014 WIM (NYSDOT)":{
         path:"../novUpdateJson/WIMData.geojson",
-        subLevels:["SUCW","MUCW"],
         options:{
             featDetails:[],
             zoomOnLoad:false,
@@ -341,23 +355,23 @@ module.exports = {
                 return obj;
             },
             onEachFeature: function(feature,layer){
-                var legendContent;
+                var popupContent;
+
                 
-                legendContent = "New York State"
-                var popupContent = "<b>Properies</b></br>"
-                Object.keys(feature.properties).forEach(element => {
-                    popupContent += "</br>" + element + ": " + feature.properties[element]
-                })
-                layer.bindPopup(popupContent);
-                if(this.featDetails.indexOf(popupContent) === -1){
-                    this.featDetails.push(popupContent);                   
-                }
+                popupContent = "<b>Highway Average Vehicle Tonnage, 2011-2014 WIM (NYSDOT)</b> <br/>"+"<b>Description:</b> " + feature.properties.BEGINDESC + " " + feature.properties.ENDDESC + "<br/> <b>SUCW:</b> " + feature.properties.SUCW + "<br/> <b>MUCW:</b> " + feature.properties.MUCW
+                layer.bindPopup(popupContent);    
+
+                var legendContent;
+                legendContent =                 "<b>Description:</b> " + feature.properties.BEGINDESC + " " + feature.properties.ENDDESC + "<b>SUCW:</b> " + feature.properties.SUCW + "<br/> <b>MUCW:</b> " + feature.properties.MUCW
+
+                if(this.featDetails.indexOf(legendContent) === -1){
+                    this.featDetails.push(legendContent);                   
+                }  
             }
         }
     }, 
     "2014 Counts (NYSTA)":{
         path:"../novUpdateJson/NYSTACounts.geojson",
-        subLevels:["F14AADTT_ES","F14AADTT_NW"],
         options:{
             featDetails:[],
             zoomOnLoad:false,
@@ -371,9 +385,14 @@ module.exports = {
                 }
             },
             onEachFeature: function(feature,layer){
+                console.log(feature)
                 var legendContent;
                 
-                legendContent = "New York State"
+                Object.keys(feature.properties).forEach(element => {
+
+                    legendContent += "<br/> " + element + ": " + feature.properties[element]
+
+                })
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
@@ -383,7 +402,6 @@ module.exports = {
     }, 
     "2015 Border Counts (Various Sources)":{
         path:"../novUpdateJson/BorderCounts2015.geojson",
-        subLevels:["TO_US","FROM_US"],
         options:{
             featDetails:[],
             zoomOnLoad:false,

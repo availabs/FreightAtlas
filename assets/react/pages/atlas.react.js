@@ -54,6 +54,16 @@ var WalkerDashboard = React.createClass({
                 newState[datasetName][layName].options.loaded = true;
                 newState[datasetName][layName].options.visible = true;
                 
+
+                if(newState.mapLayers[layName].options['directional']){
+                    console.log("hd")
+                    newState.mapLayers[layName].geo.features.forEach(feature => {
+                        feature.geometry.coordinates[0].map(pair => { return pair.reverse()})
+                    })
+                }
+
+
+
                 scope.setState(newState);  
             }) 
         }

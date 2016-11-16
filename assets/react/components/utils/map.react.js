@@ -9,6 +9,7 @@ var React = require('react'),
 
     //--Utils
     L = require('leaflet'),
+    offset = require('leaflet-polylineoffset'),
     MapSidebar = require ('./MapSidebar'),
     d3 = require('d3'),
     topojson = require('topojson');
@@ -20,7 +21,7 @@ var mapVar = null,
     sidebar;
 
 var colorScale = d3.scale.category20();   
-
+console.log(offset)
 
 
 
@@ -127,6 +128,7 @@ var Map = React.createClass({
     },
     
     _updateLayer : function(key,layer){
+        console.log(key,layer)
         if(layers[key] && mapVar.hasLayer(layers[key].layer)){
             mapVar.removeLayer(layers[key].layer)
         }
@@ -136,46 +138,90 @@ var Map = React.createClass({
                 layer: new L.geoJson({type:'FeatureCollection',features:[]},layer.options)
             }
             if(layer.geo){
+                if(layer.options.directional){
+                    var curLayer = new L.layerGroup()
+                    console.log("ryanTest",layer)
+                    var directionsCross = layer.options.directional
+                    var coords = []
+                    layer.geo.features.forEach(feature => {
+                        if(feature.properties[directionsCross["s"]] != 0 || feature.properties[directionsCross["w"]] != 0){
+                            var direction = feature.properties[directionsCross["s"]] ? directionsCross["s"] : directionsCross["w"]
+                            var style = layer.options.style(feature,direction)
+                            var coords = feature.geometry.coordinates[0]
 
-                if(layer.geo.type == "Topology"){
-                    layers[key].layer.addData(layer.geojson); // to get layerAdd event
-                    mapVar.addLayer(layers[key].layer);
-                    if(layer.options.centerOnLoad){
+                            var line = new L.polyline(coords, style)
+                            line.setOffset(-3)
+                            layer.options.onEachFeature(feature,line)
+                            //line.addTo(mapVar)
+                            curLayer.addLayer(line)
+                        }
+                        if(feature.properties[directionsCross["n"]] != 0 || feature.properties[directionsCross["e"]] != 0){
+                            var direction = feature.properties[directionsCross["n"]] ? directionsCross["n"] : directionsCross["e"]
+                            var style = layer.options.style(feature,direction)
+                            var coords = feature.geometry.coordinates[0]
+
+                            var line = new L.polyline(coords, style)
+                            line.setOffset(3)
+                            layer.options.onEachFeature(feature,line)
+                            //line.addTo(mapVar)
+                            curLayer.addLayer(line)
+                        }
+                        layers[key].layer = curLayer;
+                        mapVar.addLayer(layers[key].layer);
+
+                        if(layer.options.centerOnLoad){
                             mapVar.setView(L.latLng(layer.geo.features[0].geometry.coordinates.reverse()),15)
-                    }
-                    if(layer.options.zoomOnLoad){
-                        
-                        
+                        }
+                        if(layer.options.zoomOnLoad){
                             var ezBounds = d3.geo.bounds(layer.geo);
 
                             mapVar.invalidateSize();
-
                             mapVar.fitBounds(layers[key].layer.getBounds());
-                        
-                    }
+                        }
+                    })    
                 }
                 else{
-                    layers[key].layer.addData(layer.geo); // to get layerAdd event
-                    mapVar.addLayer(layers[key].layer);
-                    if(layer.options.centerOnLoad){
-                            mapVar.setView(L.latLng(layer.geo.features[0].geometry.coordinates.reverse()),15)
-                    }
-                    if(layer.options.zoomOnLoad){
-                        
-                        
-                            var ezBounds = d3.geo.bounds(layer.geo);
+                    if(layer.geo.type == "Topology"){
+                        layers[key].layer.addData(layer.geojson); // to get layerAdd event
+                        mapVar.addLayer(layers[key].layer);
+                        if(layer.options.centerOnLoad){
+                                mapVar.setView(L.latLng(layer.geo.features[0].geometry.coordinates.reverse()),15)
+                        }
+                        if(layer.options.zoomOnLoad){
+                            
+                            
+                                var ezBounds = d3.geo.bounds(layer.geo);
 
-                            mapVar.invalidateSize();
+                                mapVar.invalidateSize();
 
-                            mapVar.fitBounds(layers[key].layer.getBounds());
-                        
+                                mapVar.fitBounds(layers[key].layer.getBounds());
+                            
+                        }
                     }
+                    else{
+                        layers[key].layer.addData(layer.geo); // to get layerAdd event
+                        mapVar.addLayer(layers[key].layer);
+                        if(layer.options.centerOnLoad){
+                                mapVar.setView(L.latLng(layer.geo.features[0].geometry.coordinates.reverse()),15)
+                        }
+                        if(layer.options.zoomOnLoad){
+                            
+                            
+                                var ezBounds = d3.geo.bounds(layer.geo);
+
+                                mapVar.invalidateSize();
+
+                                mapVar.fitBounds(layers[key].layer.getBounds());
+                            
+                        }
+                    }                    
                 }
             }
         }
     },
 
     renderMap:function(){
+        console.log("rendermap")
         var scope = this;
         var mapDiv = document.getElementById('map');
         if(this.props.height === '100%'){
@@ -259,7 +305,7 @@ var Map = React.createClass({
     },
 
     render: function() {
-
+        console.log(mapVar)
         if(mapVar){    
             mapVar.invalidateSize();
         }
