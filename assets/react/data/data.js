@@ -14,11 +14,11 @@ var colorScale = d3.scale.ordinal()
                  .domain([0,120000])
                  .range(["blue","red"]),
 
-    trkValueScale = d3.scale.ordinal()
+    trkValueScale = d3.scale.linear()
                  .domain([0,250000000])
                  .range(["blue","red"]),
 
-    trkVolumeScale = d3.scale.ordinal()
+    trkVolumeScale = d3.scale.linear()
                  .domain([0,10000])
                  .range(["blue","red"]),
 
@@ -171,15 +171,15 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "<b>Highway Tonnage, 2040 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Tonnage:</b> " + comma(feature.properties.TrkTons)
+                popupContent = "<b>Highway Tonnage, 2040 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/><b>N_40_TT:</b> " +  comma(feature.properties.N_40_TT) + "<br/><b>S_40_TT:</b> " +  comma(feature.properties.S_40_TT) + "<br/><b>E_40_TT:</b> " +  comma(feature.properties.E_40_TT) +  "<br/><b>W_40_TT:</b> " +  comma(feature.properties.W_40_TT)
                 layer.bindPopup(popupContent);    
 
                 var legendContent;
-                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Tonnage:</b> " + comma(feature.properties.TrkTons)
+                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Tonnage:</b> " + "<br/><b>N_40_TT:</b> " +  comma(feature.properties.N_40_TT) + "<br/><b>S_40_TT:</b> " +  comma(feature.properties.S_40_TT) + "<br/><b>E_40_TT:</b> " +  comma(feature.properties.E_40_TT) +  "<br/><b>W_40_TT:</b> " +  comma(feature.properties.W_40_TT)
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
-                }   
+                }  
             }
         }
     }, 
@@ -188,12 +188,16 @@ module.exports = {
         options:{
             featDetails:[],
             zoomOnLoad:false,
+            directional:{n:"N_TrkValue",s:"S_TrkValue",e:"E_TrkValue",w:"W_TrkValue"},
             visible:false,
             loaded:false,
-            style:function(feat){
+            style:function(feat,direction){
                 if(feat){
+                    var colorValue;
+                    colorValue = feat.properties[direction]
+
                     return{
-                        color:trkValueScale(feat.properties.TruckValue),
+                        color:trkValueScale(colorValue),
                         fillOpacity:0.075,
                         opacity:0.85,
                     }
@@ -204,20 +208,19 @@ module.exports = {
                         opacity:0.85,
                     }                    
                 }
-
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "<b>Highway Value, 2012 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Value:</b> $" + comma(feature.properties.TruckValue)
+                popupContent = "<b>Highway Value, 2012 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/><b>N_TrkValue: $</b> " +  comma(feature.properties.N_TrkValue) + "<br/><b>S_TrkValue: $</b> " +  comma(feature.properties.S_TrkValue) + "<br/><b>E_TrkValue: $</b> " +  comma(feature.properties.E_TrkValue) +  "<br/><b>W_TrkValue: $</b> " +  comma(feature.properties.W_TrkValue)
                 layer.bindPopup(popupContent);    
 
                 var legendContent;
-                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Value:</b> $" + comma(feature.properties.TruckValue)
+                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Tonnage:</b> " + "<br/><b>N_TrkValue: $</b> " +  comma(feature.properties.N_TrkValue) + "<br/><b>S_TrkValue: $</b> " +  comma(feature.properties.S_TrkValue) + "<br/><b>E_TrkValue: $</b> " +  comma(feature.properties.E_TrkValue) +  "<br/><b>W_TrkValue: $</b> " +  comma(feature.properties.W_TrkValue)
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
-                }    
+                }      
             }
         }
     }, 
@@ -226,12 +229,16 @@ module.exports = {
         options:{
             featDetails:[],
             zoomOnLoad:false,
+            directional:{n:"N_40_TV",s:"S_40_TV",e:"E_40_TV",w:"W_40_TV"},
             visible:false,
             loaded:false,
-            style:function(feat){
+            style:function(feat,direction){
                 if(feat){
+                    var colorValue;
+                    colorValue = feat.properties[direction]
+
                     return{
-                        color:trkValueScale(feat.properties.TruckVl),
+                        color:trkValueScale(colorValue),
                         fillOpacity:0.075,
                         opacity:0.85,
                     }
@@ -242,15 +249,15 @@ module.exports = {
                         opacity:0.85,
                     }                    
                 }
-
             },
             onEachFeature: function(feature,layer){
                 var popupContent;
-                popupContent = "<b>Highway Value, 2040 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Value:</b> $" + comma(feature.properties.TruckVl)
+
+                popupContent = "<b>Highway Value, 2040 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/><b>N_40_TV: $</b> " +  comma(feature.properties.N_40_TV) + "<br/><b>S_40_TV: $</b> " +  comma(feature.properties.S_40_TV) + "<br/><b>E_40_TV: $</b> " +  comma(feature.properties.E_40_TV) +  "<br/><b>W_40_TV: $</b> " +  comma(feature.properties.W_40_TV)
                 layer.bindPopup(popupContent);    
 
                 var legendContent;
-                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Value:</b> $" + comma(feature.properties.TruckVl)
+                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Tonnage:</b> " + "<br/><b>N_40_TV: $</b> " +  comma(feature.properties.N_40_TV) + "<br/><b>S_40_TV: $</b> " +  comma(feature.properties.S_40_TV) + "<br/><b>E_40_TV: $</b> " +  comma(feature.properties.E_40_TV) +  "<br/><b>W_40_TV: $</b> " +  comma(feature.properties.W_40_TV)
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
