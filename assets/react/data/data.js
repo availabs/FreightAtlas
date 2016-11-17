@@ -22,6 +22,10 @@ var colorScale = d3.scale.ordinal()
                  .domain([0,10000])
                  .range(["blue","red"]),
 
+    counts2014Scale = d3.scale.linear()
+                 .domain([500,10000])
+                 .range(["blue","red"]),
+
     comma = d3.format(",");
 
 module.exports = {
@@ -42,6 +46,7 @@ module.exports = {
                 }
                 else{
                     return{
+                        color:colorScale("Highway Analysis Corridors"),
                         fillOpacity:0.075,
                         opacity:0.85,
                     }                    
@@ -80,6 +85,7 @@ module.exports = {
                 }
                 else{
                     return{
+                        color:colorScale("Rail Analysis Corridors"),
                         fillOpacity:0.075,
                         opacity:0.85,
                     }                    
@@ -122,6 +128,7 @@ module.exports = {
                 }
                 else{
                     return{
+                        color:colorScale("Highway Tonnage, 2012 (TRANSEARCH)"),
                         fillOpacity:0.075,
                         opacity:0.85,
                     }                    
@@ -163,6 +170,7 @@ module.exports = {
                 }
                 else{
                     return{
+                        color:colorScale("Highway Tonnage, 2040 (TRANSEARCH)"),
                         fillOpacity:0.075,
                         opacity:0.85,
                     }                    
@@ -204,6 +212,7 @@ module.exports = {
                 }
                 else{
                     return{
+                        color:colorScale("Highway Value, 2012 (TRANSEARCH)"),
                         fillOpacity:0.075,
                         opacity:0.85,
                     }                    
@@ -245,6 +254,7 @@ module.exports = {
                 }
                 else{
                     return{
+                        color:colorScale("Highway Value, 2040 (TRANSEARCH)"),
                         fillOpacity:0.075,
                         opacity:0.85,
                     }                    
@@ -286,6 +296,7 @@ module.exports = {
                 }
                 else{
                     return{
+                        color:colorScale("Highway Truck Volumes, 2012 (TRANSEARCH)"),
                         fillOpacity:0.075,
                         opacity:0.85,
                     }                    
@@ -327,6 +338,7 @@ module.exports = {
                 }
                 else{
                     return{
+                        color:colorScale("Highway Truck Volumes, 2040 (TRANSEARCH)"),
                         fillOpacity:0.075,
                         opacity:0.85,
                     }                    
@@ -356,9 +368,9 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("State"),
-                    fillOpacity:0.075,
-                    opacity:0.85,
+                    color:colorScale("Highway Average Vehicle Tonnage, 2011-2014 WIM (NYSDOT)"),
+                    fillOpacity:0.55,
+                    opacity:0.9,
                 }
             },
             pointToLayer: function (d, latlng) {
@@ -390,28 +402,40 @@ module.exports = {
         options:{
             featDetails:[],
             zoomOnLoad:false,
+            directional:{n:"F14AADTT_NW",s:"F14AADTT_ES"},
             visible:false,
             loaded:false,
-            style:function(feat){
-                return{
-                    color:colorScale("State"),
-                    fillOpacity:0.075,
-                    opacity:0.85,
+            style:function(feat,direction){
+                if(feat){
+                    var colorValue;
+                    colorValue = feat.properties[direction]
+
+                    return{
+                        color:counts2014Scale(colorValue),
+                        fillOpacity:0.075,
+                        opacity:0.85,
+                    }
+                }
+                else{
+                    return{
+                        color:colorScale("Highway Truck Volumes, 2040 (TRANSEARCH)"),
+                        fillOpacity:0.075,
+                        opacity:0.85,
+                    }                    
                 }
             },
             onEachFeature: function(feature,layer){
-                console.log(feature)
+                var popupContent;
+
+                popupContent = "<b>2014 Counts (NYSTA)</b> <br/>"+ "<b>Highway:</b> "+feature.properties.COMMON_NAM+"<br/> <b>North/West Truck Volumes:</b> " + comma(feature.properties.F14AADTT_NW) + "<br/><b>South/East Truck Volumes: </b> " +  comma(feature.properties.F14AADTT_ES)
+                layer.bindPopup(popupContent);    
+
                 var legendContent;
-                
-                Object.keys(feature.properties).forEach(element => {
-
-                    legendContent += "<br/> " + element + ": " + feature.properties[element]
-
-                })
+                legendContent = "<b>Highway:</b> "+feature.properties.COMMON_NAM+"<br/><b>North/West Truck Volumes:</b> " + comma(feature.properties.F14AADTT_NW) + "<br/><b>South/East Truck Volumes: </b> " +  comma(feature.properties.F14AADTT_ES)
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
-                }
+                }   
             }
         }
     }, 
@@ -424,7 +448,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("State"),
+                    color:colorScale("2015 Border Counts (Various Sources)"),
                     fillOpacity:0.075,
                     opacity:0.85,
                 }
@@ -457,7 +481,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("State"),
+                    color:colorScale("Highway Truck Parking, (NYSDOT/Trucker’s Friend)"),
                     fillOpacity:0.075,
                     opacity:0.85,
                 }
@@ -490,7 +514,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("State"),
+                    color:colorScale("Highway Bridge Data, 2014 (NYSDOT)"),
                     fillOpacity:0.075,
                     opacity:0.85,
                 }
@@ -523,7 +547,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("State"),
+                    color:colorScale("Highway Pavement Data, 2014 (NYSDOT)"),
                     fillOpacity:0.075,
                     opacity:0.85,
                 }
@@ -548,7 +572,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("State"),
+                    color:colorScale("Seaport Tonnage, 2014 (USACE/Ports)"),
                     fillOpacity:0.075,
                     opacity:0.85,
                 }
@@ -581,7 +605,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("State"),
+                    color:colorScale("Airport Tonnage, 2015 (ACINA/PANYNJ)"),
                     fillOpacity:0.075,
                     opacity:0.85,
                 }
@@ -614,7 +638,7 @@ module.exports = {
             loaded:false,
             style:function(feat){
                 return{
-                    color:colorScale("State"),
+                    color:colorScale("Pipeline Tonnage/Value, 2012 & 2040 (FAF)"),
                     fillOpacity:0.075,
                     opacity:0.85,
                 }
