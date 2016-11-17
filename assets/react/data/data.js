@@ -389,7 +389,7 @@ module.exports = {
                 layer.bindPopup(popupContent);    
 
                 var legendContent;
-                legendContent =                 "<b>Description:</b> " + feature.properties.BEGINDESC + " " + feature.properties.ENDDESC + "<b>SUCW:</b> " + feature.properties.SUCW + "<br/> <b>MUCW:</b> " + feature.properties.MUCW
+                legendContent = "<b>Description:</b> " + feature.properties.BEGINDESC + " " + feature.properties.ENDDESC + "<b>SUCW:</b> " + feature.properties.SUCW + "<br/> <b>MUCW:</b> " + feature.properties.MUCW
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
@@ -449,8 +449,8 @@ module.exports = {
             style:function(feat){
                 return{
                     color:colorScale("2015 Border Counts (Various Sources)"),
-                    fillOpacity:0.075,
-                    opacity:0.85,
+                    fillOpacity:0.55,
+                    opacity:0.9,
                 }
             },
             pointToLayer: function (d, latlng) {
@@ -462,13 +462,16 @@ module.exports = {
                 return obj;
             },
             onEachFeature: function(feature,layer){
+                var popupContent;                
+                popupContent = "<b>2015 Border Counts (Various Sources)</b> <br/>"+"<b>Name:</b> " + feature.properties.CP_Name + "<br/> <b>FROM US:</b> " + feature.properties.FROM_US + "<br/> <b>TO_US:</b> " + feature.properties.TO_US
+                layer.bindPopup(popupContent);    
+
                 var legendContent;
-                
-                legendContent = "New York State"
+                legendContent = "<br/><b>Name:</b> " + feature.properties.CP_Name + "<b>From US:</b> " + feature.properties.FROM_US + "<br/> <b>TO US:</b> " + feature.properties.TO_US
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
-                }
+                }  
             }
         }
     }, 
