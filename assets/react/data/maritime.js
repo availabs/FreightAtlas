@@ -9,7 +9,7 @@ var colorScale = d3.scale.ordinal()
 
 module.exports = {
     "Major Ports":{
-	    path:"../finalGeoJson/Major_Ports.geojson",
+	    path:"../novUpdateJson/Major_Ports.geojson",
 	    options:{
 	        featDetails:[],
 	        zoomOnLoad:false,

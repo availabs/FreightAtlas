@@ -79,7 +79,7 @@ module.exports = {
         }
     },
     "Major Freight Airports":{
-        path:"../finalGeoJson/Major_Airport.geojson",
+        path:"../novUpdateJson/Major_Airport.geojson",
         options:{
             featDetails:[],
             zoomOnLoad:false,

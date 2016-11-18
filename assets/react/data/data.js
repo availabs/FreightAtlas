@@ -10,21 +10,33 @@ var colorScale = d3.scale.ordinal()
                  .domain([0,15])
                  .range(colorbrewer.Paired[9]),
 
-    trkTonsScale = d3.scale.linear()
-                 .domain([0,120000])
-                 .range(["blue","red"]),
+    trkTonsScale = d3.scale.threshold()
+                 .domain([15000,30000,60000,120000])
+                 .range(["green","#98FB98","yellow","orange","red"]),
 
-    trkValueScale = d3.scale.linear()
-                 .domain([0,250000000])
-                 .range(["blue","red"]),
+    trkValueScale = d3.scale.threshold()
+                 .domain([10000000,50000000,100000000,250000000])
+                 .range(["green","#98FB98","yellow","orange","red"]),
 
-    trkVolumeScale = d3.scale.linear()
-                 .domain([0,10000])
-                 .range(["blue","red"]),
+    trkVolumeScale = d3.scale.threshold()
+                 .domain([500,2500,5000,10000])
+                 .range(["green","#98FB98","yellow","orange","red"]),
 
-    counts2014Scale = d3.scale.linear()
-                 .domain([500,10000])
-                 .range(["blue","red"]),
+    counts2014Scale = d3.scale.threshold()
+                 .domain([500,2500,5000,10000])
+                 .range(["green","#98FB98","yellow","orange","red"]),
+
+    trkParkingScale = d3.scale.threshold()
+                 .domain([1,10,25,50,100])
+                 .range(["black","green","#98FB98","yellow","orange","red"]),
+
+    bridgeScale = d3.scale.threshold()
+                 .domain([4,5,6])
+                 .range(["green","#98FB98","yellow","red"]),
+
+    pavementScale = d3.scale.ordinal()
+                 .domain(["Poor","Fair","Good","No Score"])
+                 .range(["red","orange","green","grey"]),
 
     comma = d3.format(",");
 
@@ -474,7 +486,7 @@ module.exports = {
                 }  
             }
         }
-    }, 
+    },  
     "Highway Truck Parking, (NYSDOT/Trucker’s Friend)":{
         path:"../novUpdateJson/TruckParking.geojson",
         options:{
@@ -483,24 +495,45 @@ module.exports = {
             visible:false,
             loaded:false,
             style:function(feat){
-                return{
-                    color:colorScale("Highway Truck Parking, (NYSDOT/Trucker’s Friend)"),
-                    fillOpacity:0.075,
-                    opacity:0.85,
+                if(feat){
+                    return{
+                        color:trkParkingScale(feat.properties.Truck_Spac),
+                        fillOpacity:0.55,
+                        opacity:0.9
+                    }
+                }
+                else{
+                    return{
+                        color:colorScale("Highway Truck Parking, (NYSDOT/Trucker’s Friend)"),
+                        fillOpacity:0.55,
+                        opacity:0.9
+                    }                    
                 }
             },
             pointToLayer: function (d, latlng) {
                 var options = {
 
                 }
-                var obj = L.circleMarker(latlng, {});
+                var radius = (d.properties.Truck_Spac/10);
+
+                radius = (radius < 1) ? 1 : radius
+                var obj = L.circleMarker(latlng, {radius:radius});
                 //obj.bindPopup(d.properties.PortName);
                 return obj;
             },
             onEachFeature: function(feature,layer){
                 var legendContent;
-                
-                legendContent = "New York State"
+                var popupContent;                
+
+                var restArea = (feature.properties["Rest_Area"] != " ") ? "<b>Rest Area:</b> " + feature.properties["Rest_Area"] + "</br>" : ""
+
+                var legendContent;
+                legendContent = restArea + "<b>Truck Space:</b> " + feature.properties.Truck_Spac
+              
+
+                popupContent = "<b>Highway Truck Parking, (NYSDOT/Trucker’s Friend)</b> <br/>"+restArea + "<b>Truck Space:</b> " + feature.properties.Truck_Spac
+
+                layer.bindPopup(popupContent);  
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
@@ -516,31 +549,53 @@ module.exports = {
             visible:false,
             loaded:false,
             style:function(feat){
-                return{
-                    color:colorScale("Highway Bridge Data, 2014 (NYSDOT)"),
-                    fillOpacity:0.075,
-                    opacity:0.85,
+                if(feat){
+                    return{
+                        color:bridgeScale(feat.properties.CONDITION_),
+                        fillOpacity:0.4,
+                        opacity:0.8
+                    }
+                }
+                else{
+                    return{
+                        color:colorScale("Highway Bridge Data, 2014 (NYSDOT)"),
+                        fillOpacity:0.55,
+                        opacity:0.9
+                    }                    
                 }
             },
             pointToLayer: function (d, latlng) {
-                var options = {
-
+                if(d.properties.CONDITION_ == 0){
+                    var myIcon = L.icon({
+                        iconUrl: './images/triangle.png',
+                        iconSize: [14, 14]
+                    });
+                    var obj = L.marker(latlng, {icon: myIcon});
                 }
-                var obj = L.circleMarker(latlng, {});
-                //obj.bindPopup(d.properties.PortName);
+                else{
+                    var obj = L.circleMarker(latlng, {radius:7});                    
+                }
+
                 return obj;
             },
             onEachFeature: function(feature,layer){
                 var legendContent;
-                
-                legendContent = "New York State"
+                var popupContent;                
+
+                var carried = (feature.properties["CARRIED"] != " ") ? "<b>Carried:</b> " + feature.properties["CARRIED"] + "</br>" : ""
+
+                var legendContent;
+                legendContent = carried + "<b>Condition</b> " + feature.properties.CONDITION_
+
+                popupContent = "<b>Highway Bridge Data, 2014 (NYSDOT)</b> <br/>"+carried + "<b>Condition</b> " + feature.properties.CONDITION_
+                layer.bindPopup(popupContent);  
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
                 }
             }
         }
-    }, 
+    },                     
     "Highway Pavement Data, 2014 (NYSDOT)":{
         path:"../novUpdateJson/Pavements2014.geojson",
         options:{
@@ -549,16 +604,41 @@ module.exports = {
             visible:false,
             loaded:false,
             style:function(feat){
-                return{
-                    color:colorScale("Highway Pavement Data, 2014 (NYSDOT)"),
-                    fillOpacity:0.075,
-                    opacity:0.85,
+                if(feat){
+                    var colorValue = feat.properties.Level14
+                    if(colorValue == "U"){
+                        colorValue = "No Score"        
+                    }
+
+                    return{
+                        color:pavementScale(feat.properties.Level14),
+                        fillOpacity:0.4,
+                        opacity:0.8
+                    }
+                }
+                else{
+                    return{
+                        color:colorScale("Highway Pavement Data, 2014 (NYSDOT)"),
+                        fillOpacity:0.55,
+                        opacity:0.9
+                    }                    
                 }
             },
             onEachFeature: function(feature,layer){
                 var legendContent;
-                
-                legendContent = "New York State"
+                var popupContent;                
+
+                var desc = ""
+                if(feature.properties.BEGIN_DESC != " " || feature.properties.END_DESCRI != " "){
+                    desc = "<b>Description:</b> " + feature.properties.BEGIN_DESC + " " + feature.properties.END_DESCRI + "</br>"                    
+                }
+
+
+                var legendContent;
+                legendContent = desc + "<b>Level 14</b> " + feature.properties.Level14
+
+                popupContent = "<b>Highway Pavement Data, 2014 (NYSDOT)</b> <br/>"+desc + "<b>Level 14</b> " + feature.properties.Level14
+                layer.bindPopup(popupContent);  
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
@@ -576,8 +656,8 @@ module.exports = {
             style:function(feat){
                 return{
                     color:colorScale("Seaport Tonnage, 2014 (USACE/Ports)"),
-                    fillOpacity:0.075,
-                    opacity:0.85,
+                    fillOpacity:0.55,
+                    opacity:0.9,
                 }
             },
             pointToLayer: function (d, latlng) {
@@ -589,13 +669,27 @@ module.exports = {
                 return obj;
             },
             onEachFeature: function(feature,layer){
+                var popupContent;       
+
+
+
+                var tonnage = ""
+                if(feature.properties.F2014USACE){
+                    tonnage =  "<br/><b>Tonnage:</b> " + comma(feature.properties.F2014USACE)                     
+                }
+                else{
+                    tonnage = "<br/><b>Tonnage:</b> The PANYNJ terminals collectively comprise 123.3 million tons, but individual port numbers were not available."
+                }
+      
+                popupContent = "<b>Seaport Tonnage, 2014 (USACE/Ports)</b> <br/>"+"<b>Name:</b> " + feature.properties.PORT_NAME + tonnage
+                layer.bindPopup(popupContent);    
+
                 var legendContent;
-                
-                legendContent = "New York State"
+                legendContent = "<br/><b>Name:</b> " + feature.properties.PORT_NAME + tonnage
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
-                }
+                }  
             }
         }
     }, 
@@ -609,8 +703,8 @@ module.exports = {
             style:function(feat){
                 return{
                     color:colorScale("Airport Tonnage, 2015 (ACINA/PANYNJ)"),
-                    fillOpacity:0.075,
-                    opacity:0.85,
+                    fillOpacity:0.55,
+                    opacity:0.9,
                 }
             },
             pointToLayer: function (d, latlng) {
@@ -622,9 +716,14 @@ module.exports = {
                 return obj;
             },
             onEachFeature: function(feature,layer){
-                var legendContent;
-                
-                legendContent = "New York State"
+                var name = "<b>Name: </b>" + feature.properties.FULLNAME
+                var tonnage =  "<br/><b>Tonnage:</b> " + comma(feature.properties.Tonnage)
+                var source =  "<br/><b>Source:</b> " + feature.properties.Datasource
+                var growth =  "<br/><b>Projected Growth to 2040:</b> " + feature.properties.PercGrowth2040 + "%"
+
+                var popupContent = "<b>Airport Tonnage, 2015 (ACINA/PANYNJ)</b> <br/>" + name + tonnage + source + growth
+                var legendContent = name + tonnage + source + growth
+                layer.bindPopup(popupContent); 
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
@@ -647,9 +746,15 @@ module.exports = {
                 }
             },
             onEachFeature: function(feature,layer){
-                var legendContent;
-                
-                legendContent = "New York State"
+                var name = "<b>Name: </b>" + feature.properties.LongName
+                var tonnage2012 =  "<br/><b>2012 Tonnage:</b> " + comma(feature.properties.F2012Ton)
+                var value2012 =  "<br/><b>2012 Value:</b> $" + comma(feature.properties.F2012Val)
+                var tonnage2040 =  "<br/><b>2040 Tonnage:</b> " + comma(feature.properties.F2040Ton)
+                var value2040 =  "<br/><b>2040 Value:</b> $" + comma(feature.properties.F2040Val)
+
+                var popupContent = "<b>Pipeline Tonnage/Value, 2012 & 2040 (FAF)</b> <br/>" + name + tonnage2012 + value2012 + tonnage2040 + value2040
+                var legendContent = name + tonnage2012 + value2012 + tonnage2040 + value2040
+                layer.bindPopup(popupContent); 
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
