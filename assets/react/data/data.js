@@ -149,11 +149,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "<b>Highway Tonnage, 2012 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/><b>N_TrkTons:</b> " +  comma(feature.properties.N_TrkTons) + "<br/><b>S_TrkTons:</b> " +  comma(feature.properties.S_TrkTons) + "<br/><b>E_TrkTons:</b> " +  comma(feature.properties.E_TrkTons) +  "<br/><b>W_TrkTons:</b> " +  comma(feature.properties.W_TrkTons)
+                popupContent = "<b>Highway Tonnage, 2012 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/><b>North Truck Tons:</b> " +  comma(feature.properties.N_TrkTons) + "<br/><b>South Truck Tons:</b> " +  comma(feature.properties.S_TrkTons) + "<br/><b>East Truck Tons:</b> " +  comma(feature.properties.E_TrkTons) +  "<br/><b>West Truck Tons:</b> " +  comma(feature.properties.W_TrkTons)
                 layer.bindPopup(popupContent);    
 
                 var legendContent;
-                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Tonnage:</b> " + "<br/><b>N_TrkTons:</b> " +  comma(feature.properties.N_TrkTons) + "<br/><b>S_TrkTons:</b> " +  comma(feature.properties.S_TrkTons) + "<br/><b>E_TrkTons:</b> " +  comma(feature.properties.E_TrkTons) +  "<br/><b>W_TrkTons:</b> " +  comma(feature.properties.W_TrkTons)
+                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Tonnage:</b> " + "<br/><b>North Truck Tons:</b> " +  comma(feature.properties.N_TrkTons) + "<br/><b>South Truck Tons:</b> " +  comma(feature.properties.S_TrkTons) + "<br/><b>East Truck Tons:</b> " +  comma(feature.properties.E_TrkTons) +  "<br/><b>West Truck tons:</b> " +  comma(feature.properties.W_TrkTons)
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
@@ -191,11 +191,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "<b>Highway Tonnage, 2040 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/><b>N_40_TT:</b> " +  comma(feature.properties.N_40_TT) + "<br/><b>S_40_TT:</b> " +  comma(feature.properties.S_40_TT) + "<br/><b>E_40_TT:</b> " +  comma(feature.properties.E_40_TT) +  "<br/><b>W_40_TT:</b> " +  comma(feature.properties.W_40_TT)
+                popupContent = "<b>Highway Tonnage, 2040 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/><b>North Truck Tons:</b> " +  comma(feature.properties.N_40_TT) + "<br/><b>South Truck Tons:</b> " +  comma(feature.properties.S_40_TT) + "<br/><b>East Truck Tons:</b> " +  comma(feature.properties.E_40_TT) +  "<br/><b>West Truck Tons:</b> " +  comma(feature.properties.W_40_TT)
                 layer.bindPopup(popupContent);    
 
                 var legendContent;
-                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Tonnage:</b> " + "<br/><b>N_40_TT:</b> " +  comma(feature.properties.N_40_TT) + "<br/><b>S_40_TT:</b> " +  comma(feature.properties.S_40_TT) + "<br/><b>E_40_TT:</b> " +  comma(feature.properties.E_40_TT) +  "<br/><b>W_40_TT:</b> " +  comma(feature.properties.W_40_TT)
+                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Tonnage:</b> " + "<br/><b>North Truck Tons:</b> " +  comma(feature.properties.N_40_TT) + "<br/><b>South Truck Tons:</b> " +  comma(feature.properties.S_40_TT) + "<br/><b>East Truck Tons:</b> " +  comma(feature.properties.E_40_TT) +  "<br/><b>West Truck Tons:</b> " +  comma(feature.properties.W_40_TT)
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
@@ -233,11 +233,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "<b>Highway Value, 2012 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/><b>N_TrkValue: $</b> " +  comma(feature.properties.N_TrkValue) + "<br/><b>S_TrkValue: $</b> " +  comma(feature.properties.S_TrkValue) + "<br/><b>E_TrkValue: $</b> " +  comma(feature.properties.E_TrkValue) +  "<br/><b>W_TrkValue: $</b> " +  comma(feature.properties.W_TrkValue)
+                popupContent = "<b>Highway Value, 2012 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/><b>North Truck Value: $</b> " +  comma(feature.properties.N_TrkValue) + "<br/><b>South Truck Value: $</b> " +  comma(feature.properties.S_TrkValue) + "<br/><b>East Truck Value: $</b> " +  comma(feature.properties.E_TrkValue) +  "<br/><b>West Truck Value: $</b> " +  comma(feature.properties.W_TrkValue)
                 layer.bindPopup(popupContent);    
 
                 var legendContent;
-                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Tonnage:</b> " + "<br/><b>N_TrkValue: $</b> " +  comma(feature.properties.N_TrkValue) + "<br/><b>S_TrkValue: $</b> " +  comma(feature.properties.S_TrkValue) + "<br/><b>E_TrkValue: $</b> " +  comma(feature.properties.E_TrkValue) +  "<br/><b>W_TrkValue: $</b> " +  comma(feature.properties.W_TrkValue)
+                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Value:</b> " + "<br/><b>North Truck Value: $</b> " +  comma(feature.properties.N_TrkValue) + "<br/><b>South Truck Value: $</b> " +  comma(feature.properties.S_TrkValue) + "<br/><b>East Truck Value: $</b> " +  comma(feature.properties.E_TrkValue) +  "<br/><b>West Truck Value: $</b> " +  comma(feature.properties.W_TrkValue)
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
@@ -275,11 +275,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "<b>Highway Value, 2040 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/><b>N_40_TV:</b> " +  comma(feature.properties.N_40_TV) + "<br/><b>S_40_TV:</b> " +  comma(feature.properties.S_40_TV) + "<br/><b>E_40_TV:</b> " +  comma(feature.properties.E_40_TV) +  "<br/><b>W_40_TV:</b> " +  comma(feature.properties.W_40_TV)
+                popupContent = "<b>Highway Value, 2040 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/><b>North Truck Value: $</b> " +  comma(feature.properties.N_40_TV) + "<br/><b>South Truck Value: $</b> " +  comma(feature.properties.S_40_TV) + "<br/><b>East Truck Value: $</b> " +  comma(feature.properties.E_40_TV) +  "<br/><b>West Truck Value: $</b> " +  comma(feature.properties.W_40_TV)
                 layer.bindPopup(popupContent);    
 
                 var legendContent;
-                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Tonnage:</b> " + "<br/><b>N_40_TV:</b> " +  comma(feature.properties.N_40_TV) + "<br/><b>S_40_TV:</b> " +  comma(feature.properties.S_40_TV) + "<br/><b>E_40_TV:</b> " +  comma(feature.properties.E_40_TV) +  "<br/><b>W_40_TV:</b> " +  comma(feature.properties.W_40_TV)
+                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Value: $</b> " + "<br/><b>North Truck Value: $</b> " +  comma(feature.properties.N_40_TV) + "<br/><b>South Truck Value: $</b> " +  comma(feature.properties.S_40_TV) + "<br/><b>East Truck Value: $</b> " +  comma(feature.properties.E_40_TV) +  "<br/><b>West Truck Value:</b> " +  comma(feature.properties.W_40_TV)
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
@@ -317,11 +317,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "<b>Highway Truck Volumes, 2012 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/><b>N_Trks: $</b> " +  comma(feature.properties.N_Trks) + "<br/><b>S_Trks: $</b> " +  comma(feature.properties.S_Trks) + "<br/><b>E_Trks: $</b> " +  comma(feature.properties.E_Trks) +  "<br/><b>W_Trks: $</b> " +  comma(feature.properties.W_Trks)
+                popupContent = "<b>Highway Truck Volumes, 2012 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/><b>Noth Truck Volume: </b> " +  comma(feature.properties.N_Trks) + "<br/><b>South Truck Volume: </b> " +  comma(feature.properties.S_Trks) + "<br/><b>East Truck Volume: </b> " +  comma(feature.properties.E_Trks) +  "<br/><b>West Truck Volume: </b> " +  comma(feature.properties.W_Trks)
                 layer.bindPopup(popupContent);    
 
                 var legendContent;
-                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Volume:</b> " + "<br/><b>N_Trks: $</b> " +  comma(feature.properties.N_Trks) + "<br/><b>S_Trks: $</b> " +  comma(feature.properties.S_Trks) + "<br/><b>E_Trks: $</b> " +  comma(feature.properties.E_Trks) +  "<br/><b>W_Trks: $</b> " +  comma(feature.properties.W_Trks)
+                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Volume:</b> " + "<br/><b>Noth Truck Volume: </b> " +  comma(feature.properties.N_Trks) + "<br/><b>South Truck Volume: </b> " +  comma(feature.properties.S_Trks) + "<br/><b>East Truck Volume: </b> " +  comma(feature.properties.E_Trks) +  "<br/><b>West Truck Volume: </b> " +  comma(feature.properties.W_Trks)
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
@@ -359,11 +359,11 @@ module.exports = {
             onEachFeature: function(feature,layer){
                 var popupContent;
 
-                popupContent = "<b>Highway Truck Volumes, 2040 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/><b>N_Tr: $</b> " +  comma(feature.properties.N_Tr) + "<br/><b>S_Tr: $</b> " +  comma(feature.properties.S_Tr) + "<br/><b>E_Tr: $</b> " +  comma(feature.properties.E_Tr) +  "<br/><b>W_Tr: $</b> " +  comma(feature.properties.W_Tr)
+                popupContent = "<b>Highway Truck Volumes, 2040 (TRANSEARCH)</b> <br/>"+ "<br/> <b>Route:</b> " + feature.properties.RTESIGN1 + "<br/><b>North Truck Volume: </b> " +  comma(feature.properties.N_40_Tr) + "<br/><b>South Truck Volume: </b> " +  comma(feature.properties.S_40_Tr) + "<br/><b>East Truck Volume: </b> " +  comma(feature.properties.E_40_Tr) +  "<br/><b>West Truck Volume: </b> " +  comma(feature.properties.W_40_Tr)
                 layer.bindPopup(popupContent);    
 
                 var legendContent;
-                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Volume:</b> " + "<br/><b>N_Tr: $</b> " +  comma(feature.properties.N_Tr) + "<br/><b>S_Tr: $</b> " +  comma(feature.properties.S_Tr) + "<br/><b>E_Tr: $</b> " +  comma(feature.properties.E_Tr) +  "<br/><b>W_Tr: $</b> " +  comma(feature.properties.W_Tr)
+                legendContent = "<b>Route:</b> " + feature.properties.RTESIGN1 + "<br/> <b>Truck Volume:</b> " + "<br/><b>North Truck Volume: </b> " +  comma(feature.properties.N_40_Tr) + "<br/><b>South Truck Volume: </b> " +  comma(feature.properties.S_40_Tr) + "<br/><b>East Truck Volume: </b> " +  comma(feature.properties.E_40_Tr) +  "<br/><b>West Truck Volume: </b> " +  comma(feature.properties.W_40_Tr)
 
                 if(this.featDetails.indexOf(legendContent) === -1){
                     this.featDetails.push(legendContent);                   
