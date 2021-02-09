@@ -1,4 +1,3 @@
-
 'use strict';
 
 var React = require('react'),
@@ -21,9 +20,9 @@ var mapVar = null,
     sidebar;
 
 var colorScale = d3.scale.category20();   
-console.log(offset)
+// console.log(offset)
 
-
+var MAPBOX_TOKEN = require('./mapboxToken')
 
 var Map = React.createClass({
     
@@ -75,7 +74,7 @@ var Map = React.createClass({
 
                         scope._updateLayer(key,currLayer)
                     }else{
-                        console.log('MAP/recieve props/ DEAD END')
+                        // console.log('MAP/recieve props/ DEAD END')
                     }
                 }
                 else{
@@ -91,7 +90,7 @@ var Map = React.createClass({
 
                         scope._updateLayer(key,currLayer)
                     }else{
-                        console.log('MAP/recieve props/ DEAD END')
+                        // console.log('MAP/recieve props/ DEAD END')
                     }
                 }                
 
@@ -128,7 +127,7 @@ var Map = React.createClass({
     },
     
     _updateLayer : function(key,layer){
-        console.log(key,layer)
+        // console.log(key,layer)
         if(layers[key] && mapVar.hasLayer(layers[key].layer)){
             mapVar.removeLayer(layers[key].layer)
         }
@@ -140,7 +139,7 @@ var Map = React.createClass({
             if(layer.geo){
                 if(layer.options.directional){
                     var curLayer = new L.layerGroup()
-                    console.log("ryanTest",layer)
+                    // console.log("ryanTest",layer)
                     var directionsCross = layer.options.directional
                     var coords = []
                     layer.geo.features.forEach(feature => {
@@ -221,7 +220,7 @@ var Map = React.createClass({
     },
 
     renderMap:function(){
-        console.log("rendermap")
+        // console.log("rendermap")
         var scope = this;
         var mapDiv = document.getElementById('map');
         if(this.props.height === '100%'){
@@ -229,14 +228,17 @@ var Map = React.createClass({
         }else{
         }
         //pencil am3081.kml65fk1
-        var greyScale = L.tileLayer("https://{s}.tiles.mapbox.com/v3/am3081.nb38hhb7/{z}/{x}/{y}.png"),
-            tContours = L.tileLayer("https://{s}.tiles.mapbox.com/v3/aj.um7z9lus/{z}/{x}/{y}.png"),
-            streetMap = L.tileLayer('https://{s}.tiles.mapbox.com/v3/am3081.nb3amb93/{z}/{x}/{y}.png'),
-            aImagery = L.tileLayer('http://{s}.tiles.mapbox.com/v3/am3081.h0pml9h7/{z}/{x}/{y}.png'),
-            aImageStreets = L.tileLayer('http://oatile2.mqcdn.com/tiles/1.0.0/hyb/{z}/{x}/{y}.png'),   //+ http://{s}.tiles.mapbox.com/v3/am3081.h0pml9h7/{z}/{x}/{y}.png              
-            aImageTerr = L.tileLayer('https://{s}.tiles.mapbox.com/v3/matt.hd0b27jd/{z}/{x}/{y}.png');                    
-                                    
-                                    
+        // NOTE: All of these are broken.
+        //       See: https://stackoverflow.com/a/65848716/3970755 
+        //            https://docs.mapbox.com/help/troubleshooting/migrate-legacy-static-tiles-api/#how-can-i-tell-if-my-style-is-a-classic-style-or-a-modern-mapbox-style
+        // var greyScale = L.tileLayer("https://{s}.tiles.mapbox.com/v3/am3081.nb38hhb7/{z}/{x}/{y}.png"),
+        //     tContours = L.tileLayer("https://{s}.tiles.mapbox.com/v3/aj.um7z9lus/{z}/{x}/{y}.png"),
+        //     streetMap = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=' + MAPBOX_TOKEN),
+        //     aImagery = L.tileLayer('http://{s}.tiles.mapbox.com/v3/am3081.h0pml9h7/{z}/{x}/{y}.png'),
+        //     aImageStreets = L.tileLayer('http://oatile2.mqcdn.com/tiles/1.0.0/hyb/{z}/{x}/{y}.png'),   //+ http://{s}.tiles.mapbox.com/v3/am3081.h0pml9h7/{z}/{x}/{y}.png              
+        //     aImageTerr = L.tileLayer('https://{s}.tiles.mapbox.com/v3/matt.hd0b27jd/{z}/{x}/{y}.png');                    
+
+        var streetMap = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=' + MAPBOX_TOKEN)
                                     
         mapVar = L.map(this.getDOMNode(), {
             center: [42.8282, -78.5795],
@@ -250,17 +252,20 @@ var Map = React.createClass({
 
         var baseMaps = {
             "Light Map": streetMap,
-            "Dark Map" : greyScale,
-            "Terrain Countours": tContours,
-            "Aerial Imagery" : aImagery,
-            "Aerial Imagery with Terrain" : aImageTerr,
+        // The below layers are broken.
+            // "Dark Map" : greyScale,
+            // "Terrain Countours": tContours,
+            // "Aerial Imagery" : aImagery,
+            // "Aerial Imagery with Terrain" : aImageTerr,
             
-        },
-        overlayMaps = {
-            "Street Overlay" : aImageStreets
-        };
+        } //,
+        // overlayMaps = {
+        //     "Street Overlay" : aImageStreets
+        // };
 
-        L.control.layers(baseMaps, overlayMaps).addTo(mapVar);
+        // Remove broken overlayMaps option
+        // L.control.layers(baseMaps, overlayMaps).addTo(mapVar);
+        L.control.layers(baseMaps).addTo(mapVar);
         //mapVar.invalidateSize();
         if(this.props.sidebar){
             sidebar = L.control.sidebar('sidebar').addTo(mapVar);
@@ -305,7 +310,7 @@ var Map = React.createClass({
     },
 
     render: function() {
-        console.log(mapVar)
+        // console.log(mapVar)
         if(mapVar){    
             mapVar.invalidateSize();
         }
