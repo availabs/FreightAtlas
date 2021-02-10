@@ -239,6 +239,7 @@ var Map = React.createClass({
         //     aImageTerr = L.tileLayer('https://{s}.tiles.mapbox.com/v3/matt.hd0b27jd/{z}/{x}/{y}.png');                    
 
         var streetMap = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=' + MAPBOX_TOKEN)
+        var aImagery = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=' + MAPBOX_TOKEN)
                                     
         mapVar = L.map(this.getDOMNode(), {
             center: [42.8282, -78.5795],
@@ -252,10 +253,10 @@ var Map = React.createClass({
 
         var baseMaps = {
             "Light Map": streetMap,
+            "Aerial Imagery" : aImagery,
         // The below layers are broken.
             // "Dark Map" : greyScale,
             // "Terrain Countours": tContours,
-            // "Aerial Imagery" : aImagery,
             // "Aerial Imagery with Terrain" : aImageTerr,
             
         } //,
